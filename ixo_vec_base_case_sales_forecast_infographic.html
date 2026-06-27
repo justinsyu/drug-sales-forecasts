@@ -1,0 +1,1448 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='black'/%3E%3Cpath d='M3 11h10v2H3zM3 7h7v2H3zM3 3h4v2H3z' fill='%232e72dc'/%3E%3C/svg%3E" />
+  <title>Ixo-vec Base Case Sales Forecast Infographic</title>
+  <style>
+    @font-face {
+      font-family: "GS Sans";
+      src: url("https://cdn.gs.com/fonts/gs-sans/v3/gs-sans-variable.woff2") format("woff2");
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "GS Serif";
+      src: url("https://cdn.gs.com/fonts/gs-serif/v3/gs-serif-variable.woff2") format("woff2");
+      font-style: normal;
+    }
+    :root {
+      --black: #000000;
+      --ink: rgba(0, 0, 0, 0.95);
+      --muted: #5b7282;
+      --rule: #dce3e8;
+      --wash: #f2f5f7;
+      --blue: #2e72dc;
+      --blue-soft: #ecf2f9;
+      --teal: #159788;
+      --green: #31701f;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--white);
+      color: var(--ink);
+      font-family: "GS Sans", Helvetica, Arial, sans-serif;
+      letter-spacing: 0;
+    }
+    .page {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 42px 34px 64px;
+    }
+    header {
+      border-top: 4px solid var(--black);
+      padding-top: 24px;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 54px;
+      align-items: end;
+    }
+    h1 {
+      font-family: "GS Serif", Georgia, "Times New Roman", serif;
+      font-size: clamp(40px, 5.1vw, 68px);
+      line-height: .94;
+      letter-spacing: 0;
+      font-weight: 500;
+      margin: 0 0 18px;
+    }
+    h2 {
+      font-family: "GS Serif", Georgia, "Times New Roman", serif;
+      font-size: clamp(29px, 3vw, 44px);
+      line-height: 1;
+      font-weight: 500;
+      margin: 0;
+    }
+    h3 {
+      font-size: 18px;
+      line-height: 1.15;
+      margin: 0 0 8px;
+    }
+    p {
+      font-size: 16px;
+      line-height: 1.42;
+      margin: 0;
+    }
+    .deck {
+      max-width: 730px;
+      color: #212121;
+      font-size: 18px;
+      line-height: 1.38;
+    }
+    .meta {
+      border-left: 1px solid var(--black);
+      padding-left: 22px;
+      display: grid;
+      gap: 12px;
+      font-size: 14px;
+      color: #212121;
+    }
+    .meta strong { display: block; font-size: 22px; color: var(--black); }
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--black);
+      border-bottom: 1px solid var(--black);
+      margin: 42px 0 34px;
+    }
+    .kpi {
+      min-height: 116px;
+      padding: 18px 20px;
+      border-right: 1px solid var(--rule);
+    }
+    .kpi:last-child { border-right: 0; }
+    .kpi .label {
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      margin-bottom: 10px;
+    }
+    .kpi .value {
+      font-family: "GS Serif", Georgia, serif;
+      font-size: 38px;
+      line-height: 1;
+    }
+    .section {
+      padding: 42px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(450px, 0.62fr) minmax(0, 1fr);
+      gap: 54px;
+      margin-bottom: 26px;
+    }
+    .section-head h2 { white-space: nowrap; min-width: 0; }
+    .section-head p { color: #374151; max-width: 900px; min-width: 0; }
+    .chart-panel {
+      background: var(--wash);
+      border-top: 1px solid var(--black);
+      padding: 18px 18px 6px;
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin: 8px 0 14px;
+      color: #212121;
+      font-size: 14px;
+    }
+    .legend span::before {
+      content: "";
+      display: inline-block;
+      width: 26px;
+      height: 3px;
+      margin-right: 8px;
+      vertical-align: middle;
+      background: var(--blue);
+    }
+    .legend .us::before { background: var(--teal); }
+    .legend .exus::before { background: #8d8f91; }
+    .legend .sec-key::before { background: #000; }
+    .legend .gap-key::before { background: #c2170a; }
+    svg { width: 100%; height: auto; display: block; }
+    .grid-line { stroke: #d7dee5; stroke-width: 1; }
+    .zero-line { stroke: #000; stroke-width: 1.3; }
+    .axis { stroke: #000; stroke-width: 1; }
+    .tick { stroke: #000; stroke-width: 1; }
+    .axis-label { font: 13px "GS Sans", Helvetica, Arial, sans-serif; fill: #5b7282; }
+    .callout { font: 13px "GS Sans", Helvetica, Arial, sans-serif; fill: #000; }
+    .line { fill: none; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+    .world-line { stroke: var(--blue); stroke-width: 4; }
+    .us-line { stroke: var(--teal); }
+    .exus-line { stroke: #8d8f91; }
+    .sec-line { stroke: #000; stroke-width: 3; stroke-dasharray: 7 6; }
+    .gap-line { stroke: #c2170a; stroke-width: 3; }
+    .series-label {
+      font: 11px "GS Sans", Helvetica, Arial, sans-serif;
+      font-weight: 600;
+      paint-order: stroke;
+      stroke: var(--wash);
+      stroke-width: 3px;
+      stroke-linejoin: round;
+    }
+    .world-label { fill: var(--blue); }
+    .us-label { fill: var(--teal); }
+    .exus-label { fill: #6f7f8a; }
+    .world-dot { fill: var(--white); stroke: var(--blue); stroke-width: 3; }
+    .us-dot { fill: var(--white); stroke: var(--teal); stroke-width: 3; }
+    .exus-dot { fill: var(--white); stroke: #8d8f91; stroke-width: 3; }
+    .sec-dot { fill: var(--white); stroke: #000; stroke-width: 3; }
+    .gap-dot { fill: var(--white); stroke: #c2170a; stroke-width: 3; }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--black);
+    }
+    .term-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--black);
+      border: 1px solid var(--black);
+      margin: 28px 0 0;
+    }
+    .term {
+      background: var(--white);
+      padding: 15px 16px;
+      min-height: 112px;
+    }
+    .term strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    .term p { font-size: 13px; color: #374151; }
+    .sankey-head {
+      margin-top: 56px;
+      padding-top: 34px;
+      border-top: 1px solid var(--rule);
+    }
+    .metric-card {
+      min-height: 306px;
+      padding: 17px 18px;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .metric-card:nth-child(4n) { border-right: 0; }
+    .metric-label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      line-height: 1.2;
+      color: var(--muted);
+      min-height: 32px;
+    }
+    .input-code, .calc-ref {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      width: 21px;
+      height: 21px;
+      margin-right: 7px;
+      border: 1px solid var(--blue);
+      border-radius: 50%;
+      color: var(--blue);
+      font-family: "Roboto Mono", Consolas, monospace;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1;
+      vertical-align: middle;
+      background: #fff;
+    }
+    .metric-label .input-code {
+      margin-right: 0;
+    }
+    .calc-ref {
+      width: 18px;
+      height: 18px;
+      margin-right: 4px;
+      font-size: 10px;
+    }
+    .metric-value {
+      font-family: "GS Serif", Georgia, serif;
+      font-size: 35px;
+      line-height: 1;
+      margin: 10px 0;
+    }
+    .metric-card p { font-size: 13px; color: #374151; }
+    .calc-key {
+      border-top: 1px solid var(--black);
+      border-bottom: 1px solid var(--rule);
+      padding: 18px 0 4px;
+      margin-top: 28px;
+    }
+    .calc-key h3 {
+      margin: 0 0 12px;
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .calc-key-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px 20px;
+    }
+    .calc-var {
+      min-height: 112px;
+      padding-bottom: 10px;
+    }
+    .calc-var strong {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      line-height: 1.2;
+      margin-bottom: 5px;
+    }
+    .calc-var strong .calc-ref {
+      margin-right: 0;
+    }
+    .calc-var p {
+      font-size: 12px;
+      line-height: 1.3;
+      color: #374151;
+    }
+    .calc-var .derivation {
+      margin-top: 5px;
+      padding-left: 9px;
+      border-left: 2px solid var(--blue);
+      color: #1f2a37;
+    }
+    .calc-key > .derivation {
+      margin: 0 0 20px;
+      font-size: 12px;
+      line-height: 1.35;
+      color: #374151;
+    }
+    .calc-ref.calc-ref-wide {
+      width: auto;
+      min-width: 20px;
+      padding: 0 4px;
+      border-radius: 999px;
+    }
+    .component-list {
+      display: grid;
+      gap: 3px;
+      margin-top: 6px;
+      font-size: 11.5px;
+      line-height: 1.25;
+      color: #374151;
+    }
+    .component-list div {
+      display: flex;
+      align-items: flex-start;
+      gap: 5px;
+    }
+    .component-list .calc-ref {
+      margin-right: 0;
+      margin-top: 1px;
+      flex: 0 0 auto;
+    }
+    .component-list .component-text {
+      flex: 1;
+    }
+    .card-proof {
+      margin: 13px 0 0;
+      padding-top: 12px;
+      border-top: 1px solid var(--rule);
+      display: grid;
+      gap: 6px;
+    }
+    .card-proof dt {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .card-proof dd {
+      margin: 0 0 5px;
+      font-size: 12px;
+      line-height: 1.3;
+      color: #374151;
+    }
+    a { color: #094aab; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    .treatment-note {
+      margin-top: 20px;
+      border-top: 1px solid var(--black);
+      border-bottom: 1px solid var(--rule);
+      padding: 18px 0;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 24px;
+    }
+    .treatment-note h3 {
+      font-family: "GS Serif", Georgia, serif;
+      font-size: 27px;
+      font-weight: 500;
+      margin: 0;
+    }
+    .treatment-note p { font-size: 14px; color: #374151; }
+    .treatment-note .note-source {
+      grid-column: 2;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .driver-board {
+      display: grid;
+      gap: 10px;
+      border-top: 1px solid var(--black);
+      padding-top: 18px;
+    }
+    .year-head, .driver-row {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+    .year-head {
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .heat-grid {
+      display: grid;
+      grid-template-columns: repeat(17, minmax(35px, 1fr));
+      gap: 3px;
+    }
+    .heat-cell {
+      display: block;
+      min-height: 34px;
+      padding-top: 9px;
+      text-align: center;
+      font-size: 11px;
+      color: #061E1B;
+      border: 1px solid rgba(0,0,0,.06);
+    }
+    .driver-name {
+      font-size: 14px;
+      line-height: 1.15;
+      color: #212121;
+    }
+    .driver-definitions {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      border: 1px solid var(--black);
+      margin-top: 16px;
+      margin-bottom: 28px;
+    }
+    .driver-definition {
+      padding: 12px 14px;
+      border-right: 1px solid var(--black);
+      min-height: 118px;
+    }
+    .driver-definition:last-child {
+      border-right: 0;
+    }
+    .driver-definition strong {
+      display: block;
+      font-size: 13px;
+      line-height: 1.2;
+      margin-bottom: 7px;
+    }
+    .driver-definition p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.35;
+      color: #374151;
+    }
+    .formula {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1px;
+      background: var(--black);
+      border: 1px solid var(--black);
+    }
+    .formula-step {
+      background: var(--white);
+      min-height: 174px;
+      padding: 16px;
+    }
+    .formula-step .num {
+      color: var(--blue);
+      font-family: "Roboto Mono", Consolas, monospace;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+    .formula-step strong {
+      display: block;
+      font-size: 16px;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+    .formula-step p { font-size: 13px; color: #374151; }
+    .sankey {
+      border-top: 1px solid var(--black);
+      margin-top: 28px;
+      padding-top: 28px;
+      overflow-x: auto;
+    }
+    .sankey-svg {
+      min-width: 1120px;
+      background: var(--wash);
+      border: 1px solid var(--rule);
+    }
+    .sankey-node rect {
+      fill: #fff;
+      stroke: var(--rule);
+      filter: url(#sankey-shadow);
+    }
+    .sankey-code {
+      font: 700 10px "Roboto Mono", Consolas, monospace;
+      fill: var(--blue);
+    }
+    .sankey-node-title {
+      font: 700 12px "GS Sans", Helvetica, Arial, sans-serif;
+      fill: #111;
+    }
+    .sankey-node-value {
+      font: 500 26px "GS Serif", Georgia, serif;
+      fill: #000;
+    }
+    .sankey-node-subtitle {
+      font: 11px "GS Sans", Helvetica, Arial, sans-serif;
+      fill: #5b7282;
+    }
+    .sankey-footnote {
+      font: 12px "GS Sans", Helvetica, Arial, sans-serif;
+      fill: #374151;
+    }
+    .sankey-inline-code {
+      font-family: "Roboto Mono", Consolas, monospace;
+      font-weight: 700;
+      fill: var(--blue);
+    }
+    .sankey-definitions {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 1px solid var(--black);
+      border-top: 0;
+      margin-bottom: 28px;
+    }
+    .sankey-definition {
+      padding: 14px 16px;
+      border-right: 1px solid var(--black);
+      min-height: 116px;
+    }
+    .sankey-definition:last-child {
+      border-right: 0;
+    }
+    .sankey-definition strong {
+      display: block;
+      font-size: 13px;
+      line-height: 1.2;
+      margin-bottom: 7px;
+    }
+    .sankey-definition p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.35;
+      color: #374151;
+    }
+    .plain {
+      background: #000;
+      color: #fff;
+      display: grid;
+      grid-template-columns: 330px 1fr;
+      gap: 34px;
+      padding: 34px;
+      margin-top: 26px;
+    }
+    .plain h2 { color: #fff; }
+    .plain p { color: rgba(255,255,255,.86); font-size: 18px; }
+    .mix-card {
+      border-top: 1px solid var(--black);
+      padding-top: 18px;
+    }
+    .mix-row {
+      display: grid;
+      grid-template-columns: 60px 1fr 100px;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 13px;
+      font-size: 13px;
+    }
+    .mix-bar {
+      height: 16px;
+      display: flex;
+      background: var(--wash);
+      border: 1px solid var(--rule);
+    }
+    .mix-hb { background: var(--blue); }
+    .mix-low { background: var(--teal); }
+    .mix-lower { background: #8d8f91; }
+    .table-wrap { overflow-x: auto; border-top: 1px solid var(--black); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1060px;
+    }
+    th, td {
+      border-bottom: 1px solid var(--rule);
+      padding: 11px 10px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 13px;
+      line-height: 1.25;
+    }
+    th {
+      font-size: 12px;
+      color: #000;
+      background: var(--wash);
+      position: sticky;
+      top: 0;
+    }
+    td:nth-child(2), td:nth-child(3), td:nth-child(4), td:nth-child(5), td:nth-child(6), td:nth-child(7), td:nth-child(8) {
+      white-space: nowrap;
+    }
+    .source-note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 18px;
+      border-left: 3px solid var(--blue);
+      padding-left: 12px;
+    }
+    .caveat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--black);
+      border: 1px solid var(--black);
+    }
+    .caveat {
+      background: var(--white);
+      padding: 17px;
+      min-height: 128px;
+    }
+    .caveat strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+    .caveat p { font-size: 13px; color: #374151; }
+    @media (max-width: 860px) {
+      .page { padding: 28px 18px 48px; }
+      header, .section-head, .two-col, .plain { grid-template-columns: 1fr; }
+      .section-head h2 { white-space: normal; }
+      .kpi-strip, .metric-grid { grid-template-columns: 1fr 1fr; }
+      .calc-key-grid { grid-template-columns: 1fr 1fr; }
+      .formula { grid-template-columns: 1fr 1fr; }
+      .term-grid { grid-template-columns: 1fr; }
+      .caveat-grid { grid-template-columns: 1fr; }
+      .sankey, .treatment-note { grid-template-columns: 1fr; }
+      .treatment-note .note-source { grid-column: 1; }
+      .year-head, .driver-row { grid-template-columns: 1fr; }
+      .driver-definitions { grid-template-columns: 1fr; }
+      .driver-definition { border-right: 0; border-bottom: 1px solid var(--black); min-height: auto; }
+      .driver-definition:last-child { border-bottom: 0; }
+      .heat-grid { grid-template-columns: repeat(6, minmax(38px, 1fr)); }
+      .meta { border-left: 0; border-top: 1px solid var(--black); padding: 18px 0 0; }
+    }
+    @media (max-width: 540px) {
+      .kpi-strip, .metric-grid, .formula, .calc-key-grid { grid-template-columns: 1fr; }
+      .metric-card { border-right: 0; }
+      .mix-row { grid-template-columns: 44px 1fr; }
+      .mix-total { grid-column: 2; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div>
+        <h1>Ixo-vec Base Case Sales Forecast</h1>
+        <p class="deck">A model view of how patient opportunity, annual adoption ramps, durable-treatment competition, pricing, and ex-US launch timing convert into a year-by-year worldwide sales forecast.</p>
+      </div>
+      <aside class="meta">
+        <div><strong>Base case</strong> Most realistic estimate using available public data plus explicit assumptions.</div>
+        <div><strong>Model period</strong> 2025-2045, with commercial launch modeled from 2029.</div>
+        <div><strong>Traceability</strong> Forecast values are tied to visible assumptions, formulas, and reader-verifiable source context.</div>
+      </aside>
+    </header>
+
+    <section class="kpi-strip" aria-label="Base case summary metrics">
+      <div class="kpi"><div class="label">Peak worldwide sales</div><div class="value">$1.71B</div><p>2034</p></div>
+      <div class="kpi"><div class="label">Base-case model forecast for 2036</div><div class="value">$1.61B</div><p>This model's 2036 worldwide sales estimate, compared with Adverum management's Schedule 14D-9 projection of $3.43B.</p></div>
+      <div class="kpi"><div class="label">First year above $1B</div><div class="value">2033</div><p>Worldwide sales threshold</p></div>
+      <div class="kpi"><div class="label">2036 gap to Schedule 14D-9 projection</div><div class="value">-$1.82B</div><p>Base case remains below Adverum management's disclosed 2036 projection.</p></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Benchmark check</h2>
+        <p>The base case is compared with Adverum management's non-risk-adjusted Ixo-vec net-sales projections disclosed in Schedule 14D-9. The CVR sales milestone is treated separately as the $1B annual worldwide net-sales hurdle.</p>
+      </div>
+      <div class="chart-panel">
+        <div class="legend"><span>Base worldwide sales</span><span class="sec-key">Schedule 14D-9 projection</span><span class="gap-key">Gap to projection</span></div>
+        
+    <svg viewBox="0 0 980 360" role="img" aria-label="Base case versus Schedule 14D-9 management projection and gap chart">
+      <line x1="54" y1="297.9" x2="926" y2="297.9" class="grid-line" /><text x="8" y="302.9" class="axis-label">-$2,000M</text><line x1="54" y1="257.2" x2="926" y2="257.2" class="grid-line" /><text x="8" y="262.2" class="axis-label">-$1,000M</text><line x1="54" y1="216.6" x2="926" y2="216.6" class="zero-line" /><text x="8" y="221.6" class="axis-label">$0M</text><line x1="54" y1="175.9" x2="926" y2="175.9" class="grid-line" /><text x="8" y="180.9" class="axis-label">$1,000M</text><line x1="54" y1="135.3" x2="926" y2="135.3" class="grid-line" /><text x="8" y="140.3" class="axis-label">$2,000M</text><line x1="54" y1="94.6" x2="926" y2="94.6" class="grid-line" /><text x="8" y="99.6" class="axis-label">$3,000M</text><line x1="54" y1="54.0" x2="926" y2="54.0" class="grid-line" /><text x="8" y="59.0" class="axis-label">$4,000M</text>
+      <polyline points="54.0,216.6 97.6,216.6 141.2,216.6 184.8,216.6 228.4,205.4 272.0,178.7 315.6,147.3 359.2,120.8 402.8,99.8 446.4,84.5 490.0,78.1 533.6,77.2 577.2,92.6 620.8,108.0 664.4,122.1 708.0,135.4 751.6,148.1 795.2,153.9 838.8,153.9 882.4,153.8 926.0,153.5" class="line sec-line" />
+      <polyline points="54.0,216.6 97.6,216.6 141.2,216.6 184.8,216.6 228.4,214.9 272.0,213.2 315.6,209.8 359.2,191.1 402.8,168.2 446.4,147.3 490.0,147.5 533.6,151.1 577.2,160.2 620.8,168.0 664.4,174.2 708.0,179.3 751.6,183.4 795.2,186.9 838.8,189.9 882.4,192.5 926.0,194.8" class="line world-line" />
+      <polyline points="54.0,216.6 97.6,216.6 141.2,216.6 184.8,216.6 228.4,226.0 272.0,251.0 315.6,279.0 359.2,286.8 402.8,285.0 446.4,279.4 490.0,286.0 533.6,290.5 577.2,284.2 620.8,276.6 664.4,268.7 708.0,260.5 751.6,252.0 795.2,249.7 838.8,252.6 882.4,255.3 926.0,257.9" class="line gap-line" />
+      <circle cx="533.6" cy="77.2" r="4.5" class="sec-dot" />
+      <text x="543.6" y="72.0" class="callout">2036 projection: $3.43B</text>
+      <circle cx="533.6" cy="151.1" r="4.5" class="world-dot" />
+      <text x="543.6" y="144.0" class="callout">2036 base: $1.61B</text>
+      <circle cx="533.6" cy="290.5" r="4.5" class="gap-dot" />
+      <text x="543.6" y="282.5" class="callout">2036 gap: $1.82B below projection</text>
+      <text x="228.4" y="342" text-anchor="middle" class="axis-label">2029</text><text x="315.6" y="342" text-anchor="middle" class="axis-label">2031</text><text x="402.8" y="342" text-anchor="middle" class="axis-label">2033</text><text x="533.6" y="342" text-anchor="middle" class="axis-label">2036</text><text x="708.0" y="342" text-anchor="middle" class="axis-label">2040</text><text x="926.0" y="342" text-anchor="middle" class="axis-label">2045</text>
+    </svg>
+    
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Sales curve</h2>
+        <p>The model calculates treated eyes and revenue year by year. The base case ramps after 2029, crosses $1B in 2033, peaks in 2034, then declines as the remaining untreated pool shrinks and post-2036 price/capture erosion applies.</p>
+      </div>
+      <div class="chart-panel">
+        <div class="legend"><span>Worldwide sales</span><span class="us">US sales</span><span class="exus">Ex-US sales</span></div>
+        
+    <svg viewBox="0 0 980 430" role="img" aria-label="Base case sales forecast chart">
+      <rect x="0" y="0" width="980" height="430" fill="transparent" />
+      <line x1="58" y1="372.0" x2="922" y2="372.0" class="grid-line" /><text x="12" y="377.0" class="axis-label">$0M</text><line x1="58" y1="293.5" x2="922" y2="293.5" class="grid-line" /><text x="12" y="298.5" class="axis-label">$500M</text><line x1="58" y1="215.0" x2="922" y2="215.0" class="grid-line" /><text x="12" y="220.0" class="axis-label">$1,000M</text><line x1="58" y1="136.5" x2="922" y2="136.5" class="grid-line" /><text x="12" y="141.5" class="axis-label">$1,500M</text><line x1="58" y1="58.0" x2="922" y2="58.0" class="grid-line" /><text x="12" y="63.0" class="axis-label">$2,000M</text>
+      <line x1="58" y1="372" x2="922" y2="372" class="axis" />
+      <polyline points="58.0,372.0 101.2,372.0 144.4,372.0 187.6,372.0 230.8,372.0 274.0,372.0 317.2,370.0 360.4,360.4 403.6,343.0 446.8,321.3 490.0,313.0 533.2,308.7 576.4,317.6 619.6,325.1 662.8,331.1 706.0,336.0 749.2,340.0 792.4,343.4 835.6,346.3 878.8,348.8 922.0,351.0" class="line exus-line" />
+      <polyline points="58.0,372.0 101.2,372.0 144.4,372.0 187.6,372.0 230.8,365.3 274.0,358.9 317.2,347.8 360.4,285.0 403.6,214.1 446.8,154.9 490.0,164.0 533.2,182.3 576.4,208.8 619.6,231.4 662.8,249.4 706.0,264.0 749.2,276.0 792.4,286.2 835.6,294.8 878.8,302.4 922.0,309.0" class="line us-line" />
+      <polyline points="58.0,372.0 101.2,372.0 144.4,372.0 187.6,372.0 230.8,365.3 274.0,358.9 317.2,345.8 360.4,273.4 403.6,185.1 446.8,104.3 490.0,105.0 533.2,119.0 576.4,154.3 619.6,184.5 662.8,208.5 706.0,228.0 749.2,244.0 792.4,257.5 835.6,269.1 878.8,279.1 922.0,288.0" class="line world-line" />
+      <line x1="58.0" y1="372" x2="58.0" y2="378" class="tick" /><text x="58.0" y="397" text-anchor="middle" class="axis-label">2025</text><line x1="230.8" y1="372" x2="230.8" y2="378" class="tick" /><text x="230.8" y="397" text-anchor="middle" class="axis-label">2029</text><line x1="317.2" y1="372" x2="317.2" y2="378" class="tick" /><text x="317.2" y="397" text-anchor="middle" class="axis-label">2031</text><line x1="403.6" y1="372" x2="403.6" y2="378" class="tick" /><text x="403.6" y="397" text-anchor="middle" class="axis-label">2033</text><line x1="490.0" y1="372" x2="490.0" y2="378" class="tick" /><text x="490.0" y="397" text-anchor="middle" class="axis-label">2035</text><line x1="576.4" y1="372" x2="576.4" y2="378" class="tick" /><text x="576.4" y="397" text-anchor="middle" class="axis-label">2037</text><line x1="749.2" y1="372" x2="749.2" y2="378" class="tick" /><text x="749.2" y="397" text-anchor="middle" class="axis-label">2041</text><line x1="922.0" y1="372" x2="922.0" y2="378" class="tick" /><text x="922.0" y="397" text-anchor="middle" class="axis-label">2045</text>
+      <circle cx="230.8" cy="372.0" r="4.5" class="exus-dot" /><circle cx="403.6" cy="343.0" r="4.5" class="exus-dot" /><circle cx="446.8" cy="321.3" r="4.5" class="exus-dot" /><circle cx="533.2" cy="308.7" r="4.5" class="exus-dot" /><circle cx="922.0" cy="351.0" r="4.5" class="exus-dot" />
+      <circle cx="230.8" cy="365.3" r="4.5" class="us-dot" /><circle cx="403.6" cy="214.1" r="4.5" class="us-dot" /><circle cx="446.8" cy="154.9" r="4.5" class="us-dot" /><circle cx="533.2" cy="182.3" r="4.5" class="us-dot" /><circle cx="922.0" cy="309.0" r="4.5" class="us-dot" />
+      <circle cx="230.8" cy="365.3" r="4.5" class="world-dot" /><text x="238.8" y="351.0" class="series-label world-label">World $42M</text><circle cx="403.6" cy="185.1" r="4.5" class="world-dot" /><text x="411.6" y="176.0" class="series-label world-label">World $1.19B</text><circle cx="446.8" cy="104.3" r="4.5" class="world-dot" /><text x="454.8" y="96.0" class="series-label world-label">World $1.71B</text><circle cx="533.2" cy="119.0" r="4.5" class="world-dot" /><text x="541.2" y="111.0" class="series-label world-label">World $1.61B</text><circle cx="922.0" cy="288.0" r="4.5" class="world-dot" /><text x="914.0" y="280.0" text-anchor="end" class="series-label world-label">World $535M</text>
+      <text x="238.8" y="365.0" class="series-label us-label">US $42M</text><text x="411.6" y="224.0" class="series-label us-label">US $1.01B</text><text x="454.8" y="148.0" class="series-label us-label">US $1.38B</text><text x="541.2" y="189.0" class="series-label us-label">US $1.21B</text><text x="914.0" y="318.0" text-anchor="end" class="series-label us-label">US $401M</text>
+      <text x="238.8" y="385.0" class="series-label exus-label">Ex-US $0M</text><text x="411.6" y="338.0" class="series-label exus-label">Ex-US $185M</text><text x="454.8" y="317.0" class="series-label exus-label">Ex-US $323M</text><text x="541.2" y="300.0" class="series-label exus-label">Ex-US $403M</text><text x="914.0" y="345.0" text-anchor="end" class="series-label exus-label">Ex-US $134M</text>
+    </svg>
+    
+      </div>
+      
+      <div class="treatment-note">
+        <h3>Treatment-course assumption</h3>
+        <p>The base case counts one Ixo-vec treatment course per modeled treated eye, with any future repeat-course layer dependent on whether clinical follow-up establishes a routine retreatment interval. The current clinical anchor is reduced supplemental anti-VEGF injection burden after Ixo-vec.</p>
+        <p class="note-source">Clinical anchor: <a href="https://www.globenewswire.com/news-release/2024/11/18/2982611/32452/en/adverum-biotechnologies-announces-positive-52-week-luna-and-4-year-optic-results-and-provides-key-pivotal-program-design-elements.html" target="_blank" rel="noopener">Adverum LUNA/OPTIC 52-week and 4-year update</a> reported an 88% reduction in annualized injections and 54% injection-free status for LUNA 6E10 through 52 weeks, plus 86% annualized anti-VEGF reduction in OPTIC through year 4.</p>
+      </div>
+    
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Core inputs</h2>
+        <p>These are the base-case assumptions that shape the annual calculation. Some are sourced anchors, while others are explicit model assumptions made because public data is incomplete.</p>
+      </div>
+      <div class="metric-grid">
+        
+        <article class="metric-card">
+          <div class="metric-label"><span class="input-code">A</span>Active treated nAMD eyes</div>
+          <div class="metric-value">1,150,000</div>
+          <p>Estimated US treated-eye denominator used before narrowing to high-burden and source-of-business segments.</p>
+          <dl class="card-proof">
+            <dt>Basis</dt><dd>Assumption informed by prevalence and treated-population context.</dd>
+            <dt>Calculation</dt><dd><span class="calc-ref">A</span> Base denominator selected at 1.15M treated eyes after triangulating multiple prevalence and treatment-context sources.</dd>
+            <dt>Rationale</dt><dd>Kept between bear 1.0M and bull 1.3M to avoid overfitting to any one prevalence source.</dd>
+            <dt>Source</dt><dd><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12705084/" target="_blank" rel="noopener">Medicare FFS prevalence context</a>, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11695844/" target="_blank" rel="noopener">Medicare Advantage prevalence context</a></dd>
+          </dl>
+        </article>
+        
+
+        <article class="metric-card">
+          <div class="metric-label"><span class="input-code">B</span>High-burden treated-eye share</div>
+          <div class="metric-value">20%</div>
+          <p>Share of existing treated eyes assumed to have enough injection burden, poor response, or switching history to be clinically plausible for a durable option.</p>
+          <dl class="card-proof">
+            <dt>Basis</dt><dd>Assumption informed by real-world injection burden, discontinuation, and switching evidence.</dd>
+            <dt>Calculation</dt><dd><span class="calc-ref">A</span> 1.15M active treated eyes x <span class="calc-ref">B</span> 20% = 230k high-burden eyes before source-of-business and eligibility gates.</dd>
+            <dt>Rationale</dt><dd>A 20% base case is intentionally narrower than the full switching/discontinuation population.</dd>
+            <dt>Source</dt><dd><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10767511/" target="_blank" rel="noopener">IRIS Registry burden and switching study</a></dd>
+          </dl>
+        </article>
+        
+
+        <article class="metric-card">
+          <div class="metric-label"><span class="input-code">C</span>Initial high-burden pool considered</div>
+          <div class="metric-value">18%</div>
+          <p>Launch starts with refractory or high-burden eyes that are most plausible for early Ixo-vec consideration. The model applies access, adoption, and competition after this step to estimate treated eyes.</p>
+          <dl class="card-proof">
+            <dt>Basis</dt><dd>Assumption informed by prior-agent proxy data and clinical input.</dd>
+            <dt>Calculation</dt><dd>The first three launch years use <span class="calc-ref">C</span> 18% for the core high-burden branded anti-VEGF source pool.</dd>
+            <dt>Rationale</dt><dd>Early use is restricted to patients with few good alternatives until physicians gain comfort.</dd>
+            <dt>Source</dt><dd><a href="https://veranahealth.com/wp-content/uploads/2023/07/Verana_Health_ARVO_2023_FAR_Durga_Borkar_FINAL_042823.pdf" target="_blank" rel="noopener">Faricimab prior-agent proxy</a></dd>
+          </dl>
+        </article>
+        
+
+        <article class="metric-card">
+          <div class="metric-label"><span class="input-code">D</span>Mature high-burden pool considered</div>
+          <div class="metric-value">65%</div>
+          <p>Share of high-burden treated eyes considered clinically plausible for a durable-treatment option after safety, durability, and real-world experience mature. Access, adoption, and competition still narrow this pool before treatment.</p>
+          <dl class="card-proof">
+            <dt>Basis</dt><dd>Assumption informed by switching behavior and clinical judgment.</dd>
+            <dt>Calculation</dt><dd>The core high-burden branded anti-VEGF source pool considered for durable-option use increases from <span class="calc-ref">C</span> 18% at launch to <span class="calc-ref">D</span> 65% by 2034.</dd>
+            <dt>Rationale</dt><dd>This is a treatment-consideration assumption applied before access, physician adoption, durable-class adoption, and Ixo-vec allocation.</dd>
+            <dt>Source</dt><dd><a href="https://www.aaojournal.org/article/S0161-6420(20)30192-5/fulltext" target="_blank" rel="noopener">USRetina switching evidence</a></dd>
+          </dl>
+        </article>
+        
+
+        <article class="metric-card">
+          <div class="metric-label"><span class="input-code">E</span>Ixo-vec allocation within durable-treatment class</div>
+          <div class="metric-value">35%</div>
+          <p>Modeled portion of long-duration wet AMD treatment use assigned to Ixo-vec after allowing for other durability-focused competitors.</p>
+          <dl class="card-proof">
+            <dt>Basis</dt><dd>Competitive assumption informed by public durable-treatment competitor programs.</dd>
+            <dt>Calculation</dt><dd>In 2036 core segment: <span class="calc-ref">M</span> durable-option use x <span class="calc-ref">E</span> 35% = <span class="calc-ref">N</span> Ixo-vec treated eyes.</dd>
+            <dt>Rationale</dt><dd>The durable-treatment class includes multiple current or emerging long-duration approaches, so the base case allocates only part of durable-option use to Ixo-vec.</dd>
+            <dt>Source</dt><dd><a href="https://4dmt.gcs-web.com/news-releases/news-release-details/4dmt-completes-enrollment-4front-1-phase-3-clinical-trial-4d-150" target="_blank" rel="noopener">4D-150 Phase 3 context</a>, <a href="https://www.regenxbio.com/therapeutic-programs/rgx-314/" target="_blank" rel="noopener">RGX-314 program context</a>, <a href="https://www.ocutx.com/pipeline/axpaxli/" target="_blank" rel="noopener">AXPAXLI program context</a></dd>
+          </dl>
+        </article>
+        
+
+        <article class="metric-card">
+          <div class="metric-label"><span class="input-code">F</span>Branded anti-VEGF source durable adoption</div>
+          <div class="metric-value">70%</div>
+          <p>Peak adoption of durable-treatment options among high-burden eyes currently treated with branded anti-VEGF agents such as Eylea, Vabysmo, Lucentis, and similar branded products.</p>
+          <dl class="card-proof">
+            <dt>Basis</dt><dd>Analog-informed assumption.</dd>
+            <dt>Calculation</dt><dd>In the core segment, <span class="calc-ref">K</span> eligible and accessible eyes x <span class="calc-ref">F</span> 70% peak durable-option adoption x <span class="calc-ref">L</span> annual adoption ramp = <span class="calc-ref">M</span> durable-option use.</dd>
+            <dt>Rationale</dt><dd>Vabysmo and EYLEA HD show that branded retinal therapies can reach substantial scale, but gene-therapy irreversibility supports a slower, narrower ramp.</dd>
+            <dt>Source</dt><dd><a href="https://www.roche.com/media/releases/med-cor-2026-01-29" target="_blank" rel="noopener">Roche Vabysmo sales context</a>, <a href="https://www.sec.gov/Archives/edgar/data/872589/000087258926000004/exhibit991q42025.htm" target="_blank" rel="noopener">Regeneron EYLEA HD sales context</a></dd>
+          </dl>
+        </article>
+        
+
+        <article class="metric-card">
+          <div class="metric-label"><span class="input-code">G</span>US net revenue per treated eye, branded anti-VEGF source</div>
+          <div class="metric-value">$90,000</div>
+          <p>Assumed net revenue per Ixo-vec-treated US eye for eyes sourced from current branded anti-VEGF use.</p>
+          <dl class="card-proof">
+            <dt>Basis</dt><dd>Scenario assumption because Ixo-vec pricing remains unpublished.</dd>
+            <dt>Calculation</dt><dd><span class="calc-ref">P</span> Core segment US sales ($M) = <span class="calc-ref">N</span> Ixo-vec treated eyes x <span class="calc-ref">G</span> $90,000 x <span class="calc-ref">O</span> annual price index / 1,000,000. The division by 1,000,000 converts dollars into millions of dollars for the sales table and charts.</dd>
+            <dt>Rationale</dt><dd>This is editable because pricing could vary materially depending on label, contracting, and whether payment resembles a one-time gene-therapy model.</dd>
+            <dt>Source</dt><dd><a href="https://www.cms.gov/medicare/payment/part-b-drugs/asp-pricing-files" target="_blank" rel="noopener">CMS ASP pricing source context</a></dd>
+          </dl>
+        </article>
+        
+
+        <article class="metric-card">
+          <div class="metric-label"><span class="input-code">H</span>Ex-US sales factor vs US</div>
+          <div class="metric-value">0.67x</div>
+          <p>Volume factor used to add explicit ex-US revenue after launch delay and ex-US price haircut.</p>
+          <dl class="card-proof">
+            <dt>Basis</dt><dd>Assumption.</dd>
+            <dt>Calculation</dt><dd>Ex-US sales = <span class="calc-ref">P</span> US sales x <span class="calc-ref">H</span> 0.667 volume factor x <span class="calc-ref">Q</span> 0.50 ex-US price index x <span class="calc-ref">R</span> annual ex-US uptake.</dd>
+            <dt>Rationale</dt><dd>Used as a simple global gross-up while the current model remains above country-level uptake, price, and launch sequencing.</dd>
+            <dt>Source</dt><dd>Explicit model assumption</dd>
+          </dl>
+        </article>
+        
+      </div>
+      <div class="calc-key">
+        <h3>Calculation variable key</h3>
+        <p class="derivation">Subscript labels such as <span class="calc-ref calc-ref-wide">I1</span> identify intermediate values used in the worked 2036 examples.</p>
+        <div class="calc-key-grid">
+          
+        <div class="calc-var">
+          <strong><span class="calc-ref">I</span>Available source eyes</strong>
+          <p>Annual high-burden branded anti-VEGF source eyes before eligibility, access, adoption, and Ixo-vec allocation are applied.</p>
+          <div class="component-list">
+            <div><span class="calc-ref calc-ref-wide">I1</span><span class="component-text">2036 beginning untreated clinical pool = 87,405 eyes. This is the start-of-2036 balance, not the original model-start pool. The 2025 pool begins at 106,950 eyes, calculated as <span class="calc-ref">A</span> 1,150,000 active treated eyes x <span class="calc-ref">B</span> 20% high-burden share x 62% branded-source share x 75% clinical-eligibility filter. Each year then subtracts treated eyes and 6% attrition while adding new inflow and fellow-eye conversions; the 2035 ending balance becomes the 2036 beginning pool.</span></div>
+            <div><span class="calc-ref calc-ref-wide">I2</span><span class="component-text">New clinical inflow during 2036 = 8,342 eyes. This equals 200,000 incident wet AMD patients x 78% treatment initiation x 1.15 eyes per treated patient x 10% high-burden incident share x 62% branded-source share x 75% clinical-eligibility filter.</span></div>
+            <div><span class="calc-ref calc-ref-wide">I3</span><span class="component-text">Fellow-eye conversions during 2036 = 2,226 eyes. This equals (19,717 opening at-risk fellow-eye stock + 2,539 new at-risk fellow eyes from <span class="calc-ref calc-ref-wide">I2</span> / 1.15 eyes per patient x 35% at-risk share) x 10% annual fellow-eye conversion rate.</span></div>
+          </div>
+          <p class="derivation">2036 example: <span class="calc-ref">I</span> available source eyes = <span class="calc-ref calc-ref-wide">I1</span> 87,405 + <span class="calc-ref calc-ref-wide">I2</span> 8,342 + <span class="calc-ref calc-ref-wide">I3</span> 2,226 = 97,972 available source eyes.</p>
+        </div>
+        
+
+        <div class="calc-var">
+          <strong><span class="calc-ref">J</span>Access multiplier</strong>
+          <p>Access is modeled in two pieces: a peak access ceiling and a year-specific ramp toward that ceiling.</p>
+          <div class="component-list">
+            <div><span class="calc-ref calc-ref-wide">J1</span>Peak access assumption = 85%. This is the mature share of considered eyes expected to be reachable after coverage, site readiness, and patient access constraints.</div>
+            <div><span class="calc-ref calc-ref-wide">J2</span>2036 access ramp = 100%. This means the model has reached the peak access ceiling by 2036; it is a timing multiplier, not a higher access ceiling after 2036.</div>
+          </div>
+          <p class="derivation">2036 example: <span class="calc-ref">J</span> access multiplier = <span class="calc-ref calc-ref-wide">J1</span> 85% peak access x <span class="calc-ref calc-ref-wide">J2</span> 100% access ramp = 85%.</p>
+        </div>
+        
+
+        <div class="calc-var">
+          <strong><span class="calc-ref">K</span>Eligible and accessible eyes</strong>
+          <p>Available source eyes after the treatment-considered pool factor and access are applied.</p>
+          <p class="derivation">2036 example: <span class="calc-ref">I</span> 97,972 available source eyes x <span class="calc-ref">D</span> 65% pool considered x <span class="calc-ref">J</span> 85% access multiplier = 54,130 eligible and accessible eyes.</p>
+        </div>
+        
+
+        <div class="calc-var">
+          <strong><span class="calc-ref">L</span>Annual adoption ramp</strong>
+          <p>Year-specific physician adoption and patient-selection ramp for the durable-treatment option.</p>
+          <div class="component-list">
+            <div><span class="calc-ref calc-ref-wide">L1</span>2036 base-case adoption schedule value = 100%</div>
+          </div>
+          <p class="derivation">2036 example: <span class="calc-ref">L</span> annual adoption ramp = <span class="calc-ref calc-ref-wide">L1</span> 100%.</p>
+        </div>
+        
+
+        <div class="calc-var">
+          <strong><span class="calc-ref">M</span>Durable-option use</strong>
+          <p>Eligible and accessible eyes expected to receive a durable-treatment option before assigning share to Ixo-vec.</p>
+          <p class="derivation">2036 example: <span class="calc-ref">K</span> 54,130 eligible and accessible eyes x <span class="calc-ref">F</span> 70% durable-treatment adoption x <span class="calc-ref">L</span> 100% adoption ramp = 37,891 durable-option use.</p>
+        </div>
+        
+
+        <div class="calc-var">
+          <strong><span class="calc-ref">N</span>Ixo-vec treated eyes</strong>
+          <p>Durable-option use allocated to Ixo-vec after within-class competition is applied.</p>
+          <p class="derivation">2036 example: <span class="calc-ref">M</span> 37,891 durable-option use x <span class="calc-ref">E</span> 35% Ixo-vec allocation = 13,262 Ixo-vec treated eyes.</p>
+        </div>
+        
+
+        <div class="calc-var">
+          <strong><span class="calc-ref">O</span>Annual price index</strong>
+          <p>Year-specific US net-price multiplier used to model price erosion after peak years.</p>
+          <div class="component-list">
+            <div><span class="calc-ref calc-ref-wide">O1</span>2036 US net-price index = 1.00x</div>
+          </div>
+          <p class="derivation">2036 example: <span class="calc-ref">O</span> annual price index = <span class="calc-ref calc-ref-wide">O1</span> 1.00x, meaning no modeled US net-price erosion is applied in 2036.</p>
+        </div>
+        
+
+        <div class="calc-var">
+          <strong><span class="calc-ref">P</span>US sales</strong>
+          <p>US revenue in millions of dollars after treated eyes, net revenue per treated eye, and annual price index are applied.</p>
+          <div class="component-list">
+            <div><span class="calc-ref calc-ref-wide">P1</span>Core segment US sales = 13,262 treated eyes x $90,000 x 1.00x / 1,000,000 = $1,194M</div>
+            <div><span class="calc-ref calc-ref-wide">P2</span>Other modeled US source segments = $15M</div>
+          </div>
+          <p class="derivation">2036 example: <span class="calc-ref calc-ref-wide">P1</span> $1,194M core segment + <span class="calc-ref calc-ref-wide">P2</span> $15M other US source segments = <span class="calc-ref">P</span> $1,209M total US sales.</p>
+        </div>
+        
+
+        <div class="calc-var">
+          <strong><span class="calc-ref">Q</span>Ex-US price index</strong>
+          <p>Modeled ex-US net-price multiplier versus US net revenue per treated eye.</p>
+          <div class="component-list">
+            <div><span class="calc-ref calc-ref-wide">Q1</span>2036 ex-US price index = 0.50x</div>
+          </div>
+          <p class="derivation">2036 example: <span class="calc-ref">Q</span> ex-US price index = <span class="calc-ref calc-ref-wide">Q1</span> 0.50x, so modeled ex-US net revenue is 50% of the US net revenue assumption before uptake is applied.</p>
+        </div>
+        
+
+        <div class="calc-var">
+          <strong><span class="calc-ref">R</span>Annual ex-US uptake</strong>
+          <p>Year-specific ex-US launch and uptake multiplier.</p>
+          <div class="component-list">
+            <div><span class="calc-ref calc-ref-wide">R1</span>2036 ex-US uptake schedule value = 100%</div>
+          </div>
+          <p class="derivation">2036 example: <span class="calc-ref">R</span> annual ex-US uptake = <span class="calc-ref calc-ref-wide">R1</span> 100% after the modeled ex-US launch delay and uptake ramp.</p>
+        </div>
+        
+
+        <div class="calc-var">
+          <strong><span class="calc-ref">S</span>Worldwide sales</strong>
+          <p>US sales plus explicit ex-US sales.</p>
+          <div class="component-list">
+            <div><span class="calc-ref calc-ref-wide">S1</span>Explicit ex-US sales = $403M</div>
+          </div>
+          <p class="derivation">2036 example: <span class="calc-ref">P</span> $1,209M US sales + <span class="calc-ref calc-ref-wide">S1</span> $403M explicit ex-US sales = <span class="calc-ref">S</span> $1,612M worldwide sales.</p>
+        </div>
+        
+        </div>
+      </div>
+      <div class="term-grid">
+        <div class="term"><strong>Eligibility factor</strong><p>Share of the high-burden patient/eye pool considered for possible durable-treatment use before access, adoption, and competition are applied.</p></div>
+        <div class="term"><strong>Durable-treatment class</strong><p>Wet AMD options chosen primarily for longer treatment durability, including gene therapies such as Ixo-vec, higher-dose anti-VEGF products such as Eylea HD, longer-interval biologics such as Vabysmo, and implant or sustained-delivery approaches. Ixo-vec receives a modeled allocation within this class.</p></div>
+        <div class="term"><strong>Branded anti-VEGF source</strong><p>Eyes currently treated with branded anti-VEGF agents such as Eylea, Vabysmo, Lucentis, and similar products. Net revenue per Ixo-vec-treated eye is modeled separately.</p></div>
+      </div>
+      <div class="section-head sankey-head">
+        <h2>2036 patient funnel</h2>
+        <p>This example uses the base-case high-burden branded anti-VEGF source segment. It shows how the model narrows from clinically available eyes to accessible eligible eyes, durable-option use, and finally Ixo-vec-treated eyes.</p>
+      </div>
+      
+    <div class="sankey" role="img" aria-label="2036 base case patient funnel for high-burden branded anti-VEGF source segment">
+      <svg class="sankey-svg" viewBox="0 0 1280 430" aria-label="Sankey diagram showing how the 2036 high-burden branded anti-VEGF source pool narrows to Ixo-vec treated eyes">
+        <defs>
+          <filter id="sankey-shadow" x="-10%" y="-10%" width="120%" height="120%">
+            <feDropShadow dx="0" dy="1" stdDeviation="1" flood-opacity="0.10"/>
+          </filter>
+        </defs>
+        <g class="sankey-flows" fill="none" stroke-linecap="round">
+          <path d="M205,196 C290,196 200,160 285,160" stroke="#2e72dc" stroke-width="45.5" opacity="0.72" />
+          <path d="M205,218 C290,218 200,314 285,314" stroke="#b8c2cc" stroke-width="24.5" opacity="0.7" />
+          <path d="M455,160 C540,160 450,160 535,160" stroke="#2e72dc" stroke-width="38.7" opacity="0.72" />
+          <path d="M455,182 C540,182 450,302 535,302" stroke="#b8c2cc" stroke-width="6.8" opacity="0.7" />
+          <path d="M705,160 C790,160 700,160 785,160" stroke="#2e72dc" stroke-width="27.1" opacity="0.72" />
+          <path d="M705,181 C790,181 700,320 785,320" stroke="#b8c2cc" stroke-width="11.6" opacity="0.7" />
+          <path d="M955,153 C1040,153 970,102 1055,102" stroke="#159788" stroke-width="9.5" opacity="0.78" />
+          <path d="M955,180 C1040,180 970,284 1055,284" stroke="#b8c2cc" stroke-width="17.6" opacity="0.7" />
+        </g>
+        
+        <g class="sankey-node" transform="translate(35,157)">
+          <rect width="170" height="88" rx="6"></rect>
+          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#2e72dc"></circle>
+          <text x="15" y="21" text-anchor="middle" class="sankey-code">I</text>
+          <text x="32" y="20" class="sankey-node-title">Available source eyes</text>
+          <text x="16" y="62" class="sankey-node-value">97,972</text>
+          <text x="16" y="80" class="sankey-node-subtitle">100% of this step</text>
+        </g>
+        
+        
+        <g class="sankey-node" transform="translate(285,122)">
+          <rect width="170" height="88" rx="6"></rect>
+          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#2e72dc"></circle>
+          <text x="15" y="21" text-anchor="middle" class="sankey-code">D</text>
+          <text x="32" y="17" class="sankey-node-title"><tspan x="32" dy="0">Considered for</tspan><tspan x="32" dy="14">durable option</tspan></text>
+          <text x="16" y="66" class="sankey-node-value">63,682</text>
+          <text x="16" y="83" class="sankey-node-subtitle">65% of source eyes</text>
+        </g>
+        
+        
+        <g class="sankey-node" transform="translate(285,276)">
+          <rect width="170" height="88" rx="6"></rect>
+          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#8d8f91"></circle>
+          <text x="15" y="21" text-anchor="middle" class="sankey-code">-</text>
+          <text x="32" y="20" class="sankey-node-title">Not considered</text>
+          <text x="16" y="62" class="sankey-node-value">34,290</text>
+          <text x="16" y="80" class="sankey-node-subtitle">35% of source eyes</text>
+        </g>
+        
+        
+        <g class="sankey-node" transform="translate(535,122)">
+          <rect width="170" height="88" rx="6"></rect>
+          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#2e72dc"></circle>
+          <text x="15" y="21" text-anchor="middle" class="sankey-code">K</text>
+          <text x="32" y="20" class="sankey-node-title">Eligible and accessible</text>
+          <text x="16" y="62" class="sankey-node-value">54,130</text>
+          <text x="16" y="80" class="sankey-node-subtitle">85% of considered pool</text>
+        </g>
+        
+        
+        <g class="sankey-node" transform="translate(535,264)">
+          <rect width="170" height="88" rx="6"></rect>
+          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#8d8f91"></circle>
+          <text x="15" y="21" text-anchor="middle" class="sankey-code">-</text>
+          <text x="32" y="20" class="sankey-node-title">Not accessible</text>
+          <text x="16" y="62" class="sankey-node-value">9,552</text>
+          <text x="16" y="80" class="sankey-node-subtitle">15% of considered pool</text>
+        </g>
+        
+        
+        <g class="sankey-node" transform="translate(785,122)">
+          <rect width="170" height="88" rx="6"></rect>
+          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#2e72dc"></circle>
+          <text x="15" y="21" text-anchor="middle" class="sankey-code">M</text>
+          <text x="32" y="20" class="sankey-node-title">Durable-option use</text>
+          <text x="16" y="62" class="sankey-node-value">37,891</text>
+          <text x="16" y="80" class="sankey-node-subtitle">70% of accessible eyes</text>
+        </g>
+        
+        
+        <g class="sankey-node" transform="translate(785,282)">
+          <rect width="170" height="88" rx="6"></rect>
+          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#8d8f91"></circle>
+          <text x="15" y="21" text-anchor="middle" class="sankey-code">-</text>
+          <text x="32" y="20" class="sankey-node-title">Other management</text>
+          <text x="16" y="62" class="sankey-node-value">16,239</text>
+          <text x="16" y="80" class="sankey-node-subtitle">30% of accessible eyes</text>
+        </g>
+        
+        
+        <g class="sankey-node" transform="translate(1055,64)">
+          <rect width="170" height="88" rx="6"></rect>
+          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#159788"></circle>
+          <text x="15" y="21" text-anchor="middle" class="sankey-code">N</text>
+          <text x="32" y="20" class="sankey-node-title">Ixo-vec treated eyes</text>
+          <text x="16" y="62" class="sankey-node-value">13,262</text>
+          <text x="16" y="80" class="sankey-node-subtitle">35% of durable use</text>
+        </g>
+        
+        
+        <g class="sankey-node" transform="translate(1055,246)">
+          <rect width="170" height="88" rx="6"></rect>
+          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#8d8f91"></circle>
+          <text x="15" y="21" text-anchor="middle" class="sankey-code">-</text>
+          <text x="32" y="20" class="sankey-node-title">Other durable options</text>
+          <text x="16" y="62" class="sankey-node-value">24,629</text>
+          <text x="16" y="80" class="sankey-node-subtitle">65% of durable use</text>
+        </g>
+        
+        <text x="35" y="400" class="sankey-footnote">2036 base case. Considered for durable option = <tspan class="sankey-inline-code">I</tspan> x <tspan class="sankey-inline-code">D</tspan>. Eligible and accessible = considered pool x <tspan class="sankey-inline-code">J</tspan>. Durable-option use = <tspan class="sankey-inline-code">K</tspan> x <tspan class="sankey-inline-code">F</tspan> x <tspan class="sankey-inline-code">L</tspan>. Ixo-vec treated eyes = <tspan class="sankey-inline-code">M</tspan> x <tspan class="sankey-inline-code">E</tspan>.</text>
+      </svg>
+    </div>
+      <div class="sankey-definitions" aria-label="Patient funnel term definitions">
+        <div class="sankey-definition"><strong>Source eyes</strong><p>High-burden eyes currently sourced from branded anti-VEGF treatment, such as Eylea, Vabysmo, Lucentis, or similar branded products, before the model applies durable-option consideration, access, adoption, and competition.</p></div>
+        <div class="sankey-definition"><strong>Considered, eligible, and accessible</strong><p>Considered eyes are judged plausible for longer-duration treatment. Eligible and accessible eyes are the considered eyes that remain reachable after clinical suitability, payer/site access, and that year's access ramp are applied.</p></div>
+        <div class="sankey-definition"><strong>Durable option</strong><p>A longer-duration wet AMD treatment choice. The class is broader than gene therapy: it can include Ixo-vec or other gene therapies, longer-interval biologics such as Vabysmo, higher-dose anti-VEGF such as Eylea HD, and sustained-delivery or implant approaches.</p></div>
+        <div class="sankey-definition"><strong>Ixo-vec and other branches</strong><p>Ixo-vec treated eyes are the modeled share of durable-option use assigned to Ixo-vec after durable competitors. Other durable options are durable treatments not assigned to Ixo-vec; other management means accessible eyes that do not move to a durable option in this step.</p></div>
+      </div>
+    
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>What changes each year</h2>
+        <p>The annual sales curve is mainly driven by five moving variables: how much of the high-burden pool is considered for durable-option use, access ramp toward peak access, physician adoption ramp, price erosion, and ex-US uptake. Darker blue cells mean a higher multiplier.</p>
+      </div>
+      <div class="driver-board">
+        <div class="year-head"><div></div><div class="heat-grid"><span>2029</span><span>2030</span><span>2031</span><span>2032</span><span>2033</span><span>2034</span><span>2035</span><span>2036</span><span>2037</span><span>2038</span><span>2039</span><span>2040</span><span>2041</span><span>2042</span><span>2043</span><span>2044</span><span>2045</span></div></div>
+        <div class="driver-row"><div class="driver-name">High-burden pool considered: branded anti-VEGF source</div><div class="heat-grid"><span class="heat-cell" style="background:rgb(202, 219, 244)" title="High-burden pool considered: branded anti-VEGF source, 2029: 0.18">0.18</span><span class="heat-cell" style="background:rgb(202, 219, 244)" title="High-burden pool considered: branded anti-VEGF source, 2030: 0.18">0.18</span><span class="heat-cell" style="background:rgb(202, 219, 244)" title="High-burden pool considered: branded anti-VEGF source, 2031: 0.18">0.18</span><span class="heat-cell" style="background:rgb(171, 198, 239)" title="High-burden pool considered: branded anti-VEGF source, 2032: 0.34">0.34</span><span class="heat-cell" style="background:rgb(139, 177, 234)" title="High-burden pool considered: branded anti-VEGF source, 2033: 0.51">0.51</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2034: 0.65">0.65</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2035: 0.65">0.65</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2036: 0.65">0.65</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2037: 0.65">0.65</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2038: 0.65">0.65</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2039: 0.65">0.65</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2040: 0.65">0.65</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2041: 0.65">0.65</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2042: 0.65">0.65</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2043: 0.65">0.65</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2044: 0.65">0.65</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2045: 0.65">0.65</span></div></div><div class="driver-row"><div class="driver-name">Access ramp: high-burden branded anti-VEGF source</div><div class="heat-grid"><span class="heat-cell" style="background:rgb(103, 152, 229)" title="Access ramp: high-burden branded anti-VEGF source, 2029: 0.70">0.70</span><span class="heat-cell" style="background:rgb(84, 140, 226)" title="Access ramp: high-burden branded anti-VEGF source, 2030: 0.80">0.80</span><span class="heat-cell" style="background:rgb(65, 127, 223)" title="Access ramp: high-burden branded anti-VEGF source, 2031: 0.90">0.90</span><span class="heat-cell" style="background:rgb(56, 120, 221)" title="Access ramp: high-burden branded anti-VEGF source, 2032: 0.95">0.95</span><span class="heat-cell" style="background:rgb(50, 117, 221)" title="Access ramp: high-burden branded anti-VEGF source, 2033: 0.98">0.98</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Access ramp: high-burden branded anti-VEGF source, 2034: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Access ramp: high-burden branded anti-VEGF source, 2035: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Access ramp: high-burden branded anti-VEGF source, 2036: 1.00">1.00</span><span class="heat-cell" style="background:rgb(48, 115, 220)" title="Access ramp: high-burden branded anti-VEGF source, 2037: 0.99">0.99</span><span class="heat-cell" style="background:rgb(50, 117, 221)" title="Access ramp: high-burden branded anti-VEGF source, 2038: 0.98">0.98</span><span class="heat-cell" style="background:rgb(52, 118, 221)" title="Access ramp: high-burden branded anti-VEGF source, 2039: 0.97">0.97</span><span class="heat-cell" style="background:rgb(54, 119, 221)" title="Access ramp: high-burden branded anti-VEGF source, 2040: 0.96">0.96</span><span class="heat-cell" style="background:rgb(56, 120, 221)" title="Access ramp: high-burden branded anti-VEGF source, 2041: 0.95">0.95</span><span class="heat-cell" style="background:rgb(57, 122, 222)" title="Access ramp: high-burden branded anti-VEGF source, 2042: 0.94">0.94</span><span class="heat-cell" style="background:rgb(59, 123, 222)" title="Access ramp: high-burden branded anti-VEGF source, 2043: 0.93">0.93</span><span class="heat-cell" style="background:rgb(61, 124, 222)" title="Access ramp: high-burden branded anti-VEGF source, 2044: 0.92">0.92</span><span class="heat-cell" style="background:rgb(63, 126, 223)" title="Access ramp: high-burden branded anti-VEGF source, 2045: 0.91">0.91</span></div></div><div class="driver-row"><div class="driver-name">Adoption ramp: high-burden branded anti-VEGF source</div><div class="heat-grid"><span class="heat-cell" style="background:rgb(208, 223, 245)" title="Adoption ramp: high-burden branded anti-VEGF source, 2029: 0.15">0.15</span><span class="heat-cell" style="background:rgb(188, 210, 242)" title="Adoption ramp: high-burden branded anti-VEGF source, 2030: 0.25">0.25</span><span class="heat-cell" style="background:rgb(160, 191, 237)" title="Adoption ramp: high-burden branded anti-VEGF source, 2031: 0.40">0.40</span><span class="heat-cell" style="background:rgb(103, 152, 229)" title="Adoption ramp: high-burden branded anti-VEGF source, 2032: 0.70">0.70</span><span class="heat-cell" style="background:rgb(74, 133, 224)" title="Adoption ramp: high-burden branded anti-VEGF source, 2033: 0.85">0.85</span><span class="heat-cell" style="background:rgb(56, 120, 221)" title="Adoption ramp: high-burden branded anti-VEGF source, 2034: 0.95">0.95</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Adoption ramp: high-burden branded anti-VEGF source, 2035: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Adoption ramp: high-burden branded anti-VEGF source, 2036: 1.00">1.00</span><span class="heat-cell" style="background:rgb(54, 119, 221)" title="Adoption ramp: high-burden branded anti-VEGF source, 2037: 0.96">0.96</span><span class="heat-cell" style="background:rgb(61, 124, 222)" title="Adoption ramp: high-burden branded anti-VEGF source, 2038: 0.92">0.92</span><span class="heat-cell" style="background:rgb(69, 129, 223)" title="Adoption ramp: high-burden branded anti-VEGF source, 2039: 0.88">0.88</span><span class="heat-cell" style="background:rgb(76, 134, 225)" title="Adoption ramp: high-burden branded anti-VEGF source, 2040: 0.84">0.84</span><span class="heat-cell" style="background:rgb(84, 140, 226)" title="Adoption ramp: high-burden branded anti-VEGF source, 2041: 0.80">0.80</span><span class="heat-cell" style="background:rgb(92, 145, 227)" title="Adoption ramp: high-burden branded anti-VEGF source, 2042: 0.76">0.76</span><span class="heat-cell" style="background:rgb(99, 150, 228)" title="Adoption ramp: high-burden branded anti-VEGF source, 2043: 0.72">0.72</span><span class="heat-cell" style="background:rgb(107, 155, 229)" title="Adoption ramp: high-burden branded anti-VEGF source, 2044: 0.68">0.68</span><span class="heat-cell" style="background:rgb(114, 160, 230)" title="Adoption ramp: high-burden branded anti-VEGF source, 2045: 0.64">0.64</span></div></div><div class="driver-row"><div class="driver-name">Price index</div><div class="heat-grid"><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Price index, 2029: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Price index, 2030: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Price index, 2031: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Price index, 2032: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Price index, 2033: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Price index, 2034: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Price index, 2035: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Price index, 2036: 1.00">1.00</span><span class="heat-cell" style="background:rgb(52, 118, 221)" title="Price index, 2037: 0.97">0.97</span><span class="heat-cell" style="background:rgb(57, 122, 222)" title="Price index, 2038: 0.94">0.94</span><span class="heat-cell" style="background:rgb(63, 125, 223)" title="Price index, 2039: 0.91">0.91</span><span class="heat-cell" style="background:rgb(68, 129, 223)" title="Price index, 2040: 0.89">0.89</span><span class="heat-cell" style="background:rgb(73, 132, 224)" title="Price index, 2041: 0.86">0.86</span><span class="heat-cell" style="background:rgb(78, 135, 225)" title="Price index, 2042: 0.83">0.83</span><span class="heat-cell" style="background:rgb(82, 139, 226)" title="Price index, 2043: 0.81">0.81</span><span class="heat-cell" style="background:rgb(87, 142, 226)" title="Price index, 2044: 0.78">0.78</span><span class="heat-cell" style="background:rgb(92, 145, 227)" title="Price index, 2045: 0.76">0.76</span></div></div><div class="driver-row"><div class="driver-name">Ex-US uptake</div><div class="heat-grid"><span class="heat-cell" style="background:rgb(236, 242, 249)" title="Ex-US uptake, 2029: 0.00">0.00</span><span class="heat-cell" style="background:rgb(236, 242, 249)" title="Ex-US uptake, 2030: 0.00">0.00</span><span class="heat-cell" style="background:rgb(188, 210, 242)" title="Ex-US uptake, 2031: 0.25">0.25</span><span class="heat-cell" style="background:rgb(160, 191, 237)" title="Ex-US uptake, 2032: 0.40">0.40</span><span class="heat-cell" style="background:rgb(132, 172, 233)" title="Ex-US uptake, 2033: 0.55">0.55</span><span class="heat-cell" style="background:rgb(103, 152, 229)" title="Ex-US uptake, 2034: 0.70">0.70</span><span class="heat-cell" style="background:rgb(74, 133, 224)" title="Ex-US uptake, 2035: 0.85">0.85</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Ex-US uptake, 2036: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Ex-US uptake, 2037: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Ex-US uptake, 2038: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Ex-US uptake, 2039: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Ex-US uptake, 2040: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Ex-US uptake, 2041: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Ex-US uptake, 2042: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Ex-US uptake, 2043: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Ex-US uptake, 2044: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Ex-US uptake, 2045: 1.00">1.00</span></div></div>
+      </div>
+      <div class="driver-definitions" aria-label="Annual driver term definitions">
+        <div class="driver-definition"><strong>High-burden pool considered</strong><p>Share of high-burden branded anti-VEGF source eyes judged plausible for durable-option use in that year before access and adoption are applied.</p></div>
+        <div class="driver-definition"><strong>Access ramp</strong><p>Year-specific share of peak access reached in that year. It phases in coverage, site readiness, and practical patient access; 1.00 means peak access has been reached.</p></div>
+        <div class="driver-definition"><strong>Adoption ramp</strong><p>Year-specific physician and patient uptake of durable options after access. It reflects clinical comfort, patient selection, and launch learning over time.</p></div>
+        <div class="driver-definition"><strong>Price index</strong><p>Multiplier on modeled US net revenue per treated eye. 1.00 means no modeled net-price erosion; values below 1.00 reduce revenue per treated eye.</p></div>
+        <div class="driver-definition"><strong>Ex-US uptake</strong><p>Year-specific launch and uptake multiplier for explicit non-US sales after the modeled ex-US delay.</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>How the math works</h2>
+        <p>Each year repeats the same calculation logic. The model starts with a clinical opportunity pool, adjusts it for that year's eligibility and access, applies capture and competitive share, then converts treated eyes into US and worldwide sales.</p>
+      </div>
+      <div class="formula">
+        <div class="formula-step"><div class="num">01</div><strong>Start with available eyes</strong><p><span class="calc-ref">A</span> Active treated eyes and <span class="calc-ref">B</span> high-burden share anchor <span class="calc-ref">I</span> available source eyes before annual inflow and fellow-eye conversions.</p></div>
+        <div class="formula-step"><div class="num">02</div><strong>Apply eligibility and access</strong><p><span class="calc-ref">C</span> initial or <span class="calc-ref">D</span> mature pool considered x <span class="calc-ref">J</span> access multiplier produces <span class="calc-ref">K</span> eligible and accessible eyes.</p></div>
+        <div class="formula-step"><div class="num">03</div><strong>Apply durable adoption</strong><p><span class="calc-ref">K</span> eligible and accessible eyes x <span class="calc-ref">F</span> durable adoption x <span class="calc-ref">L</span> annual adoption ramp produces <span class="calc-ref">M</span> durable-option use.</p></div>
+        <div class="formula-step"><div class="num">04</div><strong>Adjust for durable competitors</strong><p><span class="calc-ref">M</span> durable-option use x <span class="calc-ref">E</span> Ixo-vec allocation produces <span class="calc-ref">N</span> Ixo-vec treated eyes.</p></div>
+        <div class="formula-step"><div class="num">05</div><strong>Convert eyes to US sales</strong><p><span class="calc-ref">N</span> treated eyes x <span class="calc-ref">G</span> net revenue per treated eye x <span class="calc-ref">O</span> annual price index / 1,000,000 produces <span class="calc-ref">P</span> US sales in millions.</p></div>
+        <div class="formula-step"><div class="num">06</div><strong>Add explicit ex-US sales</strong><p><span class="calc-ref">P</span> US sales x <span class="calc-ref">H</span> ex-US sales factor x <span class="calc-ref">Q</span> ex-US price index x <span class="calc-ref">R</span> annual ex-US uptake contributes to <span class="calc-ref">S</span> worldwide sales.</p></div>
+      </div>
+      <div class="plain">
+        <h2>Plain language explanation</h2>
+        <p>The model asks: How many wet AMD eyes could realistically become eligible for a durable option in a given year, what share physicians would actually treat, what portion of durable-treatment use goes to Ixo-vec, what Ixo-vec earns per treated eye, and how much non-US sales should be added after launch delay. The answer changes every year because eligibility, adoption, access, price, competition, and ex-US availability change over time.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Segment mix</h2>
+        <p>The base case is driven almost entirely by high-burden eyes sourced from current branded anti-VEGF use. Low-cost and lower-burden source segments are included, but they remain small in this version of the model.</p>
+      </div>
+      <div class="two-col">
+        <div class="mix-card">
+          
+            <div class="mix-row">
+              <div class="mix-year">2029</div>
+              <div class="mix-bar">
+                <span class="mix-hb" style="width:98.42%"></span>
+                <span class="mix-low" style="width:1.58%"></span>
+                <span class="mix-lower" style="width:0.00%"></span>
+              </div>
+              <div class="mix-total">475 eyes</div>
+            </div>
+            
+            <div class="mix-row">
+              <div class="mix-year">2031</div>
+              <div class="mix-bar">
+                <span class="mix-hb" style="width:98.40%"></span>
+                <span class="mix-low" style="width:1.60%"></span>
+                <span class="mix-lower" style="width:0.00%"></span>
+              </div>
+              <div class="mix-total">1,726 eyes</div>
+            </div>
+            
+            <div class="mix-row">
+              <div class="mix-year">2033</div>
+              <div class="mix-bar">
+                <span class="mix-hb" style="width:98.32%"></span>
+                <span class="mix-low" style="width:1.68%"></span>
+                <span class="mix-lower" style="width:0.00%"></span>
+              </div>
+              <div class="mix-total">11,261 eyes</div>
+            </div>
+            
+            <div class="mix-row">
+              <div class="mix-year">2034</div>
+              <div class="mix-bar">
+                <span class="mix-hb" style="width:98.20%"></span>
+                <span class="mix-low" style="width:1.80%"></span>
+                <span class="mix-lower" style="width:0.00%"></span>
+              </div>
+              <div class="mix-total">15,487 eyes</div>
+            </div>
+            
+            <div class="mix-row">
+              <div class="mix-year">2036</div>
+              <div class="mix-bar">
+                <span class="mix-hb" style="width:97.79%"></span>
+                <span class="mix-low" style="width:2.21%"></span>
+                <span class="mix-lower" style="width:0.00%"></span>
+              </div>
+              <div class="mix-total">13,561 eyes</div>
+            </div>
+            
+            <div class="mix-row">
+              <div class="mix-year">2040</div>
+              <div class="mix-bar">
+                <span class="mix-hb" style="width:94.56%"></span>
+                <span class="mix-low" style="width:5.44%"></span>
+                <span class="mix-lower" style="width:0.00%"></span>
+              </div>
+              <div class="mix-total">8,849 eyes</div>
+            </div>
+            
+            <div class="mix-row">
+              <div class="mix-year">2045</div>
+              <div class="mix-bar">
+                <span class="mix-hb" style="width:94.22%"></span>
+                <span class="mix-low" style="width:5.78%"></span>
+                <span class="mix-lower" style="width:0.00%"></span>
+              </div>
+              <div class="mix-total">6,016 eyes</div>
+            </div>
+            
+          <div class="legend"><span>High-burden branded anti-VEGF source</span><span class="us">High-burden low-cost anti-VEGF source</span><span class="exus">Lower-burden branded anti-VEGF source</span></div>
+        </div>
+        <div>
+          <h3>Why this matters</h3>
+          <p>If a reviewer disagrees with the forecast, the fastest way to pressure-test the model is to challenge the high-burden branded anti-VEGF source assumptions first: eligible-pool size, durable-class adoption, Ixo-vec allocation within the durable-treatment class, and net revenue per treated eye. Those variables explain most of the base-case revenue.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Year-by-year bridge</h2>
+        <p>This table shows the annual inputs that most directly affect the base-case output. It is intentionally simplified so a reader can see why each year changes without reviewing every detailed calculation row in Excel.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Worldwide sales</th>
+              <th>US treated eyes</th>
+              <th>Pool considered</th>
+              <th>Access ramp</th>
+              <th>Capture ramp</th>
+              <th>Price index</th>
+              <th>Ex-US uptake</th>
+              <th>Plain-language interpretation</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr>
+              <td>2029</td>
+              <td>$42M</td>
+              <td>475</td>
+              <td>18%</td>
+              <td>70%</td>
+              <td>15%</td>
+              <td>1.00x</td>
+              <td>0%</td>
+              <td>US-only launch ramp with ex-US contribution held at zero because of the assumed delay.</td>
+            </tr>
+            
+            <tr>
+              <td>2030</td>
+              <td>$84M</td>
+              <td>935</td>
+              <td>18%</td>
+              <td>80%</td>
+              <td>25%</td>
+              <td>1.00x</td>
+              <td>0%</td>
+              <td>US-only launch ramp with ex-US contribution held at zero because of the assumed delay.</td>
+            </tr>
+            
+            <tr>
+              <td>2031</td>
+              <td>$167M</td>
+              <td>1,726</td>
+              <td>18%</td>
+              <td>90%</td>
+              <td>40%</td>
+              <td>1.00x</td>
+              <td>25%</td>
+              <td>Growth is driven by considering more of the high-burden pool for durable-option use, higher access, faster physician adoption, and ex-US uptake.</td>
+            </tr>
+            
+            <tr>
+              <td>2032</td>
+              <td>$628M</td>
+              <td>6,200</td>
+              <td>34%</td>
+              <td>95%</td>
+              <td>70%</td>
+              <td>1.00x</td>
+              <td>40%</td>
+              <td>Growth is driven by considering more of the high-burden pool for durable-option use, higher access, faster physician adoption, and ex-US uptake.</td>
+            </tr>
+            
+            <tr>
+              <td>2033</td>
+              <td>$1.19B</td>
+              <td>11,261</td>
+              <td>51%</td>
+              <td>98%</td>
+              <td>85%</td>
+              <td>1.00x</td>
+              <td>55%</td>
+              <td>Growth is driven by considering more of the high-burden pool for durable-option use, higher access, faster physician adoption, and ex-US uptake.</td>
+            </tr>
+            
+            <tr>
+              <td>2034</td>
+              <td>$1.71B</td>
+              <td>15,487</td>
+              <td>65%</td>
+              <td>100%</td>
+              <td>95%</td>
+              <td>1.00x</td>
+              <td>70%</td>
+              <td>Growth is driven by considering more of the high-burden pool for durable-option use, higher access, faster physician adoption, and ex-US uptake.</td>
+            </tr>
+            
+            <tr>
+              <td>2035</td>
+              <td>$1.70B</td>
+              <td>14,854</td>
+              <td>65%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>1.00x</td>
+              <td>85%</td>
+              <td>The model holds the treatment-considered pool near peak while ex-US uptake reaches full contribution.</td>
+            </tr>
+            
+            <tr>
+              <td>2036</td>
+              <td>$1.61B</td>
+              <td>13,561</td>
+              <td>65%</td>
+              <td>100%</td>
+              <td>100%</td>
+              <td>1.00x</td>
+              <td>100%</td>
+              <td>The model holds the treatment-considered pool near peak while ex-US uptake reaches full contribution.</td>
+            </tr>
+            
+            <tr>
+              <td>2037</td>
+              <td>$1.39B</td>
+              <td>12,164</td>
+              <td>65%</td>
+              <td>99%</td>
+              <td>96%</td>
+              <td>0.97x</td>
+              <td>100%</td>
+              <td>Sales taper as treated-eye opportunity is depleted and price/capture erosion are applied.</td>
+            </tr>
+            
+            <tr>
+              <td>2038</td>
+              <td>$1.19B</td>
+              <td>10,818</td>
+              <td>65%</td>
+              <td>98%</td>
+              <td>92%</td>
+              <td>0.94x</td>
+              <td>100%</td>
+              <td>Sales taper as treated-eye opportunity is depleted and price/capture erosion are applied.</td>
+            </tr>
+            
+            <tr>
+              <td>2039</td>
+              <td>$1.04B</td>
+              <td>9,735</td>
+              <td>65%</td>
+              <td>97%</td>
+              <td>88%</td>
+              <td>0.91x</td>
+              <td>100%</td>
+              <td>Sales taper as treated-eye opportunity is depleted and price/capture erosion are applied.</td>
+            </tr>
+            
+            <tr>
+              <td>2040</td>
+              <td>$917M</td>
+              <td>8,849</td>
+              <td>65%</td>
+              <td>96%</td>
+              <td>84%</td>
+              <td>0.89x</td>
+              <td>100%</td>
+              <td>Sales taper as treated-eye opportunity is depleted and price/capture erosion are applied.</td>
+            </tr>
+            
+            <tr>
+              <td>2041</td>
+              <td>$815M</td>
+              <td>8,111</td>
+              <td>65%</td>
+              <td>95%</td>
+              <td>80%</td>
+              <td>0.86x</td>
+              <td>100%</td>
+              <td>Sales taper as treated-eye opportunity is depleted and price/capture erosion are applied.</td>
+            </tr>
+            
+            <tr>
+              <td>2042</td>
+              <td>$729M</td>
+              <td>7,482</td>
+              <td>65%</td>
+              <td>94%</td>
+              <td>76%</td>
+              <td>0.83x</td>
+              <td>100%</td>
+              <td>Sales taper as treated-eye opportunity is depleted and price/capture erosion are applied.</td>
+            </tr>
+            
+            <tr>
+              <td>2043</td>
+              <td>$655M</td>
+              <td>6,937</td>
+              <td>65%</td>
+              <td>93%</td>
+              <td>72%</td>
+              <td>0.81x</td>
+              <td>100%</td>
+              <td>Sales taper as treated-eye opportunity is depleted and price/capture erosion are applied.</td>
+            </tr>
+            
+            <tr>
+              <td>2044</td>
+              <td>$591M</td>
+              <td>6,453</td>
+              <td>65%</td>
+              <td>92%</td>
+              <td>68%</td>
+              <td>0.78x</td>
+              <td>100%</td>
+              <td>Sales taper as treated-eye opportunity is depleted and price/capture erosion are applied.</td>
+            </tr>
+            
+            <tr>
+              <td>2045</td>
+              <td>$535M</td>
+              <td>6,016</td>
+              <td>65%</td>
+              <td>91%</td>
+              <td>64%</td>
+              <td>0.76x</td>
+              <td>100%</td>
+              <td>Sales taper as treated-eye opportunity is depleted and price/capture erosion are applied.</td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Assumptions</h2>
+        <p>The model separates sourced evidence, triangulated estimates, and explicit assumptions because many commercial forecasting variables are unavailable in model-ready public datasets.</p>
+      </div>
+      <div class="caveat-grid">
+        <div class="caveat"><strong>Directly anchored evidence</strong><p>Adverum management's Schedule 14D-9 projections, the CVR $1B annual worldwide net-sales hurdle, and several market context inputs are sourced. These frame the problem while the forecast remains driven by the model's assumption logic.</p></div>
+        <div class="caveat"><strong>Triangulated estimates</strong><p>Active treated eyes, branded/low-cost source share, and high-burden share are based on public context plus model judgment.</p></div>
+        <div class="caveat"><strong>Adjustable model inputs</strong><p>Net revenue per treated eye, ex-US uptake, within-class competitor allocation, eligible-pool expansion, and physician adoption ramps are adjustable assumptions because public data is incomplete.</p></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
