@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-label="Highlighted source capture for mature high-burden pool considered">
+  <rect width="1200" height="720" fill="#f6f8fa"/>
+  <rect x="48" y="46" width="1104" height="628" rx="6" fill="#fff" stroke="#111"/>
+  <text x="78" y="92" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#111">Mature high-burden pool considered: switching evidence</text>
+  <text x="78" y="126" font-family="Arial, sans-serif" font-size="15" fill="#4b5563">Saved source-text capture from USRetina anti-VEGF switching evidence.</text>
+  <rect x="78" y="170" width="1044" height="210" fill="#eef6ff" stroke="#bfdbfe"/>
+  <text x="104" y="209" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#111">Switching behavior in treated eyes</text>
+  <rect x="104" y="238" width="952" height="34" fill="#fff2a8"/>
+  <text x="116" y="262" font-family="Arial, sans-serif" font-size="20" fill="#111">10,131 of 37,021 eyes switched anti-VEGF over median 109 weeks.</text>
+  <rect x="104" y="286" width="660" height="34" fill="#fff2a8"/>
+  <text x="116" y="310" font-family="Arial, sans-serif" font-size="20" fill="#111">Switching rate 27.4%; mean time to switch 42 weeks.</text>
+  <text x="104" y="352" font-family="Arial, sans-serif" font-size="16" fill="#374151">Use in model: supports treatment-pathway fluidity, not an exact 65% mature considered share.</text>
+  <rect x="78" y="422" width="1044" height="124" fill="#f8fafc" stroke="#d1d5db"/>
+  <text x="104" y="462" font-family="Arial, sans-serif" font-size="18" fill="#111">Model interpretation</text>
+  <text x="104" y="498" font-family="Arial, sans-serif" font-size="16" fill="#374151">The 65% mature pool is a treatment-consideration assumption applied before access and adoption gates.</text>
+  <text x="78" y="628" font-family="Arial, sans-serif" font-size="14" fill="#6b7280">Source linked in the card: USRetina switching evidence.</text>
+</svg>

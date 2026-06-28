@@ -381,6 +381,81 @@
       line-height: 1.3;
       color: #374151;
     }
+    .source-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .source-evidence-button {
+      min-height: 30px;
+      border: 1px solid var(--black);
+      background: var(--white);
+      color: var(--black);
+      padding: 6px 9px;
+      font-size: 11px;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .source-evidence-button:hover,
+    .source-evidence-button:focus-visible {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+    .source-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      background: rgba(0, 0, 0, .72);
+    }
+    .source-modal[aria-hidden="false"] {
+      display: flex;
+    }
+    .source-modal-panel {
+      width: min(1080px, 96vw);
+      max-height: 92vh;
+      background: var(--white);
+      border: 1px solid var(--black);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .38);
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+    }
+    .source-modal-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .source-modal-title {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+    .source-modal-close {
+      min-height: 32px;
+      border: 1px solid var(--black);
+      background: var(--white);
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+    .source-modal-body {
+      overflow: auto;
+      padding: 14px;
+      background: var(--wash);
+    }
+    .source-modal-body img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--black);
+      background: var(--white);
+    }
     a { color: #094aab; text-decoration-thickness: 1px; text-underline-offset: 2px; }
     .treatment-note {
       margin-top: 20px;
@@ -765,7 +840,7 @@
             <dt>Basis</dt><dd>Assumption informed by prevalence and treated-population context.</dd>
             <dt>Calculation</dt><dd><span class="calc-ref">A</span> Base denominator selected at 1.15M treated eyes after triangulating multiple prevalence and treatment-context sources.</dd>
             <dt>Rationale</dt><dd>Kept between bear 1.0M and bull 1.3M to avoid overfitting to any one prevalence source.</dd>
-            <dt>Source</dt><dd><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12705084/" target="_blank" rel="noopener">Medicare FFS prevalence context</a>, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11695844/" target="_blank" rel="noopener">Medicare Advantage prevalence context</a></dd>
+            <dt>Sources</dt><dd><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12705084/" target="_blank" rel="noopener">Medicare FFS prevalence context</a>, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11695844/" target="_blank" rel="noopener">Medicare Advantage prevalence context</a><div class="source-actions"><button type="button" class="source-evidence-button" data-source-image="assets/evidence/ixo-core-active-treated-eyes.svg" data-source-title="Active treated nAMD eyes evidence">View highlighted source capture</button></div></dd>
           </dl>
         </article>
         
@@ -778,7 +853,7 @@
             <dt>Basis</dt><dd>Assumption informed by real-world injection burden, discontinuation, and switching evidence.</dd>
             <dt>Calculation</dt><dd><span class="calc-ref">A</span> 1.15M active treated eyes x <span class="calc-ref">B</span> 20% = 230k high-burden eyes before source-of-business and eligibility gates.</dd>
             <dt>Rationale</dt><dd>A 20% base case is intentionally narrower than the full switching/discontinuation population.</dd>
-            <dt>Source</dt><dd><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10767511/" target="_blank" rel="noopener">IRIS Registry burden and switching study</a></dd>
+            <dt>Sources</dt><dd><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10767511/" target="_blank" rel="noopener">IRIS Registry burden and switching study</a><div class="source-actions"><button type="button" class="source-evidence-button" data-source-image="assets/evidence/ixo-core-high-burden-share.svg" data-source-title="High-burden treated-eye share evidence">View highlighted source capture</button></div></dd>
           </dl>
         </article>
         
@@ -791,7 +866,7 @@
             <dt>Basis</dt><dd>Assumption informed by prior-agent proxy data and clinical input.</dd>
             <dt>Calculation</dt><dd>The first three launch years use <span class="calc-ref">C</span> 18% for the core high-burden branded anti-VEGF source pool.</dd>
             <dt>Rationale</dt><dd>Early use is restricted to patients with few good alternatives until physicians gain comfort.</dd>
-            <dt>Source</dt><dd><a href="https://veranahealth.com/wp-content/uploads/2023/07/Verana_Health_ARVO_2023_FAR_Durga_Borkar_FINAL_042823.pdf" target="_blank" rel="noopener">Faricimab prior-agent proxy</a></dd>
+            <dt>Sources</dt><dd><a href="https://veranahealth.com/wp-content/uploads/2023/07/Verana_Health_ARVO_2023_FAR_Durga_Borkar_FINAL_042823.pdf" target="_blank" rel="noopener">Faricimab prior-agent proxy</a><div class="source-actions"><button type="button" class="source-evidence-button" data-source-image="assets/evidence/ixo-core-initial-pool.svg" data-source-title="Initial high-burden pool evidence">View highlighted source capture</button></div></dd>
           </dl>
         </article>
         
@@ -804,7 +879,7 @@
             <dt>Basis</dt><dd>Assumption informed by switching behavior and clinical judgment.</dd>
             <dt>Calculation</dt><dd>The core high-burden branded anti-VEGF source pool considered for durable-option use increases from <span class="calc-ref">C</span> 18% at launch to <span class="calc-ref">D</span> 65% by 2034.</dd>
             <dt>Rationale</dt><dd>This is a treatment-consideration assumption applied before access, physician adoption, durable-class adoption, and Ixo-vec allocation.</dd>
-            <dt>Source</dt><dd><a href="https://www.aaojournal.org/article/S0161-6420(20)30192-5/fulltext" target="_blank" rel="noopener">USRetina switching evidence</a></dd>
+            <dt>Sources</dt><dd><a href="https://www.aaojournal.org/article/S0161-6420(20)30192-5/fulltext" target="_blank" rel="noopener">USRetina switching evidence</a><div class="source-actions"><button type="button" class="source-evidence-button" data-source-image="assets/evidence/ixo-core-mature-pool.svg" data-source-title="Mature high-burden pool evidence">View highlighted source capture</button></div></dd>
           </dl>
         </article>
         
@@ -817,7 +892,7 @@
             <dt>Basis</dt><dd>Competitive assumption informed by public durable-treatment competitor programs.</dd>
             <dt>Calculation</dt><dd>In 2036 core segment: <span class="calc-ref">M</span> durable-option use x <span class="calc-ref">E</span> 35% = <span class="calc-ref">N</span> Ixo-vec treated eyes.</dd>
             <dt>Rationale</dt><dd>The durable-treatment class includes multiple current or emerging long-duration approaches, so the base case allocates only part of durable-option use to Ixo-vec.</dd>
-            <dt>Source</dt><dd><a href="https://4dmt.gcs-web.com/news-releases/news-release-details/4dmt-completes-enrollment-4front-1-phase-3-clinical-trial-4d-150" target="_blank" rel="noopener">4D-150 Phase 3 context</a>, <a href="https://www.regenxbio.com/therapeutic-programs/rgx-314/" target="_blank" rel="noopener">RGX-314 program context</a>, <a href="https://www.ocutx.com/pipeline/axpaxli/" target="_blank" rel="noopener">AXPAXLI program context</a></dd>
+            <dt>Sources</dt><dd><a href="https://4dmt.gcs-web.com/news-releases/news-release-details/4dmt-completes-enrollment-4front-1-phase-3-clinical-trial-4d-150" target="_blank" rel="noopener">4D-150 Phase 3 context</a>, <a href="https://www.regenxbio.com/therapeutic-programs/rgx-314/" target="_blank" rel="noopener">RGX-314 program context</a>, <a href="https://www.ocutx.com/pipeline/axpaxli/" target="_blank" rel="noopener">AXPAXLI program context</a><div class="source-actions"><button type="button" class="source-evidence-button" data-source-image="assets/evidence/ixo-core-durable-allocation.svg" data-source-title="Durable-treatment competitor evidence">View highlighted source capture</button></div></dd>
           </dl>
         </article>
         
@@ -830,7 +905,7 @@
             <dt>Basis</dt><dd>Analog-informed assumption.</dd>
             <dt>Calculation</dt><dd>In the core segment, <span class="calc-ref">K</span> eligible and accessible eyes x <span class="calc-ref">F</span> 70% peak durable-option adoption x <span class="calc-ref">L</span> annual adoption ramp = <span class="calc-ref">M</span> durable-option use.</dd>
             <dt>Rationale</dt><dd>Vabysmo and EYLEA HD show that branded retinal therapies can reach substantial scale, but gene-therapy irreversibility supports a slower, narrower ramp.</dd>
-            <dt>Source</dt><dd><a href="https://www.roche.com/media/releases/med-cor-2026-01-29" target="_blank" rel="noopener">Roche Vabysmo sales context</a>, <a href="https://www.sec.gov/Archives/edgar/data/872589/000087258926000004/exhibit991q42025.htm" target="_blank" rel="noopener">Regeneron EYLEA HD sales context</a></dd>
+            <dt>Sources</dt><dd><a href="https://www.roche.com/media/releases/med-cor-2026-01-29" target="_blank" rel="noopener">Roche Vabysmo sales context</a>, <a href="https://www.sec.gov/Archives/edgar/data/872589/000087258926000004/exhibit991q42025.htm" target="_blank" rel="noopener">Regeneron EYLEA HD sales context</a><div class="source-actions"><button type="button" class="source-evidence-button" data-source-image="assets/evidence/ixo-core-durable-adoption.svg" data-source-title="Durable adoption analog evidence">View highlighted source capture</button></div></dd>
           </dl>
         </article>
         
@@ -843,7 +918,7 @@
             <dt>Basis</dt><dd>Scenario assumption because Ixo-vec pricing remains unpublished.</dd>
             <dt>Calculation</dt><dd><span class="calc-ref">P</span> Core segment US sales ($M) = <span class="calc-ref">N</span> Ixo-vec treated eyes x <span class="calc-ref">G</span> $90,000 x <span class="calc-ref">O</span> annual price index / 1,000,000. The division by 1,000,000 converts dollars into millions of dollars for the sales table and charts.</dd>
             <dt>Rationale</dt><dd>This is editable because pricing could vary materially depending on label, contracting, and whether payment resembles a one-time gene-therapy model.</dd>
-            <dt>Source</dt><dd><a href="https://www.cms.gov/medicare/payment/part-b-drugs/asp-pricing-files" target="_blank" rel="noopener">CMS ASP pricing source context</a></dd>
+            <dt>Sources</dt><dd><a href="https://www.cms.gov/medicare/payment/part-b-drugs/asp-pricing-files" target="_blank" rel="noopener">CMS ASP pricing source context</a><div class="source-actions"><button type="button" class="source-evidence-button" data-source-image="assets/evidence/ixo-core-net-revenue.svg" data-source-title="Net revenue source-context evidence">View highlighted source capture</button></div></dd>
           </dl>
         </article>
         
@@ -856,7 +931,7 @@
             <dt>Basis</dt><dd>Assumption.</dd>
             <dt>Calculation</dt><dd>Ex-US sales = <span class="calc-ref">P</span> US sales x <span class="calc-ref">H</span> 0.667 volume factor x <span class="calc-ref">Q</span> 0.50 ex-US price index x <span class="calc-ref">R</span> annual ex-US uptake.</dd>
             <dt>Rationale</dt><dd>Used as a simple global gross-up while the current model remains above country-level uptake, price, and launch sequencing.</dd>
-            <dt>Source</dt><dd>Explicit model assumption</dd>
+            <dt>Sources</dt><dd>Explicit model assumption<div class="source-actions"><button type="button" class="source-evidence-button" data-source-image="assets/evidence/ixo-core-ex-us-assumption.svg" data-source-title="Ex-US factor assumption note">View assumption note</button></div></dd>
           </dl>
         </article>
         
@@ -1469,5 +1544,52 @@
       </div>
     </section>
   </main>
+  <div class="source-modal" id="source-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="source-modal-title">
+    <div class="source-modal-panel">
+      <div class="source-modal-head">
+        <div class="source-modal-title" id="source-modal-title">Highlighted source capture</div>
+        <button type="button" class="source-modal-close" id="source-modal-close">Close</button>
+      </div>
+      <div class="source-modal-body">
+        <img id="source-modal-image" src="" alt="">
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const modal = document.getElementById("source-modal");
+      const image = document.getElementById("source-modal-image");
+      const title = document.getElementById("source-modal-title");
+      const close = document.getElementById("source-modal-close");
+      let lastTrigger = null;
+
+      function closeModal() {
+        modal.setAttribute("aria-hidden", "true");
+        image.removeAttribute("src");
+        image.alt = "";
+        if (lastTrigger) lastTrigger.focus();
+      }
+
+      document.querySelectorAll("[data-source-image]").forEach(button => {
+        button.addEventListener("click", () => {
+          lastTrigger = button;
+          const sourceTitle = button.dataset.sourceTitle || "Highlighted source capture";
+          title.textContent = sourceTitle;
+          image.src = button.dataset.sourceImage;
+          image.alt = sourceTitle;
+          modal.setAttribute("aria-hidden", "false");
+          close.focus();
+        });
+      });
+
+      close.addEventListener("click", closeModal);
+      modal.addEventListener("click", event => {
+        if (event.target === modal) closeModal();
+      });
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && modal.getAttribute("aria-hidden") === "false") closeModal();
+      });
+    })();
+  </script>
 </body>
 </html>

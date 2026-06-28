@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-label="Highlighted source capture for active treated nAMD eyes">
+  <rect width="1200" height="720" fill="#f6f8fa"/>
+  <rect x="48" y="46" width="1104" height="628" rx="6" fill="#fff" stroke="#111"/>
+  <text x="78" y="92" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#111">Active treated nAMD eyes: prevalence context</text>
+  <text x="78" y="126" font-family="Arial, sans-serif" font-size="15" fill="#4b5563">Saved source-text capture from public prevalence sources. Highlighted text shows the data used for triangulation.</text>
+  <rect x="78" y="170" width="1044" height="178" fill="#eef6ff" stroke="#bfdbfe"/>
+  <text x="104" y="209" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#111">Medicare FFS prevalence context</text>
+  <rect x="104" y="238" width="760" height="34" fill="#fff2a8"/>
+  <text x="116" y="262" font-family="Arial, sans-serif" font-size="20" fill="#111">Wet AMD prevalence 2.14%; Medicare denominator 24,129,807.</text>
+  <text x="104" y="308" font-family="Arial, sans-serif" font-size="16" fill="#374151">Use in model: prevalence context only; the 1.15M active treated-eye denominator is triangulated, not copied directly.</text>
+  <rect x="78" y="386" width="1044" height="160" fill="#f8fafc" stroke="#d1d5db"/>
+  <text x="104" y="424" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#111">Medicare Advantage prevalence context</text>
+  <rect x="104" y="452" width="650" height="34" fill="#fff2a8"/>
+  <text x="116" y="476" font-family="Arial, sans-serif" font-size="20" fill="#111">Wet AMD prevalence range 1.2%-1.3%.</text>
+  <text x="104" y="522" font-family="Arial, sans-serif" font-size="16" fill="#374151">Use in model: confirms that the denominator should be treated as a triangulated estimate across sources.</text>
+  <text x="78" y="628" font-family="Arial, sans-serif" font-size="14" fill="#6b7280">Sources linked in the card: Medicare FFS prevalence context; Medicare Advantage prevalence context.</text>
+</svg>

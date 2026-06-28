@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-label="Highlighted source capture for high-burden treated-eye share">
+  <rect width="1200" height="720" fill="#f6f8fa"/>
+  <rect x="48" y="46" width="1104" height="628" rx="6" fill="#fff" stroke="#111"/>
+  <text x="78" y="92" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#111">High-burden treated-eye share: IRIS Registry context</text>
+  <text x="78" y="126" font-family="Arial, sans-serif" font-size="15" fill="#4b5563">Saved source-text capture from the IRIS Registry burden and switching study.</text>
+  <rect x="78" y="170" width="1044" height="228" fill="#eef6ff" stroke="#bfdbfe"/>
+  <text x="104" y="209" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#111">Treatment burden and persistence evidence</text>
+  <rect x="104" y="238" width="820" height="34" fill="#fff2a8"/>
+  <text x="116" y="262" font-family="Arial, sans-serif" font-size="20" fill="#111">Year 1 injections 7.2; year 2 injections 5.6.</text>
+  <rect x="104" y="286" width="880" height="34" fill="#fff2a8"/>
+  <text x="116" y="310" font-family="Arial, sans-serif" font-size="20" fill="#111">Discontinuation 38.8%; switching 32.3%.</text>
+  <text x="104" y="362" font-family="Arial, sans-serif" font-size="16" fill="#374151">Use in model: supports a high-burden pool but does not define the exact 20% modeled share.</text>
+  <rect x="78" y="440" width="1044" height="106" fill="#f8fafc" stroke="#d1d5db"/>
+  <text x="104" y="480" font-family="Arial, sans-serif" font-size="18" fill="#111">Model interpretation</text>
+  <text x="104" y="516" font-family="Arial, sans-serif" font-size="16" fill="#374151">The 20% base-case share is intentionally narrower than the full switching or discontinuation population.</text>
+  <text x="78" y="628" font-family="Arial, sans-serif" font-size="14" fill="#6b7280">Source linked in the card: IRIS Registry burden and switching study.</text>
+</svg>

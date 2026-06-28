@@ -136,6 +136,16 @@
     return value >= 1000 ? "$" + (value / 1000).toFixed(value % 1000 === 0 ? 0 : 1) + "B" : "$" + value + "M";
   }
 
+  function esc(value) {
+    return String(value || "").replace(/[&<>"']/g, char => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[char]));
+  }
+
   function cite(label, url) {
     return `<a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`;
   }
@@ -175,17 +185,15 @@
   }
 
   function estimateCard(row, index) {
-    const screenshot = row.evidenceImage
-      ? `<div class="evidence-shot-panel" id="evidence-shot-${index}" hidden><p class="source-note">${row.captureNote}</p><img src="${row.evidenceImage}" alt="Highlighted evidence screenshot for ${row.drug} ${row.source}"></div>`
-      : `<div class="evidence-shot-panel" id="evidence-shot-${index}" hidden><p class="source-note">${row.captureNote}</p></div>`;
+    const detailLabel = row.evidenceImage ? "Show evidence screenshot" : "Show capture note";
+    const detailTitle = `${row.drug}: ${row.metric}`;
     return `<article class="evidence-card">
       <div>
         <div class="metric-label"><span class="input-code">${index + 1}</span>${row.drug}</div>
         <h3>${money(row.value)} ${row.metric}</h3>
         <p>${row.scope}. ${row.note} Source: ${cite(row.source, row.url)}.</p>
       </div>
-      <button class="evidence-toggle" type="button" aria-expanded="false" aria-controls="evidence-shot-${index}">${row.evidenceImage ? "Show evidence screenshot" : "Show capture note"}</button>
-      ${screenshot}
+      <button class="evidence-toggle" type="button" aria-haspopup="dialog" aria-controls="evidence-modal" data-evidence-title="${esc(detailTitle)}" data-evidence-note="${esc(row.captureNote)}" data-evidence-image="${esc(row.evidenceImage || "")}">${detailLabel}</button>
     </article>`;
   }
 
@@ -198,19 +206,19 @@
   }
 
   function render() {
-    document.title = "Wet AMD Public Sales Forecast Evidence";
+    document.title = "Wet AMD Public Sales Forecasts";
     document.body.innerHTML = `<main class="page">
       <header>
         <div>
-          <h1>Public Sales Forecast Evidence</h1>
-          <p class="deck">A source-backed view of publicly available wet AMD pipeline sales estimates, compared with the current base-case model peaks for the five non-ixo-vec programs.</p>
+          <h1 class="evidence-title">Public Sales Forecasts</h1>
+          <p class="deck">A view of publicly available wet AMD pipeline sales estimates, compared with the current base-case model peaks for the five non-ixo-vec programs.</p>
         </div>
         <aside class="meta">
           <div><strong>Scope check</strong> Each estimate is labeled as wet AMD-only, probability-adjusted, or multi-indication.</div>
           <div><strong>Evidence</strong> Inline citations link to sources; screenshots are hidden behind buttons to keep the page readable.</div>
         </aside>
       </header>
-      <nav class="nav-tools" aria-label="Forecast evidence navigation"><a href="index.html">Forecast index</a><a href="ixo_vec_base_case_sales_forecast_infographic.html">Ixo-vec reference</a><a href="#evidence-table">Evidence table</a></nav>
+      <nav class="nav-tools" aria-label="Forecast evidence navigation"><a href="index.html">Forecast index</a><a href="#evidence-table">Evidence table</a></nav>
       <section class="section">
         <div class="section-head">
           <h2>Estimate comparison</h2>
@@ -236,7 +244,7 @@
       <section class="section">
         <div class="section-head">
           <h2>Source evidence</h2>
-          <p>Each item includes a citation and a collapsible screenshot or capture note. Reader-rendered captures are used only when the original page blocks automated screenshot capture but the source text remains publicly accessible.</p>
+          <p>Each item includes a citation and a popup screenshot or capture note. Reader-rendered captures are used only when the original page blocks automated screenshot capture but the source text remains publicly accessible.</p>
         </div>
         <div class="evidence-grid">${PUBLIC_ESTIMATES.map(estimateCard).join("")}</div>
       </section>
@@ -247,15 +255,46 @@
         </div>
         <div class="table-wrap"><table><thead><tr><th>Drug</th><th>Source</th><th>Metric</th><th>Value</th><th>Year</th><th>Scope</th><th>Context</th></tr></thead><tbody>${tableRows()}</tbody></table></div>
       </section>
-    </main>`;
+    </main>
+    <div class="evidence-modal" id="evidence-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="evidence-modal-title">
+      <div class="evidence-modal-panel">
+        <div class="evidence-modal-head">
+          <div class="evidence-modal-title" id="evidence-modal-title">Source evidence</div>
+          <button type="button" class="evidence-modal-close" id="evidence-modal-close">Close</button>
+        </div>
+        <div class="evidence-modal-body" id="evidence-modal-body"></div>
+      </div>
+    </div>`;
+    const modal = document.getElementById("evidence-modal");
+    const modalTitle = document.getElementById("evidence-modal-title");
+    const modalBody = document.getElementById("evidence-modal-body");
+    const modalClose = document.getElementById("evidence-modal-close");
+    let lastTrigger = null;
+
+    function closeModal() {
+      modal.setAttribute("aria-hidden", "true");
+      modalBody.innerHTML = "";
+      if (lastTrigger) lastTrigger.focus();
+    }
+
     document.querySelectorAll(".evidence-toggle").forEach(button => {
       button.addEventListener("click", () => {
-        const target = document.getElementById(button.getAttribute("aria-controls"));
-        const open = button.getAttribute("aria-expanded") === "true";
-        button.setAttribute("aria-expanded", String(!open));
-        target.hidden = open;
-        button.textContent = open ? (target.querySelector("img") ? "Show evidence screenshot" : "Show capture note") : "Hide details";
+        lastTrigger = button;
+        const title = button.dataset.evidenceTitle || "Source evidence";
+        const note = button.dataset.evidenceNote || "";
+        const image = button.dataset.evidenceImage || "";
+        modalTitle.textContent = title;
+        modalBody.innerHTML = `<p class="source-note">${esc(note)}</p>${image ? `<img src="${esc(image)}" alt="Highlighted evidence screenshot for ${esc(title)}">` : ""}`;
+        modal.setAttribute("aria-hidden", "false");
+        modalClose.focus();
       });
+    });
+    modalClose.addEventListener("click", closeModal);
+    modal.addEventListener("click", event => {
+      if (event.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && modal.getAttribute("aria-hidden") === "false") closeModal();
     });
   }
 

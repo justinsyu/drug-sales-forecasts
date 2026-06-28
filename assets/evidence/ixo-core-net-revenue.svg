@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-label="Highlighted source capture for net revenue source context">
+  <rect width="1200" height="720" fill="#f6f8fa"/>
+  <rect x="48" y="46" width="1104" height="628" rx="6" fill="#fff" stroke="#111"/>
+  <text x="78" y="92" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#111">US net revenue per treated eye: CMS ASP pricing source context</text>
+  <text x="78" y="126" font-family="Arial, sans-serif" font-size="15" fill="#4b5563">Saved source-text capture from the model source log and CMS ASP source page context.</text>
+  <rect x="78" y="170" width="1044" height="202" fill="#eef6ff" stroke="#bfdbfe"/>
+  <text x="104" y="209" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#111">CMS ASP pricing files context</text>
+  <rect x="104" y="238" width="912" height="34" fill="#fff2a8"/>
+  <text x="116" y="262" font-family="Arial, sans-serif" font-size="20" fill="#111">CMS ASP pricing file source page; exact anti-VEGF rows not captured.</text>
+  <rect x="104" y="286" width="900" height="34" fill="#fff2a8"/>
+  <text x="116" y="310" font-family="Arial, sans-serif" font-size="20" fill="#111">Ixo-vec net price assumptions remain adjustable model inputs.</text>
+  <text x="104" y="350" font-family="Arial, sans-serif" font-size="16" fill="#374151">Use in model: comparator pricing framework only; Ixo-vec price remains unpublished.</text>
+  <rect x="78" y="414" width="1044" height="132" fill="#f8fafc" stroke="#d1d5db"/>
+  <text x="104" y="454" font-family="Arial, sans-serif" font-size="18" fill="#111">Model interpretation</text>
+  <text x="104" y="490" font-family="Arial, sans-serif" font-size="16" fill="#374151">The $90,000 value is a scenario net-revenue assumption for one Ixo-vec-treated US eye.</text>
+  <text x="78" y="628" font-family="Arial, sans-serif" font-size="14" fill="#6b7280">Source linked in the card: CMS ASP pricing source context.</text>
+</svg>
