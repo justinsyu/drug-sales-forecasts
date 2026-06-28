@@ -89,6 +89,27 @@
       color: #212121;
     }
     .meta strong { display: block; font-size: 22px; color: var(--black); }
+    .nav-tools {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-top: 1px solid var(--black);
+      border-bottom: 1px solid var(--black);
+      padding: 12px 0;
+    }
+    .nav-tools a {
+      min-height: 40px;
+      border: 1px solid var(--black);
+      background: var(--black);
+      color: var(--white);
+      padding: 10px 13px;
+      text-decoration: none;
+      font-size: 14px;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+    }
     .kpi-strip {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -659,6 +680,9 @@
         <div><strong>Traceability</strong> Forecast values are tied to visible assumptions, formulas, and reader-verifiable source context.</div>
       </aside>
     </header>
+    <nav class="nav-tools" aria-label="Related model tools">
+      <a href="ixo_vec_interactive_model_calculator.html">Open interactive model calculator</a>
+    </nav>
 
     <section class="kpi-strip" aria-label="Base case summary metrics">
       <div class="kpi"><div class="label">Peak worldwide sales</div><div class="value">$1.71B</div><p>2034</p></div>

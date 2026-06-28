@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='black'/%3E%3Cpath d='M3 11h10v2H3zM3 7h7v2H3zM3 3h4v2H3z' fill='%232e72dc'/%3E%3C/svg%3E" />
+  <title>Ixo-vec Interactive Model Calculator</title>
+  <style>
+    @font-face { font-family: "GS Sans"; src: url("https://cdn.gs.com/fonts/gs-sans/v3/gs-sans-variable.woff2") format("woff2"); font-style: normal; }
+    @font-face { font-family: "GS Serif"; src: url("https://cdn.gs.com/fonts/gs-serif/v3/gs-serif-variable.woff2") format("woff2"); font-style: normal; }
+    :root {
+      --black: #000;
+      --ink: rgba(0,0,0,.95);
+      --muted: #5b7282;
+      --rule: #dce3e8;
+      --wash: #f2f5f7;
+      --blue: #2e72dc;
+      --teal: #159788;
+      --red: #c2170a;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--white); color: var(--ink); font-family: "GS Sans", Helvetica, Arial, sans-serif; letter-spacing: 0; }
+    a { color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    button, input, select { font: inherit; }
+    .page { max-width: 1280px; margin: 0 auto; padding: 42px 34px 64px; }
+    header { border-top: 4px solid var(--black); padding-top: 24px; display: grid; grid-template-columns: 1.15fr .85fr; gap: 54px; align-items: end; }
+    h1 { font-family: "GS Serif", Georgia, serif; font-size: clamp(40px,5vw,68px); line-height: .94; font-weight: 500; margin: 0 0 18px; }
+    h2 { font-family: "GS Serif", Georgia, serif; font-size: clamp(29px,3vw,44px); line-height: 1; font-weight: 500; margin: 0; }
+    h3 { font-size: 18px; line-height: 1.15; margin: 0 0 8px; }
+    p { font-size: 16px; line-height: 1.42; margin: 0; }
+    .deck { max-width: 790px; color: #212121; font-size: 18px; line-height: 1.38; }
+    .meta { border-left: 1px solid var(--black); padding-left: 22px; display: grid; gap: 12px; font-size: 14px; color: #212121; }
+    .meta strong { display: block; font-size: 22px; color: var(--black); }
+    .toolbar { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; border-top: 1px solid var(--black); border-bottom: 1px solid var(--black); padding: 12px 0; }
+    .toolbar a, .toolbar button { min-height: 40px; border: 1px solid var(--black); background: var(--white); color: var(--black); padding: 9px 13px; text-decoration: none; font-size: 14px; line-height: 1; cursor: pointer; }
+    .toolbar .active { background: var(--black); color: var(--white); }
+    .kpi-strip { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--black); border-bottom: 1px solid var(--black); margin: 42px 0 34px; }
+    .kpi { min-height: 126px; padding: 18px 20px; border-right: 1px solid var(--rule); }
+    .kpi:last-child { border-right: 0; }
+    .label { color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 10px; }
+    .value { font-family: "GS Serif", Georgia, serif; font-size: 38px; line-height: 1; }
+    .kpi p { margin-top: 10px; font-size: 13px; color: #374151; }
+    .section { padding: 42px 0; border-bottom: 1px solid var(--rule); }
+    .section-head { display: grid; grid-template-columns: minmax(380px,.58fr) minmax(0,1fr); gap: 54px; margin-bottom: 26px; align-items: start; }
+    .section-head p { color: #374151; max-width: 900px; }
+    .app-grid { display: grid; grid-template-columns: minmax(360px,.76fr) minmax(520px,1fr); gap: 28px; align-items: start; }
+    .panel { border-top: 1px solid var(--black); padding-top: 16px; }
+    .control-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .control { border-bottom: 1px solid var(--rule); padding: 0 0 14px; min-width: 0; }
+    .control.full { grid-column: 1 / -1; }
+    .control label { display: block; font-size: 12px; font-weight: 700; line-height: 1.25; color: #1f2a37; margin-bottom: 6px; }
+    .control input, .control select { width: 100%; border: 1px solid var(--rule); min-height: 36px; padding: 7px 9px; color: var(--ink); background: var(--white); }
+    .control small { display: block; margin-top: 5px; color: var(--muted); font-size: 11px; line-height: 1.3; }
+    .button-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .button-row button { min-height: 38px; border: 1px solid var(--black); background: var(--white); padding: 8px 12px; cursor: pointer; }
+    .button-row button.primary { background: var(--black); color: var(--white); }
+    .chart-panel { background: var(--wash); border-top: 1px solid var(--black); padding: 18px; }
+    .chart-head { display: flex; justify-content: space-between; gap: 18px; align-items: baseline; margin-bottom: 12px; }
+    .chart-head p { color: var(--muted); font-size: 13px; }
+    svg { width: 100%; height: auto; display: block; }
+    .grid-line { stroke: #d7dee5; stroke-width: 1; }
+    .axis { stroke: #000; stroke-width: 1; }
+    .axis-label { font: 12px "GS Sans", Helvetica, Arial, sans-serif; fill: #5b7282; }
+    .line { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .world-line { stroke: var(--blue); stroke-width: 4; }
+    .us-line { stroke: var(--teal); }
+    .bench-line { stroke: #000; stroke-dasharray: 7 6; }
+    .year-dot { fill: var(--white); stroke: var(--blue); stroke-width: 3; }
+    .legend { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; color: #212121; font-size: 13px; }
+    .legend span::before { content: ""; display: inline-block; width: 22px; height: 3px; margin-right: 7px; vertical-align: middle; background: var(--blue); }
+    .legend .us::before { background: var(--teal); }
+    .legend .bench::before { background: #000; }
+    .trace-grid { margin-top: 18px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--black); border: 1px solid var(--black); }
+    .trace { background: var(--white); padding: 14px 15px; min-height: 138px; display: grid; grid-template-columns: auto minmax(0,1fr); gap: 10px; align-content: start; }
+    .badge { width: 28px; height: 28px; border: 1px solid var(--blue); border-radius: 999px; color: var(--blue); display: inline-flex; align-items: center; justify-content: center; font: 700 12px Consolas, monospace; margin-top: 1px; }
+    .trace strong { display: block; font-size: 14px; margin-bottom: 6px; }
+    .trace p { color: #374151; font-size: 12.5px; line-height: 1.35; }
+    .table-tools { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 14px; }
+    .table-tools select { border: 1px solid var(--black); min-height: 36px; padding: 7px 9px; background: var(--white); }
+    .table-wrap { overflow-x: auto; border-top: 1px solid var(--black); }
+    table { width: 100%; border-collapse: collapse; min-width: 1040px; }
+    th, td { border-bottom: 1px solid var(--rule); padding: 8px 9px; text-align: right; font-size: 12px; white-space: nowrap; }
+    th:first-child, td:first-child { text-align: left; position: sticky; left: 0; background: var(--white); z-index: 1; }
+    th { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .03em; background: var(--white); }
+    .metric-group { font-weight: 700; color: #1f2a37; }
+    .definitions { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--black); border: 1px solid var(--black); margin-top: 22px; }
+    .definition { background: var(--white); padding: 14px 15px; min-height: 128px; }
+    .definition strong { display: block; font-size: 14px; margin-bottom: 7px; }
+    .definition p { color: #374151; font-size: 12.5px; line-height: 1.35; }
+    .source-note { margin-top: 14px; padding-left: 12px; border-left: 3px solid var(--blue); color: var(--muted); font-size: 12px; line-height: 1.4; }
+    @media (max-width: 980px) {
+      header, .section-head, .app-grid { grid-template-columns: 1fr; gap: 24px; }
+      .meta { border-left: 0; border-top: 1px solid var(--black); padding: 18px 0 0; }
+      .kpi-strip, .trace-grid, .definitions { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 620px) {
+      .page { padding: 28px 18px 48px; }
+      .toolbar a, .toolbar button { width: 100%; text-align: center; }
+      .kpi-strip, .control-grid, .trace-grid, .definitions { grid-template-columns: 1fr; }
+      .kpi { border-right: 0; border-bottom: 1px solid var(--rule); }
+      .kpi:last-child { border-bottom: 0; }
+      .chart-head { display: grid; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div>
+        <h1>Ixo-vec Interactive Model Calculator</h1>
+        <p class="deck">A browser-side version of the forecast logic. Change assumptions, choose any model year, and inspect how source pools, eligible access, durable-option use, Ixo-vec treated eyes, and sales are calculated.</p>
+      </div>
+      <aside class="meta">
+        <div><strong>Model period</strong> 2025-2045, with commercial launch modeled from 2029.</div>
+        <div><strong>Traceability</strong> The table exposes each annual calculation step instead of showing only summary outputs.</div>
+      </aside>
+    </header>
+
+    <nav class="toolbar" aria-label="Model pages">
+      <a href="ixo_vec_base_case_sales_forecast_infographic.html">Open infographic</a>
+      <button type="button" class="active" data-jump="#calculator">Calculator</button>
+      <button type="button" data-jump="#matrix">Calculation table</button>
+      <button type="button" data-jump="#definitions">Definitions</button>
+    </nav>
+
+    <section class="kpi-strip" aria-label="Interactive scenario summary">
+      <div class="kpi"><div class="label">Selected year worldwide sales</div><div class="value" id="kpi-world">$1.61B</div><p id="kpi-world-note">2036 model forecast value.</p></div>
+      <div class="kpi"><div class="label">External benchmark</div><div class="value" id="kpi-benchmark">$3.43B</div><p>Schedule 14D-9 projection for the same year.</p></div>
+      <div class="kpi"><div class="label">Gap versus benchmark</div><div class="value" id="kpi-gap">-$1.82B</div><p>Model forecast minus the external benchmark.</p></div>
+      <div class="kpi"><div class="label">Ixo-vec treated eyes</div><div class="value" id="kpi-eyes">13.6k</div><p>US treated eyes across modeled source-of-business segments.</p></div>
+    </section>
+
+    <section class="section" id="calculator">
+      <div class="section-head">
+        <h2>Inputs and live outputs</h2>
+        <p>These controls adjust the selected scenario directly in the browser. Source-of-business segments are patient pools by current treatment source, not market share or disease-burden pricing tiers.</p>
+      </div>
+      <div class="app-grid">
+        <div class="panel">
+          <div class="control-grid">
+            <div class="control">
+              <label for="scenario">Scenario</label>
+              <select id="scenario"></select>
+              <small>Loads the starting assumption set.</small>
+            </div>
+            <div class="control">
+              <label for="selectedYear">Selected year</label>
+              <select id="selectedYear"></select>
+              <small>Updates the KPI and formula trace.</small>
+            </div>
+            <div class="control"><label for="activeEyes">US actively treated nAMD eyes</label><input id="activeEyes" type="number" step="10000"><small>Starting treated-eye denominator.</small></div>
+            <div class="control"><label for="incidentCases">Incident wet AMD cases per year</label><input id="incidentCases" type="number" step="5000"><small>Annual incident patient input.</small></div>
+            <div class="control"><label for="highBurdenShare">High-burden prevalent share</label><input id="highBurdenShare" type="number" step="0.01" min="0" max="1"><small>Share of active treated eyes considered high burden.</small></div>
+            <div class="control"><label for="brandedShare">Branded anti-VEGF source share</label><input id="brandedShare" type="number" step="0.01" min="0" max="1"><small>Share of treated eyes sourced from branded anti-VEGF use.</small></div>
+            <div class="control"><label for="candidateShare">Mature high-burden pool considered</label><input id="candidateShare" type="number" step="0.01" min="0" max="1"><small>Post-validation source pool considered for durable-option use.</small></div>
+            <div class="control"><label for="ixovecShare">Ixo-vec allocation within durable options</label><input id="ixovecShare" type="number" step="0.01" min="0" max="1"><small>Share of durable-option use assigned to Ixo-vec.</small></div>
+            <div class="control"><label for="hbAccess">HB branded eligible/access share</label><input id="hbAccess" type="number" step="0.01" min="0" max="1"><small>Clinical eligibility and access ceiling for the largest source pool.</small></div>
+            <div class="control"><label for="hbCapture">HB branded durable-option adoption</label><input id="hbCapture" type="number" step="0.01" min="0" max="1"><small>Mature use of durable options before Ixo-vec allocation.</small></div>
+            <div class="control"><label for="hbPrice">HB branded US net revenue per treated eye</label><input id="hbPrice" type="number" step="5000"><small>Scenario assumption, not a sourced product price.</small></div>
+            <div class="control"><label for="exUsFactor">Ex-US volume/access factor vs US</label><input id="exUsFactor" type="number" step="0.01" min="0"><small>Explicit non-US sales factor before price and uptake.</small></div>
+            <div class="control"><label for="exUsPrice">Ex-US price index vs US</label><input id="exUsPrice" type="number" step="0.01" min="0"><small>Modeled ex-US net revenue as a ratio to US net revenue.</small></div>
+            <div class="control"><label for="priceErosion">Annual price erosion after 2036</label><input id="priceErosion" type="number" step="0.005" min="0" max="1"><small>Post-2036 annual net-price decline.</small></div>
+          </div>
+          <div class="button-row">
+            <button type="button" class="primary" id="applyInputs">Apply changes</button>
+            <button type="button" id="resetScenario">Reset scenario</button>
+          </div>
+        </div>
+        <div>
+          <div class="chart-panel">
+            <div class="chart-head"><h3>Annual model output</h3><p>Worldwide sales, US sales, and external benchmark, $M</p></div>
+            <svg id="salesChart" viewBox="0 0 760 390" role="img" aria-label="Annual sales forecast chart"></svg>
+            <div class="legend"><span>Worldwide sales</span><span class="us">US sales</span><span class="bench">External benchmark</span></div>
+          </div>
+          <div class="trace-grid" id="formulaTrace" aria-label="Selected year formula trace"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="matrix">
+      <div class="section-head">
+        <h2>All calculations by year</h2>
+        <p>The table shows the annual calculation path for the selected scenario. Segment rows expose the largest source-of-business mechanics; total rows show how treated eyes convert to US, ex-US, and worldwide sales.</p>
+      </div>
+      <div class="table-tools">
+        <label for="tableView" class="label" style="margin:0;">Table view</label>
+        <select id="tableView">
+          <option value="summary">Total forecast rows</option>
+          <option value="hb">High-burden branded source rows</option>
+          <option value="allSegments">All source segment rows</option>
+        </select>
+      </div>
+      <div class="table-wrap"><table id="calcTable"></table></div>
+      <p class="source-note">External benchmark values are shown only as a comparison row. They are not used to calculate the model forecast.</p>
+    </section>
+
+    <section class="section" id="definitions">
+      <div class="section-head">
+        <h2>Definitions</h2>
+        <p>These labels are included near the model so readers do not confuse model mechanics with market share, disease burden, or pricing categories.</p>
+      </div>
+      <div class="definitions">
+        <div class="definition"><strong>Source pool</strong><p>Eyes grouped by current treatment source before the model applies durable-option consideration, access, adoption, and competition.</p></div>
+        <div class="definition"><strong>Eligible and accessible</strong><p>Source eyes that remain clinically plausible and reachable after clinical suitability, payer access, site readiness, and annual access timing are applied.</p></div>
+        <div class="definition"><strong>Durable option</strong><p>A longer-duration wet AMD treatment choice. Ixo-vec receives a modeled allocation within this broader durable-treatment class.</p></div>
+        <div class="definition"><strong>Treated eyes</strong><p>Modeled Ixo-vec treatment courses in a year. This is not market share and is not a price tier by disease burden.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const YEARS = Array.from({ length: 21 }, (_, i) => 2025 + i);
+    const SEGMENTS = ["HB branded", "HB low-cost", "Lower-burden branded"];
+    const SEC = {2025:0,2026:0,2027:0,2028:0,2029:274,2030:931,2031:1704,2032:2356,2033:2874,2034:3250,2035:3408,2036:3429,2037:3051,2038:2672,2039:2324,2040:1997,2041:1686,2042:1543,2043:1541,2044:1545,2045:1552};
+    const BASE_ASSUMPTIONS = {
+      "Bear": {active_eyes:1000000,incident_cases:150000,treat_init:.70,eyes_per_patient:1.12,high_burden_share:.10,incident_hb_share:.08,branded_share:.60,lower_burden_share:0,refractory_share:.10,validated_hb_candidate_share:.20,ixovec_durable_share:.15,mortality_attrition:.04,clinical_loss:.02,competitive_loss:.02,fellow_conversion:.08,fellow_at_risk_share:.30,ex_us_factor:.429,ex_us_price_index:.55,ex_us_delay_years:2,price_erosion:.04,clinical:{"HB branded":.60,"HB low-cost":.20,"Lower-burden branded":.05},access:{"HB branded":.65,"HB low-cost":.55,"Lower-burden branded":.20},price:{"HB branded":60000,"HB low-cost":35000,"Lower-burden branded":50000},capture:{"HB branded":.45,"HB low-cost":.15,"Lower-burden branded":.05}},
+      "Base": {active_eyes:1150000,incident_cases:200000,treat_init:.78,eyes_per_patient:1.15,high_burden_share:.20,incident_hb_share:.10,branded_share:.62,lower_burden_share:.005,refractory_share:.18,validated_hb_candidate_share:.65,ixovec_durable_share:.35,mortality_attrition:.03,clinical_loss:.015,competitive_loss:.015,fellow_conversion:.10,fellow_at_risk_share:.35,ex_us_factor:.667,ex_us_price_index:.50,ex_us_delay_years:2,price_erosion:.03,clinical:{"HB branded":.75,"HB low-cost":.25,"Lower-burden branded":.10},access:{"HB branded":.85,"HB low-cost":.75,"Lower-burden branded":.30},price:{"HB branded":90000,"HB low-cost":50000,"Lower-burden branded":75000},capture:{"HB branded":.70,"HB low-cost":.25,"Lower-burden branded":.15}},
+      "Bull": {active_eyes:1300000,incident_cases:220000,treat_init:.85,eyes_per_patient:1.20,high_burden_share:.25,incident_hb_share:.15,branded_share:.67,lower_burden_share:.025,refractory_share:.25,validated_hb_candidate_share:.80,ixovec_durable_share:.45,mortality_attrition:.025,clinical_loss:.01,competitive_loss:.015,fellow_conversion:.12,fellow_at_risk_share:.40,ex_us_factor:1,ex_us_price_index:.60,ex_us_delay_years:1,price_erosion:.015,clinical:{"HB branded":.85,"HB low-cost":.35,"Lower-burden branded":.20},access:{"HB branded":.90,"HB low-cost":.85,"Lower-burden branded":.45},price:{"HB branded":110000,"HB low-cost":65000,"Lower-burden branded":90000},capture:{"HB branded":.80,"HB low-cost":.35,"Lower-burden branded":.25}},
+      "SEC Stress": {active_eyes:1150000,incident_cases:200000,treat_init:.78,eyes_per_patient:1.15,high_burden_share:.22,incident_hb_share:.12,branded_share:.65,lower_burden_share:.015,refractory_share:.22,validated_hb_candidate_share:.70,ixovec_durable_share:.35,mortality_attrition:.025,clinical_loss:.01,competitive_loss:.015,fellow_conversion:.10,fellow_at_risk_share:.35,ex_us_factor:.667,ex_us_price_index:.55,ex_us_delay_years:1,price_erosion:.02,clinical:{"HB branded":.80,"HB low-cost":.30,"Lower-burden branded":.15},access:{"HB branded":.90,"HB low-cost":.80,"Lower-burden branded":.40},price:{"HB branded":100000,"HB low-cost":60000,"Lower-burden branded":80000},capture:{"HB branded":.75,"HB low-cost":.30,"Lower-burden branded":.20}}
+    };
+    let activeScenario = "Base";
+    let selectedYearValue = 2036;
+    let assumptions = structuredClone(BASE_ASSUMPTIONS[activeScenario]);
+    let model = null;
+
+    function fmtMoney(v){ return Math.abs(v) >= 1000 ? "$" + (v/1000).toFixed(2) + "B" : "$" + Math.round(v).toLocaleString() + "M"; }
+    function fmtSignedMoney(v){ return (v < 0 ? "-" : "") + fmtMoney(Math.abs(v)); }
+    function fmtEyes(v){ return Math.abs(v) >= 1000 ? (v/1000).toFixed(1) + "k" : Math.round(v).toLocaleString(); }
+    function fmtPct(v){ return (v*100).toFixed(v < .1 && v > 0 ? 1 : 0) + "%"; }
+    function num(v){ return Number(v) || 0; }
+    function sourceValues(a, seg) {
+      const lowCost = 1 - a.branded_share;
+      let initial, inflow;
+      if (seg === "HB branded") {
+        initial = a.active_eyes * a.high_burden_share * a.branded_share * a.clinical[seg];
+        inflow = a.incident_cases * a.treat_init * a.eyes_per_patient * a.incident_hb_share * a.branded_share * a.clinical[seg];
+      } else if (seg === "HB low-cost") {
+        initial = a.active_eyes * a.high_burden_share * lowCost * a.clinical[seg];
+        inflow = a.incident_cases * a.treat_init * a.eyes_per_patient * a.incident_hb_share * lowCost * a.clinical[seg];
+      } else {
+        initial = a.active_eyes * (1 - a.high_burden_share) * a.branded_share * a.lower_burden_share * a.clinical[seg];
+        inflow = a.incident_cases * a.treat_init * a.eyes_per_patient * (1 - a.incident_hb_share) * a.branded_share * a.lower_burden_share * a.clinical[seg];
+      }
+      return { initial, inflow, fellowInitial: initial / a.eyes_per_patient * a.fellow_at_risk_share };
+    }
+    function accessMult(scenario, year) {
+      if (year < 2029) return 0;
+      let curve = {2029:.70,2030:.80,2031:.90,2032:.95,2033:.98,2034:1,2035:1,2036:1};
+      const adjust = scenario === "Bull" ? .05 : scenario === "Bear" ? -.10 : scenario === "SEC Stress" ? .03 : 0;
+      if (adjust) curve = Object.fromEntries(Object.entries(curve).map(([k,v]) => [k, Math.max(0, Math.min(1, v + adjust))]));
+      return curve[year] ?? Math.max(.85, 1 - .01 * (year - 2036));
+    }
+    function captureMult(scenario, seg, year) {
+      if (year < 2029) return 0;
+      let curve = {2029:.15,2030:.25,2031:.40,2032:.70,2033:.85,2034:.95,2035:1,2036:1};
+      const segFactor = seg === "HB low-cost" ? .5 : seg === "Lower-burden branded" ? .35 : 1;
+      curve = Object.fromEntries(Object.entries(curve).map(([k,v]) => [k, v * segFactor]));
+      const adjust = scenario === "Bull" ? .10 : scenario === "Bear" ? -.10 : scenario === "SEC Stress" ? .06 : 0;
+      if (adjust) curve = Object.fromEntries(Object.entries(curve).map(([k,v]) => [k, Math.max(0, Math.min(1, v + adjust))]));
+      if (year <= 2036) return curve[year] ?? 1;
+      return Math.max(.55, 1 - .04 * (year - 2036));
+    }
+    function candidateMult(a, seg, year) {
+      if (year < 2029) return 0;
+      if (seg === "Lower-burden branded") {
+        const curve = {2029:0,2030:0,2031:.10,2032:.25,2033:.50,2034:.75,2035:1,2036:1};
+        return a.lower_burden_share * (curve[year] ?? 1);
+      }
+      const target = a.validated_hb_candidate_share;
+      const launch = a.refractory_share;
+      const curve = {2029:launch,2030:launch,2031:launch,2032:launch+.35*(target-launch),2033:launch+.70*(target-launch),2034:target,2035:target,2036:target};
+      const value = curve[year] ?? target;
+      return seg === "HB low-cost" ? value * .5 : value;
+    }
+    function priceIdx(a, year) { if (year < 2029) return 0; return year <= 2036 ? 1 : Math.pow(1 - a.price_erosion, year - 2036); }
+    function exusMult(a, year) {
+      const start = 2029 + a.ex_us_delay_years;
+      if (year < start) return 0;
+      const ramp = {0:.25,1:.40,2:.55,3:.70,4:.85};
+      return ramp[year - start] ?? 1;
+    }
+    function compute(a, scenarioName) {
+      const sales = Object.fromEntries(YEARS.map(y => [y, {treated:0, us:0, exus:0, world:0, benchmark:SEC[y], gap:0, cumulative:0}]));
+      const flows = {};
+      let initialTotal = 0;
+      for (const seg of SEGMENTS) {
+        flows[seg] = {};
+        const source = sourceValues(a, seg);
+        let opening = source.initial;
+        let fellowOpening = source.fellowInitial;
+        initialTotal += source.initial;
+        for (const year of YEARS) {
+          const newClinicalInflow = year < 2029 ? 0 : source.inflow;
+          const newFellowAtRisk = year < 2029 ? 0 : newClinicalInflow / a.eyes_per_patient * a.fellow_at_risk_share;
+          const fellowConversions = year < 2029 ? 0 : Math.min(fellowOpening + newFellowAtRisk, (fellowOpening + newFellowAtRisk) * a.fellow_conversion);
+          const available = opening + newClinicalInflow + fellowConversions;
+          const candidate = candidateMult(a, seg, year);
+          const accessRamp = accessMult(scenarioName, year);
+          const accessible = available * candidate * a.access[seg] * accessRamp;
+          const captureRamp = captureMult(scenarioName, seg, year);
+          const capture = a.capture[seg] * captureRamp * a.ixovec_durable_share;
+          const durableUse = accessible * a.capture[seg] * captureRamp;
+          const treated = Math.min(available, accessible * capture);
+          const attritionRate = year < 2029 ? 0 : a.mortality_attrition + a.clinical_loss + a.competitive_loss;
+          const attrition = Math.max(0, (available - treated) * attritionRate);
+          const ending = Math.max(0, available - treated - attrition);
+          const fellowEnding = Math.max(0, fellowOpening + newFellowAtRisk - fellowConversions - ((fellowOpening + newFellowAtRisk - fellowConversions) * attritionRate));
+          const usSales = treated * a.price[seg] * priceIdx(a, year) / 1_000_000;
+          flows[seg][year] = {opening,newClinicalInflow,fellowOpening,newFellowAtRisk,fellowConversions,available,candidate,peakAccess:a.access[seg],accessRamp,accessible,peakDurable:a.capture[seg],captureRamp,ixoShare:a.ixovec_durable_share,capture, durableUse, treated, attritionRate, attrition, ending, fellowEnding, price:a.price[seg], priceIndex:priceIdx(a,year), usSales};
+          opening = ending;
+          fellowOpening = fellowEnding;
+          sales[year].treated += treated;
+          sales[year].us += usSales;
+        }
+      }
+      let cumulative = 0;
+      for (const year of YEARS) {
+        const exus = sales[year].us * a.ex_us_factor * a.ex_us_price_index * exusMult(a, year);
+        cumulative += sales[year].treated;
+        sales[year].exus = exus;
+        sales[year].world = sales[year].us + exus;
+        sales[year].gap = sales[year].world - SEC[year];
+        sales[year].cumulative = cumulative;
+        sales[year].cumulativeActivePenetration = a.active_eyes ? cumulative / a.active_eyes : 0;
+        sales[year].cumulativeInitialPoolPenetration = initialTotal ? cumulative / initialTotal : 0;
+      }
+      return { sales, flows, initialTotal };
+    }
+    function populateSelectors() {
+      document.getElementById("scenario").innerHTML = Object.keys(BASE_ASSUMPTIONS).map(s => `<option value="${s}">${s}</option>`).join("");
+      document.getElementById("selectedYear").innerHTML = YEARS.map(y => `<option value="${y}">${y}</option>`).join("");
+      document.getElementById("selectedYear").value = selectedYearValue;
+    }
+    function syncInputs() {
+      const ids = {activeEyes:"active_eyes",incidentCases:"incident_cases",highBurdenShare:"high_burden_share",brandedShare:"branded_share",candidateShare:"validated_hb_candidate_share",ixovecShare:"ixovec_durable_share",exUsFactor:"ex_us_factor",exUsPrice:"ex_us_price_index",priceErosion:"price_erosion"};
+      for (const [id,key] of Object.entries(ids)) document.getElementById(id).value = assumptions[key];
+      document.getElementById("hbAccess").value = assumptions.access["HB branded"];
+      document.getElementById("hbCapture").value = assumptions.capture["HB branded"];
+      document.getElementById("hbPrice").value = assumptions.price["HB branded"];
+      document.getElementById("scenario").value = activeScenario;
+      document.getElementById("selectedYear").value = selectedYearValue;
+    }
+    function readInputs() {
+      assumptions.active_eyes = num(document.getElementById("activeEyes").value);
+      assumptions.incident_cases = num(document.getElementById("incidentCases").value);
+      assumptions.high_burden_share = num(document.getElementById("highBurdenShare").value);
+      assumptions.branded_share = num(document.getElementById("brandedShare").value);
+      assumptions.validated_hb_candidate_share = num(document.getElementById("candidateShare").value);
+      assumptions.ixovec_durable_share = num(document.getElementById("ixovecShare").value);
+      assumptions.ex_us_factor = num(document.getElementById("exUsFactor").value);
+      assumptions.ex_us_price_index = num(document.getElementById("exUsPrice").value);
+      assumptions.price_erosion = num(document.getElementById("priceErosion").value);
+      assumptions.access["HB branded"] = num(document.getElementById("hbAccess").value);
+      assumptions.capture["HB branded"] = num(document.getElementById("hbCapture").value);
+      assumptions.price["HB branded"] = num(document.getElementById("hbPrice").value);
+    }
+    function renderKpis() {
+      const row = model.sales[selectedYearValue];
+      document.getElementById("kpi-world").textContent = fmtMoney(row.world);
+      document.getElementById("kpi-world-note").textContent = `${selectedYearValue} model forecast value.`;
+      document.getElementById("kpi-benchmark").textContent = fmtMoney(row.benchmark);
+      document.getElementById("kpi-gap").textContent = fmtSignedMoney(row.gap);
+      document.getElementById("kpi-eyes").textContent = fmtEyes(row.treated);
+    }
+    function drawChart() {
+      const svg = document.getElementById("salesChart");
+      const left=58, right=724, top=34, bottom=322;
+      const values = YEARS.flatMap(y => [model.sales[y].world, model.sales[y].us, SEC[y]]);
+      const max = Math.max(...values, 1000) * 1.12;
+      const x = y => left + (YEARS.indexOf(y)/(YEARS.length-1))*(right-left);
+      const yy = v => bottom - (v/max)*(bottom-top);
+      const path = key => YEARS.map(y => `${x(y).toFixed(1)},${yy(key(y)).toFixed(1)}`).join(" ");
+      const ticks = [0,1000,2000,3000,4000,6000,8000].filter(v => v <= max);
+      const grid = ticks.map(t => `<line x1="${left}" y1="${yy(t).toFixed(1)}" x2="${right}" y2="${yy(t).toFixed(1)}" class="grid-line"/><text x="46" y="${(yy(t)+4).toFixed(1)}" text-anchor="end" class="axis-label">${t===0?"$0":"$"+(t/1000).toFixed(0)+"B"}</text>`).join("");
+      svg.innerHTML = `${grid}<line x1="${left}" y1="${bottom}" x2="${right}" y2="${bottom}" class="axis"/><line x1="${left}" y1="${top}" x2="${left}" y2="${bottom}" class="axis"/>
+        <polyline points="${path(y=>SEC[y])}" class="line bench-line"/><polyline points="${path(y=>model.sales[y].us)}" class="line us-line"/><polyline points="${path(y=>model.sales[y].world)}" class="line world-line"/>
+        ${YEARS.filter(y=>[2029,2033,2036,2045].includes(y)).map(y=>`<circle cx="${x(y).toFixed(1)}" cy="${yy(model.sales[y].world).toFixed(1)}" r="4.5" class="year-dot"/><text x="${(x(y)+8).toFixed(1)}" y="${(yy(model.sales[y].world)-8).toFixed(1)}" class="axis-label">${y}: ${fmtMoney(model.sales[y].world)}</text>`).join("")}
+        <circle cx="${x(selectedYearValue).toFixed(1)}" cy="${yy(model.sales[selectedYearValue].world).toFixed(1)}" r="7" class="year-dot"/>
+        ${YEARS.filter(y=>[2025,2029,2031,2033,2035,2037,2041,2045].includes(y)).map(y=>`<text x="${x(y).toFixed(1)}" y="354" text-anchor="middle" class="axis-label">${y}</text>`).join("")}`;
+    }
+    function renderTrace() {
+      const hb = model.flows["HB branded"][selectedYearValue];
+      const total = model.sales[selectedYearValue];
+      const traces = [
+        ["A", "Available source eyes", `Opening untreated pool ${fmtEyes(hb.opening)} + new inflow ${fmtEyes(hb.newClinicalInflow)} + fellow-eye conversions ${fmtEyes(hb.fellowConversions)} = ${fmtEyes(hb.available)} available source eyes.`],
+        ["B", "Eligible and accessible eyes", `${fmtEyes(hb.available)} x ${fmtPct(hb.candidate)} considered x ${fmtPct(hb.peakAccess)} eligible/access share x ${fmtPct(hb.accessRamp)} annual access timing = ${fmtEyes(hb.accessible)} eligible and accessible eyes.`],
+        ["C", "Ixo-vec treated eyes", `${fmtEyes(hb.accessible)} x ${fmtPct(hb.peakDurable)} durable-option adoption x ${fmtPct(hb.captureRamp)} timing ramp x ${fmtPct(hb.ixoShare)} Ixo-vec allocation = ${fmtEyes(hb.treated)} treated eyes from the high-burden branded source.`],
+        ["D", "US sales", `Across all source pools: ${fmtEyes(total.treated)} treated eyes convert to ${fmtMoney(total.us)} US sales after segment prices and annual price index.`],
+        ["E", "Ex-US sales", `${fmtMoney(total.us)} US sales x ${assumptions.ex_us_factor.toFixed(2)} volume/access factor x ${assumptions.ex_us_price_index.toFixed(2)} price index x ${fmtPct(exusMult(assumptions, selectedYearValue))} uptake = ${fmtMoney(total.exus)} ex-US sales.`],
+        ["F", "Worldwide sales", `${fmtMoney(total.us)} US sales + ${fmtMoney(total.exus)} ex-US sales = ${fmtMoney(total.world)} worldwide sales, compared with ${fmtMoney(total.benchmark)} external benchmark.`]
+      ];
+      document.getElementById("formulaTrace").innerHTML = traces.map(t => `<div class="trace"><span class="badge">${t[0]}</span><div><strong>${t[1]}</strong><p>${t[2]}</p></div></div>`).join("");
+    }
+    function row(label, values, formatter, klass="") {
+      return `<tr><td class="${klass}">${label}</td>${YEARS.map(y=>`<td>${formatter(values[y])}</td>`).join("")}</tr>`;
+    }
+    function segmentRows(seg) {
+      const f = model.flows[seg];
+      const get = key => Object.fromEntries(YEARS.map(y => [y, f[y][key]]));
+      return [
+        row(`${seg}: opening untreated clinical pool`, get("opening"), fmtEyes, "metric-group"),
+        row(`${seg}: new clinical inflow`, get("newClinicalInflow"), fmtEyes),
+        row(`${seg}: fellow-eye conversions`, get("fellowConversions"), fmtEyes),
+        row(`${seg}: available source eyes`, get("available"), fmtEyes),
+        row(`${seg}: pool considered for durable-option use`, get("candidate"), fmtPct),
+        row(`${seg}: eligible and accessible eyes`, get("accessible"), fmtEyes),
+        row(`${seg}: durable-option use`, get("durableUse"), fmtEyes),
+        row(`${seg}: Ixo-vec treated eyes`, get("treated"), fmtEyes),
+        row(`${seg}: US sales`, get("usSales"), fmtMoney),
+        row(`${seg}: ending untreated clinical pool`, get("ending"), fmtEyes)
+      ].join("");
+    }
+    function renderTable() {
+      const s = model.sales;
+      const getSales = key => Object.fromEntries(YEARS.map(y => [y, s[y][key]]));
+      let body = "";
+      const view = document.getElementById("tableView").value;
+      if (view === "summary") {
+        body += row("US treated eyes", getSales("treated"), fmtEyes, "metric-group");
+        body += row("US sales", getSales("us"), fmtMoney);
+        body += row("Ex-US sales", getSales("exus"), fmtMoney);
+        body += row("Worldwide sales", getSales("world"), fmtMoney);
+        body += row("External benchmark", getSales("benchmark"), fmtMoney);
+        body += row("Gap versus external benchmark", getSales("gap"), fmtSignedMoney);
+        body += row("Cumulative US treated eyes", getSales("cumulative"), fmtEyes);
+        body += row("Cumulative penetration of active treated eyes", getSales("cumulativeActivePenetration"), fmtPct);
+      } else if (view === "hb") {
+        body += segmentRows("HB branded");
+      } else {
+        body += SEGMENTS.map(segmentRows).join("");
+      }
+      document.getElementById("calcTable").innerHTML = `<thead><tr><th>Calculation row</th>${YEARS.map(y=>`<th>${y}</th>`).join("")}</tr></thead><tbody>${body}</tbody>`;
+    }
+    function renderAll() {
+      model = compute(assumptions, activeScenario);
+      renderKpis(); drawChart(); renderTrace(); renderTable();
+    }
+    populateSelectors(); syncInputs(); renderAll();
+    document.getElementById("scenario").addEventListener("change", e => { activeScenario = e.target.value; assumptions = structuredClone(BASE_ASSUMPTIONS[activeScenario]); syncInputs(); renderAll(); });
+    document.getElementById("selectedYear").addEventListener("change", e => { selectedYearValue = Number(e.target.value); renderAll(); });
+    document.getElementById("applyInputs").addEventListener("click", () => { readInputs(); renderAll(); });
+    document.getElementById("resetScenario").addEventListener("click", () => { assumptions = structuredClone(BASE_ASSUMPTIONS[activeScenario]); syncInputs(); renderAll(); });
+    document.getElementById("tableView").addEventListener("change", renderTable);
+    document.querySelectorAll("[data-jump]").forEach(button => button.addEventListener("click", e => document.querySelector(e.currentTarget.dataset.jump).scrollIntoView({behavior:"smooth", block:"start"})));
+  </script>
+</body>
+</html>
