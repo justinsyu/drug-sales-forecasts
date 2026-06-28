@@ -33,7 +33,7 @@
     .meta { border-left: 1px solid var(--black); padding-left: 22px; display: grid; gap: 12px; font-size: 14px; color: #212121; }
     .meta strong { display: block; font-size: 22px; color: var(--black); }
     .toolbar { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; border-top: 1px solid var(--black); border-bottom: 1px solid var(--black); padding: 12px 0; }
-    .toolbar a, .toolbar button { min-height: 40px; border: 1px solid var(--black); background: var(--white); color: var(--black); padding: 9px 13px; text-decoration: none; font-size: 14px; line-height: 1; cursor: pointer; }
+    .toolbar a, .toolbar button { min-height: 40px; border: 1px solid var(--black); background: var(--white); color: var(--black); padding: 9px 13px; text-decoration: none; font-size: 14px; line-height: 1; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
     .toolbar .active { background: var(--black); color: var(--white); }
     .kpi-strip { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--black); border-bottom: 1px solid var(--black); margin: 42px 0 34px; }
     .kpi { min-height: 126px; padding: 18px 20px; border-right: 1px solid var(--rule); }
@@ -113,7 +113,7 @@
       </div>
       <aside class="meta">
         <div><strong>Model period</strong> 2025-2045, with commercial launch modeled from 2029.</div>
-        <div><strong>Traceability</strong> The table exposes each annual calculation step instead of showing only summary outputs.</div>
+        <div><strong>Traceability</strong> The table exposes each annual calculation step.</div>
       </aside>
     </header>
 
@@ -133,7 +133,7 @@
 
     <section class="section" id="calculator">
       <div class="section-head">
-        <h2>Inputs and live outputs</h2>
+        <h2>Inputs and results</h2>
         <p>These controls adjust the selected scenario directly in the browser. Source-of-business segments are patient pools by current treatment source, not market share or disease-burden pricing tiers.</p>
       </div>
       <div class="app-grid">
@@ -180,7 +180,7 @@
 
     <section class="section" id="matrix">
       <div class="section-head">
-        <h2>All calculations by year</h2>
+        <h2>Calculation table</h2>
         <p>The table shows the annual calculation path for the selected scenario. Segment rows expose the largest source-of-business mechanics; total rows show how treated eyes convert to US, ex-US, and worldwide sales.</p>
       </div>
       <div class="table-tools">
@@ -197,14 +197,14 @@
 
     <section class="section" id="definitions">
       <div class="section-head">
-        <h2>Definitions</h2>
-        <p>These labels are included near the model so readers do not confuse model mechanics with market share, disease burden, or pricing categories.</p>
+        <h2>Model definitions</h2>
+        <p>These labels match the patient-funnel terms used in the infographic so readers can separate model mechanics from market share, disease burden, and pricing categories.</p>
       </div>
       <div class="definitions">
-        <div class="definition"><strong>Source pool</strong><p>Eyes grouped by current treatment source before the model applies durable-option consideration, access, adoption, and competition.</p></div>
-        <div class="definition"><strong>Eligible and accessible</strong><p>Source eyes that remain clinically plausible and reachable after clinical suitability, payer access, site readiness, and annual access timing are applied.</p></div>
-        <div class="definition"><strong>Durable option</strong><p>A longer-duration wet AMD treatment choice. Ixo-vec receives a modeled allocation within this broader durable-treatment class.</p></div>
-        <div class="definition"><strong>Treated eyes</strong><p>Modeled Ixo-vec treatment courses in a year. This is not market share and is not a price tier by disease burden.</p></div>
+        <div class="definition"><strong>Source eyes</strong><p>Eyes grouped by current treatment source, such as branded anti-VEGF, lower-cost anti-VEGF, or lower-burden branded sources, before the model applies durable-option consideration, access, adoption, and competition.</p></div>
+        <div class="definition"><strong>Considered, eligible, and accessible</strong><p>Considered eyes are judged plausible for longer-duration treatment. Eligible and accessible eyes are the considered eyes that remain reachable after clinical suitability, payer/site access, and that year's access ramp are applied.</p></div>
+        <div class="definition"><strong>Durable option</strong><p>A longer-duration wet AMD treatment choice. This broader class can include Ixo-vec, other gene therapies, longer-interval biologics, higher-dose anti-VEGF, and sustained-delivery or implant approaches.</p></div>
+        <div class="definition"><strong>Ixo-vec treated eyes</strong><p>Modeled treatment courses assigned to Ixo-vec after durable-option use and competitor allocation. This is not market share and is not a price tier by disease burden.</p></div>
       </div>
     </section>
   </main>
