@@ -21,10 +21,10 @@
       --ink: rgba(0, 0, 0, 0.95);
       --muted: #5b7282;
       --rule: #dce3e8;
-      --wash: #f2f5f7;
-      --blue: #2e72dc;
-      --blue-soft: #ecf2f9;
-      --teal: #159788;
+      --wash: #F1F7F6;
+      --blue: #109890;
+      --blue-soft: #E8F5F3;
+      --teal: #D52B1E;
       --green: #31701f;
       --white: #ffffff;
     }
@@ -170,7 +170,7 @@
       background: var(--blue);
     }
     .legend .us::before { background: var(--teal); }
-    .legend .exus::before { background: #8d8f91; }
+    .legend .exus::before { background: #6A737B; }
     .legend .sec-key::before { background: #000; }
     .legend .gap-key::before { background: #c2170a; }
     svg { width: 100%; height: auto; display: block; }
@@ -183,7 +183,7 @@
     .line { fill: none; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
     .world-line { stroke: var(--blue); stroke-width: 4; }
     .us-line { stroke: var(--teal); }
-    .exus-line { stroke: #8d8f91; }
+    .exus-line { stroke: #6A737B; }
     .sec-line { stroke: #000; stroke-width: 3; stroke-dasharray: 7 6; }
     .gap-line { stroke: #c2170a; stroke-width: 3; }
     .series-label {
@@ -196,10 +196,10 @@
     }
     .world-label { fill: var(--blue); }
     .us-label { fill: var(--teal); }
-    .exus-label { fill: #6f7f8a; }
+    .exus-label { fill: #6A737B; }
     .world-dot { fill: var(--white); stroke: var(--blue); stroke-width: 3; }
     .us-dot { fill: var(--white); stroke: var(--teal); stroke-width: 3; }
-    .exus-dot { fill: var(--white); stroke: #8d8f91; stroke-width: 3; }
+    .exus-dot { fill: var(--white); stroke: #6A737B; stroke-width: 3; }
     .sec-dot { fill: var(--white); stroke: #000; stroke-width: 3; }
     .gap-dot { fill: var(--white); stroke: #c2170a; stroke-width: 3; }
     .two-col {
@@ -591,7 +591,7 @@
     }
     .mix-hb { background: var(--blue); }
     .mix-low { background: var(--teal); }
-    .mix-lower { background: #8d8f91; }
+    .mix-lower { background: #6A737B; }
     .table-wrap { overflow-x: auto; border-top: 1px solid var(--black); }
     table {
       width: 100%;
@@ -680,6 +680,7 @@
         <div><strong>Traceability</strong> Forecast values are tied to visible assumptions, formulas, and reader-verifiable source context.</div>
       </aside>
     </header>
+
     <nav class="nav-tools" aria-label="Related model tools">
       <a href="ixo_vec_interactive_model_calculator.html">Open interactive model calculator</a>
     </nav>
@@ -989,19 +990,19 @@
           </filter>
         </defs>
         <g class="sankey-flows" fill="none" stroke-linecap="round">
-          <path d="M205,196 C290,196 200,160 285,160" stroke="#2e72dc" stroke-width="45.5" opacity="0.72" />
+          <path d="M205,196 C290,196 200,160 285,160" stroke="#109890" stroke-width="45.5" opacity="0.72" />
           <path d="M205,218 C290,218 200,314 285,314" stroke="#b8c2cc" stroke-width="24.5" opacity="0.7" />
-          <path d="M455,160 C540,160 450,160 535,160" stroke="#2e72dc" stroke-width="38.7" opacity="0.72" />
+          <path d="M455,160 C540,160 450,160 535,160" stroke="#109890" stroke-width="38.7" opacity="0.72" />
           <path d="M455,182 C540,182 450,302 535,302" stroke="#b8c2cc" stroke-width="6.8" opacity="0.7" />
-          <path d="M705,160 C790,160 700,160 785,160" stroke="#2e72dc" stroke-width="27.1" opacity="0.72" />
+          <path d="M705,160 C790,160 700,160 785,160" stroke="#109890" stroke-width="27.1" opacity="0.72" />
           <path d="M705,181 C790,181 700,320 785,320" stroke="#b8c2cc" stroke-width="11.6" opacity="0.7" />
-          <path d="M955,153 C1040,153 970,102 1055,102" stroke="#159788" stroke-width="9.5" opacity="0.78" />
+          <path d="M955,153 C1040,153 970,102 1055,102" stroke="#D52B1E" stroke-width="9.5" opacity="0.78" />
           <path d="M955,180 C1040,180 970,284 1055,284" stroke="#b8c2cc" stroke-width="17.6" opacity="0.7" />
         </g>
         
         <g class="sankey-node" transform="translate(35,157)">
           <rect width="170" height="88" rx="6"></rect>
-          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#2e72dc"></circle>
+          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#109890"></circle>
           <text x="15" y="21" text-anchor="middle" class="sankey-code">I</text>
           <text x="32" y="20" class="sankey-node-title">Available source eyes</text>
           <text x="16" y="62" class="sankey-node-value">97,972</text>
@@ -1011,7 +1012,7 @@
         
         <g class="sankey-node" transform="translate(285,122)">
           <rect width="170" height="88" rx="6"></rect>
-          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#2e72dc"></circle>
+          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#109890"></circle>
           <text x="15" y="21" text-anchor="middle" class="sankey-code">D</text>
           <text x="32" y="17" class="sankey-node-title"><tspan x="32" dy="0">Considered for</tspan><tspan x="32" dy="14">durable option</tspan></text>
           <text x="16" y="66" class="sankey-node-value">63,682</text>
@@ -1021,7 +1022,7 @@
         
         <g class="sankey-node" transform="translate(285,276)">
           <rect width="170" height="88" rx="6"></rect>
-          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#8d8f91"></circle>
+          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#6A737B"></circle>
           <text x="15" y="21" text-anchor="middle" class="sankey-code">-</text>
           <text x="32" y="20" class="sankey-node-title">Not considered</text>
           <text x="16" y="62" class="sankey-node-value">34,290</text>
@@ -1031,7 +1032,7 @@
         
         <g class="sankey-node" transform="translate(535,122)">
           <rect width="170" height="88" rx="6"></rect>
-          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#2e72dc"></circle>
+          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#109890"></circle>
           <text x="15" y="21" text-anchor="middle" class="sankey-code">K</text>
           <text x="32" y="20" class="sankey-node-title">Eligible and accessible</text>
           <text x="16" y="62" class="sankey-node-value">54,130</text>
@@ -1041,7 +1042,7 @@
         
         <g class="sankey-node" transform="translate(535,264)">
           <rect width="170" height="88" rx="6"></rect>
-          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#8d8f91"></circle>
+          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#6A737B"></circle>
           <text x="15" y="21" text-anchor="middle" class="sankey-code">-</text>
           <text x="32" y="20" class="sankey-node-title">Not accessible</text>
           <text x="16" y="62" class="sankey-node-value">9,552</text>
@@ -1051,7 +1052,7 @@
         
         <g class="sankey-node" transform="translate(785,122)">
           <rect width="170" height="88" rx="6"></rect>
-          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#2e72dc"></circle>
+          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#109890"></circle>
           <text x="15" y="21" text-anchor="middle" class="sankey-code">M</text>
           <text x="32" y="20" class="sankey-node-title">Durable-option use</text>
           <text x="16" y="62" class="sankey-node-value">37,891</text>
@@ -1061,7 +1062,7 @@
         
         <g class="sankey-node" transform="translate(785,282)">
           <rect width="170" height="88" rx="6"></rect>
-          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#8d8f91"></circle>
+          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#6A737B"></circle>
           <text x="15" y="21" text-anchor="middle" class="sankey-code">-</text>
           <text x="32" y="20" class="sankey-node-title">Other management</text>
           <text x="16" y="62" class="sankey-node-value">16,239</text>
@@ -1071,7 +1072,7 @@
         
         <g class="sankey-node" transform="translate(1055,64)">
           <rect width="170" height="88" rx="6"></rect>
-          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#159788"></circle>
+          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#D52B1E"></circle>
           <text x="15" y="21" text-anchor="middle" class="sankey-code">N</text>
           <text x="32" y="20" class="sankey-node-title">Ixo-vec treated eyes</text>
           <text x="16" y="62" class="sankey-node-value">13,262</text>
@@ -1081,7 +1082,7 @@
         
         <g class="sankey-node" transform="translate(1055,246)">
           <rect width="170" height="88" rx="6"></rect>
-          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#8d8f91"></circle>
+          <circle cx="15" cy="18" r="10" fill="#fff" stroke="#6A737B"></circle>
           <text x="15" y="21" text-anchor="middle" class="sankey-code">-</text>
           <text x="32" y="20" class="sankey-node-title">Other durable options</text>
           <text x="16" y="62" class="sankey-node-value">24,629</text>
@@ -1107,7 +1108,7 @@
       </div>
       <div class="driver-board">
         <div class="year-head"><div></div><div class="heat-grid"><span>2029</span><span>2030</span><span>2031</span><span>2032</span><span>2033</span><span>2034</span><span>2035</span><span>2036</span><span>2037</span><span>2038</span><span>2039</span><span>2040</span><span>2041</span><span>2042</span><span>2043</span><span>2044</span><span>2045</span></div></div>
-        <div class="driver-row"><div class="driver-name">High-burden pool considered: branded anti-VEGF source</div><div class="heat-grid"><span class="heat-cell" style="background:rgb(202, 219, 244)" title="High-burden pool considered: branded anti-VEGF source, 2029: 0.18">0.18</span><span class="heat-cell" style="background:rgb(202, 219, 244)" title="High-burden pool considered: branded anti-VEGF source, 2030: 0.18">0.18</span><span class="heat-cell" style="background:rgb(202, 219, 244)" title="High-burden pool considered: branded anti-VEGF source, 2031: 0.18">0.18</span><span class="heat-cell" style="background:rgb(171, 198, 239)" title="High-burden pool considered: branded anti-VEGF source, 2032: 0.34">0.34</span><span class="heat-cell" style="background:rgb(139, 177, 234)" title="High-burden pool considered: branded anti-VEGF source, 2033: 0.51">0.51</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2034: 0.65">0.65</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2035: 0.65">0.65</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2036: 0.65">0.65</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2037: 0.65">0.65</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2038: 0.65">0.65</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2039: 0.65">0.65</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2040: 0.65">0.65</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2041: 0.65">0.65</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2042: 0.65">0.65</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2043: 0.65">0.65</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2044: 0.65">0.65</span><span class="heat-cell" style="background:rgb(112, 159, 230)" title="High-burden pool considered: branded anti-VEGF source, 2045: 0.65">0.65</span></div></div><div class="driver-row"><div class="driver-name">Access ramp: high-burden branded anti-VEGF source</div><div class="heat-grid"><span class="heat-cell" style="background:rgb(103, 152, 229)" title="Access ramp: high-burden branded anti-VEGF source, 2029: 0.70">0.70</span><span class="heat-cell" style="background:rgb(84, 140, 226)" title="Access ramp: high-burden branded anti-VEGF source, 2030: 0.80">0.80</span><span class="heat-cell" style="background:rgb(65, 127, 223)" title="Access ramp: high-burden branded anti-VEGF source, 2031: 0.90">0.90</span><span class="heat-cell" style="background:rgb(56, 120, 221)" title="Access ramp: high-burden branded anti-VEGF source, 2032: 0.95">0.95</span><span class="heat-cell" style="background:rgb(50, 117, 221)" title="Access ramp: high-burden branded anti-VEGF source, 2033: 0.98">0.98</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Access ramp: high-burden branded anti-VEGF source, 2034: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Access ramp: high-burden branded anti-VEGF source, 2035: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Access ramp: high-burden branded anti-VEGF source, 2036: 1.00">1.00</span><span class="heat-cell" style="background:rgb(48, 115, 220)" title="Access ramp: high-burden branded anti-VEGF source, 2037: 0.99">0.99</span><span class="heat-cell" style="background:rgb(50, 117, 221)" title="Access ramp: high-burden branded anti-VEGF source, 2038: 0.98">0.98</span><span class="heat-cell" style="background:rgb(52, 118, 221)" title="Access ramp: high-burden branded anti-VEGF source, 2039: 0.97">0.97</span><span class="heat-cell" style="background:rgb(54, 119, 221)" title="Access ramp: high-burden branded anti-VEGF source, 2040: 0.96">0.96</span><span class="heat-cell" style="background:rgb(56, 120, 221)" title="Access ramp: high-burden branded anti-VEGF source, 2041: 0.95">0.95</span><span class="heat-cell" style="background:rgb(57, 122, 222)" title="Access ramp: high-burden branded anti-VEGF source, 2042: 0.94">0.94</span><span class="heat-cell" style="background:rgb(59, 123, 222)" title="Access ramp: high-burden branded anti-VEGF source, 2043: 0.93">0.93</span><span class="heat-cell" style="background:rgb(61, 124, 222)" title="Access ramp: high-burden branded anti-VEGF source, 2044: 0.92">0.92</span><span class="heat-cell" style="background:rgb(63, 126, 223)" title="Access ramp: high-burden branded anti-VEGF source, 2045: 0.91">0.91</span></div></div><div class="driver-row"><div class="driver-name">Adoption ramp: high-burden branded anti-VEGF source</div><div class="heat-grid"><span class="heat-cell" style="background:rgb(208, 223, 245)" title="Adoption ramp: high-burden branded anti-VEGF source, 2029: 0.15">0.15</span><span class="heat-cell" style="background:rgb(188, 210, 242)" title="Adoption ramp: high-burden branded anti-VEGF source, 2030: 0.25">0.25</span><span class="heat-cell" style="background:rgb(160, 191, 237)" title="Adoption ramp: high-burden branded anti-VEGF source, 2031: 0.40">0.40</span><span class="heat-cell" style="background:rgb(103, 152, 229)" title="Adoption ramp: high-burden branded anti-VEGF source, 2032: 0.70">0.70</span><span class="heat-cell" style="background:rgb(74, 133, 224)" title="Adoption ramp: high-burden branded anti-VEGF source, 2033: 0.85">0.85</span><span class="heat-cell" style="background:rgb(56, 120, 221)" title="Adoption ramp: high-burden branded anti-VEGF source, 2034: 0.95">0.95</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Adoption ramp: high-burden branded anti-VEGF source, 2035: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Adoption ramp: high-burden branded anti-VEGF source, 2036: 1.00">1.00</span><span class="heat-cell" style="background:rgb(54, 119, 221)" title="Adoption ramp: high-burden branded anti-VEGF source, 2037: 0.96">0.96</span><span class="heat-cell" style="background:rgb(61, 124, 222)" title="Adoption ramp: high-burden branded anti-VEGF source, 2038: 0.92">0.92</span><span class="heat-cell" style="background:rgb(69, 129, 223)" title="Adoption ramp: high-burden branded anti-VEGF source, 2039: 0.88">0.88</span><span class="heat-cell" style="background:rgb(76, 134, 225)" title="Adoption ramp: high-burden branded anti-VEGF source, 2040: 0.84">0.84</span><span class="heat-cell" style="background:rgb(84, 140, 226)" title="Adoption ramp: high-burden branded anti-VEGF source, 2041: 0.80">0.80</span><span class="heat-cell" style="background:rgb(92, 145, 227)" title="Adoption ramp: high-burden branded anti-VEGF source, 2042: 0.76">0.76</span><span class="heat-cell" style="background:rgb(99, 150, 228)" title="Adoption ramp: high-burden branded anti-VEGF source, 2043: 0.72">0.72</span><span class="heat-cell" style="background:rgb(107, 155, 229)" title="Adoption ramp: high-burden branded anti-VEGF source, 2044: 0.68">0.68</span><span class="heat-cell" style="background:rgb(114, 160, 230)" title="Adoption ramp: high-burden branded anti-VEGF source, 2045: 0.64">0.64</span></div></div><div class="driver-row"><div class="driver-name">Price index</div><div class="heat-grid"><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Price index, 2029: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Price index, 2030: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Price index, 2031: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Price index, 2032: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Price index, 2033: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Price index, 2034: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Price index, 2035: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Price index, 2036: 1.00">1.00</span><span class="heat-cell" style="background:rgb(52, 118, 221)" title="Price index, 2037: 0.97">0.97</span><span class="heat-cell" style="background:rgb(57, 122, 222)" title="Price index, 2038: 0.94">0.94</span><span class="heat-cell" style="background:rgb(63, 125, 223)" title="Price index, 2039: 0.91">0.91</span><span class="heat-cell" style="background:rgb(68, 129, 223)" title="Price index, 2040: 0.89">0.89</span><span class="heat-cell" style="background:rgb(73, 132, 224)" title="Price index, 2041: 0.86">0.86</span><span class="heat-cell" style="background:rgb(78, 135, 225)" title="Price index, 2042: 0.83">0.83</span><span class="heat-cell" style="background:rgb(82, 139, 226)" title="Price index, 2043: 0.81">0.81</span><span class="heat-cell" style="background:rgb(87, 142, 226)" title="Price index, 2044: 0.78">0.78</span><span class="heat-cell" style="background:rgb(92, 145, 227)" title="Price index, 2045: 0.76">0.76</span></div></div><div class="driver-row"><div class="driver-name">Ex-US uptake</div><div class="heat-grid"><span class="heat-cell" style="background:rgb(236, 242, 249)" title="Ex-US uptake, 2029: 0.00">0.00</span><span class="heat-cell" style="background:rgb(236, 242, 249)" title="Ex-US uptake, 2030: 0.00">0.00</span><span class="heat-cell" style="background:rgb(188, 210, 242)" title="Ex-US uptake, 2031: 0.25">0.25</span><span class="heat-cell" style="background:rgb(160, 191, 237)" title="Ex-US uptake, 2032: 0.40">0.40</span><span class="heat-cell" style="background:rgb(132, 172, 233)" title="Ex-US uptake, 2033: 0.55">0.55</span><span class="heat-cell" style="background:rgb(103, 152, 229)" title="Ex-US uptake, 2034: 0.70">0.70</span><span class="heat-cell" style="background:rgb(74, 133, 224)" title="Ex-US uptake, 2035: 0.85">0.85</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Ex-US uptake, 2036: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Ex-US uptake, 2037: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Ex-US uptake, 2038: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Ex-US uptake, 2039: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Ex-US uptake, 2040: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Ex-US uptake, 2041: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Ex-US uptake, 2042: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Ex-US uptake, 2043: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Ex-US uptake, 2044: 1.00">1.00</span><span class="heat-cell" style="background:rgb(46, 114, 220)" title="Ex-US uptake, 2045: 1.00">1.00</span></div></div>
+        <div class="driver-row"><div class="driver-name">High-burden pool considered: branded anti-VEGF source</div><div class="heat-grid"><span class="heat-cell" style="background:rgb(192, 221, 218);color:#000" title="High-burden pool considered: branded anti-VEGF source, 2029: 0.18">0.18</span><span class="heat-cell" style="background:rgb(192, 221, 218);color:#000" title="High-burden pool considered: branded anti-VEGF source, 2030: 0.18">0.18</span><span class="heat-cell" style="background:rgb(192, 221, 218);color:#000" title="High-burden pool considered: branded anti-VEGF source, 2031: 0.18">0.18</span><span class="heat-cell" style="background:rgb(156, 199, 195);color:#000" title="High-burden pool considered: branded anti-VEGF source, 2032: 0.34">0.34</span><span class="heat-cell" style="background:rgb(119, 177, 172);color:#000" title="High-burden pool considered: branded anti-VEGF source, 2033: 0.51">0.51</span><span class="heat-cell" style="background:rgb(87, 158, 152);color:#000" title="High-burden pool considered: branded anti-VEGF source, 2034: 0.65">0.65</span><span class="heat-cell" style="background:rgb(87, 158, 152);color:#000" title="High-burden pool considered: branded anti-VEGF source, 2035: 0.65">0.65</span><span class="heat-cell" style="background:rgb(87, 158, 152);color:#000" title="High-burden pool considered: branded anti-VEGF source, 2036: 0.65">0.65</span><span class="heat-cell" style="background:rgb(87, 158, 152);color:#000" title="High-burden pool considered: branded anti-VEGF source, 2037: 0.65">0.65</span><span class="heat-cell" style="background:rgb(87, 158, 152);color:#000" title="High-burden pool considered: branded anti-VEGF source, 2038: 0.65">0.65</span><span class="heat-cell" style="background:rgb(87, 158, 152);color:#000" title="High-burden pool considered: branded anti-VEGF source, 2039: 0.65">0.65</span><span class="heat-cell" style="background:rgb(87, 158, 152);color:#000" title="High-burden pool considered: branded anti-VEGF source, 2040: 0.65">0.65</span><span class="heat-cell" style="background:rgb(87, 158, 152);color:#000" title="High-burden pool considered: branded anti-VEGF source, 2041: 0.65">0.65</span><span class="heat-cell" style="background:rgb(87, 158, 152);color:#000" title="High-burden pool considered: branded anti-VEGF source, 2042: 0.65">0.65</span><span class="heat-cell" style="background:rgb(87, 158, 152);color:#000" title="High-burden pool considered: branded anti-VEGF source, 2043: 0.65">0.65</span><span class="heat-cell" style="background:rgb(87, 158, 152);color:#000" title="High-burden pool considered: branded anti-VEGF source, 2044: 0.65">0.65</span><span class="heat-cell" style="background:rgb(87, 158, 152);color:#000" title="High-burden pool considered: branded anti-VEGF source, 2045: 0.65">0.65</span></div></div><div class="driver-row"><div class="driver-name">Access ramp: high-burden branded anti-VEGF source</div><div class="heat-grid"><span class="heat-cell" style="background:rgb(77, 151, 146);color:#000" title="Access ramp: high-burden branded anti-VEGF source, 2029: 0.70">0.70</span><span class="heat-cell" style="background:rgb(54, 138, 132);color:#000" title="Access ramp: high-burden branded anti-VEGF source, 2030: 0.80">0.80</span><span class="heat-cell" style="background:rgb(32, 124, 118);color:#fff" title="Access ramp: high-burden branded anti-VEGF source, 2031: 0.90">0.90</span><span class="heat-cell" style="background:rgb(22, 118, 111);color:#fff" title="Access ramp: high-burden branded anti-VEGF source, 2032: 0.95">0.95</span><span class="heat-cell" style="background:rgb(15, 114, 107);color:#fff" title="Access ramp: high-burden branded anti-VEGF source, 2033: 0.98">0.98</span><span class="heat-cell" style="background:rgb(10, 111, 104);color:#fff" title="Access ramp: high-burden branded anti-VEGF source, 2034: 1.00">1.00</span><span class="heat-cell" style="background:rgb(10, 111, 104);color:#fff" title="Access ramp: high-burden branded anti-VEGF source, 2035: 1.00">1.00</span><span class="heat-cell" style="background:rgb(10, 111, 104);color:#fff" title="Access ramp: high-burden branded anti-VEGF source, 2036: 1.00">1.00</span><span class="heat-cell" style="background:rgb(12, 112, 105);color:#fff" title="Access ramp: high-burden branded anti-VEGF source, 2037: 0.99">0.99</span><span class="heat-cell" style="background:rgb(15, 114, 107);color:#fff" title="Access ramp: high-burden branded anti-VEGF source, 2038: 0.98">0.98</span><span class="heat-cell" style="background:rgb(17, 115, 108);color:#fff" title="Access ramp: high-burden branded anti-VEGF source, 2039: 0.97">0.97</span><span class="heat-cell" style="background:rgb(19, 117, 110);color:#fff" title="Access ramp: high-burden branded anti-VEGF source, 2040: 0.96">0.96</span><span class="heat-cell" style="background:rgb(22, 118, 111);color:#fff" title="Access ramp: high-burden branded anti-VEGF source, 2041: 0.95">0.95</span><span class="heat-cell" style="background:rgb(23, 119, 112);color:#fff" title="Access ramp: high-burden branded anti-VEGF source, 2042: 0.94">0.94</span><span class="heat-cell" style="background:rgb(25, 120, 114);color:#fff" title="Access ramp: high-burden branded anti-VEGF source, 2043: 0.93">0.93</span><span class="heat-cell" style="background:rgb(28, 122, 115);color:#fff" title="Access ramp: high-burden branded anti-VEGF source, 2044: 0.92">0.92</span><span class="heat-cell" style="background:rgb(30, 123, 116);color:#fff" title="Access ramp: high-burden branded anti-VEGF source, 2045: 0.91">0.91</span></div></div><div class="driver-row"><div class="driver-name">Adoption ramp: high-burden branded anti-VEGF source</div><div class="heat-grid"><span class="heat-cell" style="background:rgb(199, 225, 223);color:#000" title="Adoption ramp: high-burden branded anti-VEGF source, 2029: 0.15">0.15</span><span class="heat-cell" style="background:rgb(176, 211, 208);color:#000" title="Adoption ramp: high-burden branded anti-VEGF source, 2030: 0.25">0.25</span><span class="heat-cell" style="background:rgb(143, 191, 187);color:#000" title="Adoption ramp: high-burden branded anti-VEGF source, 2031: 0.40">0.40</span><span class="heat-cell" style="background:rgb(77, 151, 146);color:#000" title="Adoption ramp: high-burden branded anti-VEGF source, 2032: 0.70">0.70</span><span class="heat-cell" style="background:rgb(43, 131, 124);color:#000" title="Adoption ramp: high-burden branded anti-VEGF source, 2033: 0.85">0.85</span><span class="heat-cell" style="background:rgb(22, 118, 111);color:#fff" title="Adoption ramp: high-burden branded anti-VEGF source, 2034: 0.95">0.95</span><span class="heat-cell" style="background:rgb(10, 111, 104);color:#fff" title="Adoption ramp: high-burden branded anti-VEGF source, 2035: 1.00">1.00</span><span class="heat-cell" style="background:rgb(10, 111, 104);color:#fff" title="Adoption ramp: high-burden branded anti-VEGF source, 2036: 1.00">1.00</span><span class="heat-cell" style="background:rgb(19, 117, 110);color:#fff" title="Adoption ramp: high-burden branded anti-VEGF source, 2037: 0.96">0.96</span><span class="heat-cell" style="background:rgb(28, 122, 115);color:#fff" title="Adoption ramp: high-burden branded anti-VEGF source, 2038: 0.92">0.92</span><span class="heat-cell" style="background:rgb(37, 127, 121);color:#fff" title="Adoption ramp: high-burden branded anti-VEGF source, 2039: 0.88">0.88</span><span class="heat-cell" style="background:rgb(45, 132, 126);color:#000" title="Adoption ramp: high-burden branded anti-VEGF source, 2040: 0.84">0.84</span><span class="heat-cell" style="background:rgb(54, 138, 132);color:#000" title="Adoption ramp: high-burden branded anti-VEGF source, 2041: 0.80">0.80</span><span class="heat-cell" style="background:rgb(64, 143, 138);color:#000" title="Adoption ramp: high-burden branded anti-VEGF source, 2042: 0.76">0.76</span><span class="heat-cell" style="background:rgb(72, 148, 143);color:#000" title="Adoption ramp: high-burden branded anti-VEGF source, 2043: 0.72">0.72</span><span class="heat-cell" style="background:rgb(81, 154, 149);color:#000" title="Adoption ramp: high-burden branded anti-VEGF source, 2044: 0.68">0.68</span><span class="heat-cell" style="background:rgb(89, 159, 154);color:#000" title="Adoption ramp: high-burden branded anti-VEGF source, 2045: 0.64">0.64</span></div></div><div class="driver-row"><div class="driver-name">Price index</div><div class="heat-grid"><span class="heat-cell" style="background:rgb(10, 111, 104);color:#fff" title="Price index, 2029: 1.00">1.00</span><span class="heat-cell" style="background:rgb(10, 111, 104);color:#fff" title="Price index, 2030: 1.00">1.00</span><span class="heat-cell" style="background:rgb(10, 111, 104);color:#fff" title="Price index, 2031: 1.00">1.00</span><span class="heat-cell" style="background:rgb(10, 111, 104);color:#fff" title="Price index, 2032: 1.00">1.00</span><span class="heat-cell" style="background:rgb(10, 111, 104);color:#fff" title="Price index, 2033: 1.00">1.00</span><span class="heat-cell" style="background:rgb(10, 111, 104);color:#fff" title="Price index, 2034: 1.00">1.00</span><span class="heat-cell" style="background:rgb(10, 111, 104);color:#fff" title="Price index, 2035: 1.00">1.00</span><span class="heat-cell" style="background:rgb(10, 111, 104);color:#fff" title="Price index, 2036: 1.00">1.00</span><span class="heat-cell" style="background:rgb(17, 115, 108);color:#fff" title="Price index, 2037: 0.97">0.97</span><span class="heat-cell" style="background:rgb(23, 119, 112);color:#fff" title="Price index, 2038: 0.94">0.94</span><span class="heat-cell" style="background:rgb(30, 123, 116);color:#fff" title="Price index, 2039: 0.91">0.91</span><span class="heat-cell" style="background:rgb(36, 127, 120);color:#fff" title="Price index, 2040: 0.89">0.89</span><span class="heat-cell" style="background:rgb(42, 130, 124);color:#fff" title="Price index, 2041: 0.86">0.86</span><span class="heat-cell" style="background:rgb(47, 134, 127);color:#000" title="Price index, 2042: 0.83">0.83</span><span class="heat-cell" style="background:rgb(52, 136, 130);color:#000" title="Price index, 2043: 0.81">0.81</span><span class="heat-cell" style="background:rgb(58, 140, 134);color:#000" title="Price index, 2044: 0.78">0.78</span><span class="heat-cell" style="background:rgb(64, 143, 138);color:#000" title="Price index, 2045: 0.76">0.76</span></div></div><div class="driver-row"><div class="driver-name">Ex-US uptake</div><div class="heat-grid"><span class="heat-cell" style="background:rgb(232, 245, 243);color:#000" title="Ex-US uptake, 2029: 0.00">0.00</span><span class="heat-cell" style="background:rgb(232, 245, 243);color:#000" title="Ex-US uptake, 2030: 0.00">0.00</span><span class="heat-cell" style="background:rgb(176, 211, 208);color:#000" title="Ex-US uptake, 2031: 0.25">0.25</span><span class="heat-cell" style="background:rgb(143, 191, 187);color:#000" title="Ex-US uptake, 2032: 0.40">0.40</span><span class="heat-cell" style="background:rgb(110, 172, 167);color:#000" title="Ex-US uptake, 2033: 0.55">0.55</span><span class="heat-cell" style="background:rgb(77, 151, 146);color:#000" title="Ex-US uptake, 2034: 0.70">0.70</span><span class="heat-cell" style="background:rgb(43, 131, 124);color:#000" title="Ex-US uptake, 2035: 0.85">0.85</span><span class="heat-cell" style="background:rgb(10, 111, 104);color:#fff" title="Ex-US uptake, 2036: 1.00">1.00</span><span class="heat-cell" style="background:rgb(10, 111, 104);color:#fff" title="Ex-US uptake, 2037: 1.00">1.00</span><span class="heat-cell" style="background:rgb(10, 111, 104);color:#fff" title="Ex-US uptake, 2038: 1.00">1.00</span><span class="heat-cell" style="background:rgb(10, 111, 104);color:#fff" title="Ex-US uptake, 2039: 1.00">1.00</span><span class="heat-cell" style="background:rgb(10, 111, 104);color:#fff" title="Ex-US uptake, 2040: 1.00">1.00</span><span class="heat-cell" style="background:rgb(10, 111, 104);color:#fff" title="Ex-US uptake, 2041: 1.00">1.00</span><span class="heat-cell" style="background:rgb(10, 111, 104);color:#fff" title="Ex-US uptake, 2042: 1.00">1.00</span><span class="heat-cell" style="background:rgb(10, 111, 104);color:#fff" title="Ex-US uptake, 2043: 1.00">1.00</span><span class="heat-cell" style="background:rgb(10, 111, 104);color:#fff" title="Ex-US uptake, 2044: 1.00">1.00</span><span class="heat-cell" style="background:rgb(10, 111, 104);color:#fff" title="Ex-US uptake, 2045: 1.00">1.00</span></div></div>
       </div>
       <div class="driver-definitions" aria-label="Annual driver term definitions">
         <div class="driver-definition"><strong>High-burden pool considered</strong><p>Share of high-burden branded anti-VEGF source eyes judged plausible for durable-option use in that year before access and adoption are applied.</p></div>
