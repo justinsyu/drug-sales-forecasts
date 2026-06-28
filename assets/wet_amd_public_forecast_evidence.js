@@ -145,22 +145,29 @@
       ...MODEL_PEAKS.map(d => ({ ...d, source: "This model", metric: "Base-case peak sales" })),
       ...PUBLIC_ESTIMATES.filter(d => d.value != null)
     ];
-    const width = 1040, height = 520, left = 138, right = 990, top = 54, rowGap = 78;
+    const width = 1040, height = 540, left = 78, right = 990, top = 42, bottom = 420;
     const max = 3000;
-    const x = value => left + (value / max) * (right - left);
-    const y = drug => top + DRUG_ORDER.indexOf(drug) * rowGap;
+    const band = (right - left) / DRUG_ORDER.length;
+    const x = drug => left + (DRUG_ORDER.indexOf(drug) + .5) * band;
+    const y = value => bottom - (value / max) * (bottom - top);
     const ticks = [0, 500, 1000, 1500, 2000, 2500, 3000];
-    const grid = ticks.map(t => `<line x1="${x(t)}" y1="28" x2="${x(t)}" y2="420" class="grid-line"/><text x="${x(t)}" y="452" text-anchor="middle" class="axis-label">${t === 0 ? "$0" : money(t)}</text>`).join("");
-    const rows = DRUG_ORDER.map(drug => `<line x1="${left}" y1="${y(drug)}" x2="${right}" y2="${y(drug)}" stroke="#e3e8ec"/><text x="118" y="${y(drug) + 5}" text-anchor="end" class="evidence-axis-title">${drug}</text>`).join("");
+    const grid = ticks.map(t => `<line x1="${left}" y1="${y(t).toFixed(1)}" x2="${right}" y2="${y(t).toFixed(1)}" class="grid-line"/><text x="62" y="${(y(t) + 4).toFixed(1)}" text-anchor="end" class="axis-label">${t === 0 ? "$0" : money(t)}</text>`).join("");
+    const guides = DRUG_ORDER.map(drug => `<line x1="${x(drug).toFixed(1)}" y1="${top}" x2="${x(drug).toFixed(1)}" y2="${bottom}" stroke="#d9e1e7"/><text x="${x(drug).toFixed(1)}" y="464" text-anchor="middle" class="evidence-axis-title">${drug}</text>`).join("");
+    const ranked = {};
+    for (const drug of DRUG_ORDER) ranked[drug] = plotted.filter(d => d.drug === drug).sort((a, b) => a.value - b.value);
     const points = plotted.map(d => {
-      const offset = d.type === "Model base case" ? -16 : d.type.includes("adjusted") ? 14 : d.type.includes("multi") ? 28 : 0;
-      const cy = y(d.drug) + offset;
+      const group = ranked[d.drug];
+      const rank = group.indexOf(d);
+      const cx = x(d.drug);
+      const cy = y(d.value);
       const label = `${money(d.value)}${d.year ? " " + d.year : " peak"}`;
-      const anchor = d.value > 2400 ? "end" : "start";
-      const dx = d.value > 2400 ? -10 : 10;
-      return `<g><circle cx="${x(d.value)}" cy="${cy}" r="${d.type === "Model base case" ? 7 : 6}" fill="${COLORS[d.type] || "#5b7282"}"/><text x="${x(d.value) + dx}" y="${cy + 4}" text-anchor="${anchor}" class="evidence-point-label">${label}</text></g>`;
+      const side = rank % 2 === 0 ? -1 : 1;
+      const anchor = side < 0 ? "end" : "start";
+      const dx = side < 0 ? -12 : 12;
+      const dy = (rank - (group.length - 1) / 2) * 7;
+      return `<g><circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${d.type === "Model base case" ? 7 : 6}" fill="${COLORS[d.type] || "#5b7282"}"/><text x="${(cx + dx).toFixed(1)}" y="${(cy + 4 + dy).toFixed(1)}" text-anchor="${anchor}" class="evidence-point-label">${label}</text></g>`;
     }).join("");
-    return `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Comparison of internal model peaks and public sales estimates">${grid}<line x1="${left}" y1="420" x2="${right}" y2="420" class="axis"/>${rows}${points}</svg>`;
+    return `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Comparison of internal model peaks and public sales estimates">${grid}<line x1="${left}" y1="${bottom}" x2="${right}" y2="${bottom}" class="axis"/><line x1="${left}" y1="${top}" x2="${left}" y2="${bottom}" class="axis"/>${guides}${points}</svg>`;
   }
 
   function legend() {
