@@ -1,0 +1,393 @@
+{
+  "metadata": {
+    "name": "Wet AMD six-program forecast framework",
+    "prepared": "2026-06-29",
+    "scope": "If-approved commercial forecast inputs for six wet AMD pipeline programs.",
+    "frameworkRule": "Use a common wet AMD input schema, but keep drug-specific values, mechanics, and rationale.",
+    "ixoVecStatus": "Locked baseline. Ixo-vec assumptions and outputs are documented here for framework parity, but the standalone Ixo-vec pages remain the source of truth."
+  },
+  "years": {
+    "start": 2025,
+    "end": 2045
+  },
+  "segments": [
+    {
+      "id": "HB branded",
+      "label": "High-burden branded anti-VEGF source",
+      "definition": "Eyes currently treated with branded anti-VEGF therapy and carrying high treatment burden before durable-option consideration, access, adoption, and product allocation."
+    },
+    {
+      "id": "HB low-cost",
+      "label": "High-burden low-cost anti-VEGF source",
+      "definition": "Eyes currently sourced from low-cost or off-label anti-VEGF treatment. This is a source-of-business pool, not a lower-price disease category."
+    },
+    {
+      "id": "Lower-burden branded",
+      "label": "Lower-burden branded anti-VEGF source",
+      "definition": "A smaller branded-source expansion pool for eyes not modeled as the high-burden launch core."
+    }
+  ],
+  "scenarioFactors": {
+    "Bear": { "market": 0.9, "candidate": -0.15, "share": -0.1, "access": -0.1, "capture": -0.1, "price": 0.85, "exus": 0.8, "erosion": 0.02, "persistence": -0.08 },
+    "Base": { "market": 1, "candidate": 0, "share": 0, "access": 0, "capture": 0, "price": 1, "exus": 1, "erosion": 0, "persistence": 0 },
+    "Bull": { "market": 1.08, "candidate": 0.1, "share": 0.08, "access": 0.05, "capture": 0.08, "price": 1.12, "exus": 1.18, "erosion": -0.01, "persistence": 0.06 }
+  },
+  "commonMarketAssumptions": {
+    "active_eyes": { "value": 1150000, "definition": "US wet AMD eyes currently receiving treatment. This is the starting treated-eye denominator." },
+    "incident_cases": { "value": 200000, "definition": "New wet AMD patients per year before converting patients to treated eyes." },
+    "treat_init": { "value": 0.78, "definition": "Share of newly diagnosed wet AMD patients assumed to start treatment within a year." },
+    "eyes_per_patient": { "value": 1.15, "definition": "Conversion from treated patients to treated eyes." },
+    "high_burden_share": { "value": 0.2, "definition": "Share of actively treated eyes modeled as high treatment burden." },
+    "incident_hb_share": { "value": 0.1, "definition": "Share of incident treated eyes expected to enter the high-burden source pool." },
+    "branded_share": { "value": 0.62, "definition": "Share of treated eyes sourced from branded anti-VEGF use rather than low-cost/off-label use." },
+    "mortality_attrition": { "value": 0.03, "definition": "Annual loss from mortality and aging-related patient attrition." },
+    "clinical_loss": { "value": 0.015, "definition": "Annual loss from eyes no longer clinically suitable for the modeled durable option." },
+    "competitive_loss": { "value": 0.015, "definition": "Annual loss from durable-option candidates choosing other management or future competitors." },
+    "fellow_conversion": { "value": 0.1, "definition": "Annual conversion of at-risk fellow eyes into the modeled source pool." },
+    "fellow_at_risk_share": { "value": 0.35, "definition": "Share of modeled patients with an at-risk fellow-eye opportunity." }
+  },
+  "commonEvidence": {
+    "activeEyes": {
+      "title": "Active treated nAMD eyes evidence",
+      "links": [
+        { "label": "Medicare FFS prevalence context", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12705084/" },
+        { "label": "Medicare Advantage prevalence context", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11695844/" }
+      ],
+      "captures": [
+        { "src": "assets/evidence/ixo-vec-sources/active-treated-eyes-medicare-ffs.png", "caption": "Medicare FFS prevalence source capture highlighting the beneficiary denominator and wet AMD prevalence used as denominator context." },
+        { "src": "assets/evidence/ixo-vec-sources/active-treated-eyes-medicare-advantage.png", "caption": "Medicare Advantage prevalence source capture highlighting the wet AMD prevalence range used as denominator context." },
+        { "src": "assets/evidence/ixo-vec-sources/active-treated-eyes-derivation-note.png", "caption": "Derivation note clarifying that the 1.15M active treated-eye estimate is triangulated, not directly quoted." }
+      ]
+    },
+    "highBurden": {
+      "title": "High-burden treated-eye share evidence",
+      "links": [
+        { "label": "IRIS Registry burden and switching study", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10767511/" },
+        { "label": "USRetina switching evidence", "url": "https://www.aaojournal.org/article/S0161-6420(20)30192-5/fulltext" }
+      ],
+      "captures": [
+        { "src": "assets/evidence/ixo-vec-sources/high-burden-iris-registry.png", "caption": "IRIS Registry source capture highlighting injection frequency, discontinuation, and switching context." },
+        { "src": "assets/evidence/ixo-vec-sources/mature-pool-usretina-switching.png", "caption": "USRetina source capture highlighting switching during follow-up, used as pathway-fluidity context." },
+        { "src": "assets/evidence/ixo-vec-sources/mature-pool-derivation-note.png", "caption": "Derivation note clarifying that mature consideration shares are model assumptions, not observed switching rates." }
+      ]
+    },
+    "launchPool": {
+      "title": "Launch high-burden pool evidence",
+      "links": [
+        { "label": "Faricimab prior-agent proxy", "url": "https://veranahealth.com/wp-content/uploads/2023/07/Verana_Health_ARVO_2023_FAR_Durga_Borkar_FINAL_042823.pdf" }
+      ],
+      "captures": [
+        { "src": "assets/evidence/ixo-vec-sources/initial-pool-faricimab-prior-agents.png", "caption": "PDF poster crop highlighting prior anti-VEGF agent counts among faricimab initiators, used as a proxy for launch-stage treatment-experienced use." }
+      ]
+    },
+    "adoptionAnalog": {
+      "title": "Durable adoption analog evidence",
+      "links": [
+        { "label": "Roche Vabysmo sales context", "url": "https://www.roche.com/media/releases/med-cor-2026-01-29" },
+        { "label": "Regeneron EYLEA HD sales context", "url": "https://www.sec.gov/Archives/edgar/data/872589/000087258926000004/exhibit991q42025.htm" }
+      ],
+      "captures": [
+        { "src": "assets/evidence/ixo-vec-sources/durable-adoption-roche-vabysmo.png", "caption": "Roche source capture used as branded retina scale context rather than a direct share input." },
+        { "src": "assets/evidence/ixo-vec-sources/durable-adoption-regeneron-eylea-hd.png", "caption": "Regeneron source capture used as a durability-switch analog." }
+      ]
+    },
+    "pricingContext": {
+      "title": "Net revenue source-context evidence",
+      "links": [
+        { "label": "CMS ASP pricing source context", "url": "https://www.cms.gov/medicare/payment/part-b-drugs/asp-pricing-files" }
+      ],
+      "captures": [
+        { "src": "assets/evidence/ixo-vec-sources/net-revenue-cms-asp.png", "caption": "CMS ASP pricing page capture for physician-administered drug pricing context." },
+        { "src": "assets/evidence/ixo-vec-sources/net-revenue-assumption-note.png", "caption": "Assumption note clarifying that modeled product net revenue is not directly sourced from CMS." }
+      ]
+    }
+  },
+  "programs": [
+    {
+      "id": "ixo_vec",
+      "slug": "ixo_vec",
+      "name": "Ixo-vec",
+      "shortName": "Ixo-vec",
+      "company": "Adverum / Lilly transaction context",
+      "modality": "Intravitreal AAV gene therapy",
+      "routeClass": "Intravitreal one-time durable gene therapy",
+      "modalityClass": "Gene therapy",
+      "mechanicType": "locked_standalone",
+      "launchYear": 2029,
+      "developmentStage": "Locked local model baseline",
+      "evidenceMaturity": "Formally reasoned local model",
+      "primaryColor": "#109890",
+      "palette": { "primary": "#109890", "secondary": "#D52B1E", "tertiary": "#6A737B", "wash": "#F1F7F6", "heatLow": "#E8F5F3", "heatHigh": "#0A6F68" },
+      "lockedBaseline": true,
+      "links": {
+        "infographic": "ixo_vec_base_case_sales_forecast_infographic.html",
+        "calculator": "ixo_vec_interactive_model_calculator.html"
+      },
+      "lockedOutputs": {
+        "peakWorldwideSalesM": 1710,
+        "peakYear": 2034,
+        "selectedYear": 2036,
+        "selectedWorldwideSalesM": 1612,
+        "selectedUsSalesM": 1209,
+        "selectedExUsSalesM": 403,
+        "selectedUsTreatedEyes": 13600,
+        "firstYearAbove1B": 2033,
+        "schedule14d9SelectedYearM": 3429,
+        "selectedGapVsSchedule14d9M": -1817
+      },
+      "schedule14d9Benchmark": {
+        "source": "Adverum Schedule 14D-9",
+        "valuesM": { "2025": 0, "2026": 0, "2027": 0, "2028": 0, "2029": 274, "2030": 931, "2031": 1704, "2032": 2356, "2033": 2874, "2034": 3250, "2035": 3408, "2036": 3429, "2037": 3051, "2038": 2672, "2039": 2324, "2040": 1997, "2041": 1686, "2042": 1543, "2043": 1541, "2044": 1545, "2045": 1552 }
+      },
+      "assumptionScenarios": {
+        "Bear": { "active_eyes": 1000000, "incident_cases": 150000, "treat_init": 0.7, "eyes_per_patient": 1.12, "high_burden_share": 0.1, "incident_hb_share": 0.08, "branded_share": 0.6, "lower_burden_share": 0, "refractory_share": 0.1, "validated_hb_candidate_share": 0.2, "ixovec_durable_share": 0.15, "mortality_attrition": 0.04, "clinical_loss": 0.02, "competitive_loss": 0.02, "fellow_conversion": 0.08, "fellow_at_risk_share": 0.3, "ex_us_factor": 0.429, "ex_us_price_index": 0.55, "ex_us_delay_years": 2, "price_erosion": 0.04, "clinical": { "HB branded": 0.6, "HB low-cost": 0.2, "Lower-burden branded": 0.05 }, "access": { "HB branded": 0.65, "HB low-cost": 0.55, "Lower-burden branded": 0.2 }, "capture": { "HB branded": 0.45, "HB low-cost": 0.15, "Lower-burden branded": 0.05 }, "price": { "HB branded": 60000, "HB low-cost": 35000, "Lower-burden branded": 50000 } },
+        "Base": { "active_eyes": 1150000, "incident_cases": 200000, "treat_init": 0.78, "eyes_per_patient": 1.15, "high_burden_share": 0.2, "incident_hb_share": 0.1, "branded_share": 0.62, "lower_burden_share": 0.005, "refractory_share": 0.18, "validated_hb_candidate_share": 0.65, "ixovec_durable_share": 0.35, "mortality_attrition": 0.03, "clinical_loss": 0.015, "competitive_loss": 0.015, "fellow_conversion": 0.1, "fellow_at_risk_share": 0.35, "ex_us_factor": 0.667, "ex_us_price_index": 0.5, "ex_us_delay_years": 2, "price_erosion": 0.03, "clinical": { "HB branded": 0.75, "HB low-cost": 0.25, "Lower-burden branded": 0.1 }, "access": { "HB branded": 0.85, "HB low-cost": 0.75, "Lower-burden branded": 0.3 }, "capture": { "HB branded": 0.7, "HB low-cost": 0.25, "Lower-burden branded": 0.15 }, "price": { "HB branded": 90000, "HB low-cost": 50000, "Lower-burden branded": 75000 } },
+        "Bull": { "active_eyes": 1300000, "incident_cases": 220000, "treat_init": 0.85, "eyes_per_patient": 1.2, "high_burden_share": 0.25, "incident_hb_share": 0.15, "branded_share": 0.67, "lower_burden_share": 0.025, "refractory_share": 0.25, "validated_hb_candidate_share": 0.8, "ixovec_durable_share": 0.45, "mortality_attrition": 0.025, "clinical_loss": 0.01, "competitive_loss": 0.015, "fellow_conversion": 0.12, "fellow_at_risk_share": 0.4, "ex_us_factor": 1, "ex_us_price_index": 0.6, "ex_us_delay_years": 1, "price_erosion": 0.015, "clinical": { "HB branded": 0.85, "HB low-cost": 0.35, "Lower-burden branded": 0.2 }, "access": { "HB branded": 0.9, "HB low-cost": 0.85, "Lower-burden branded": 0.45 }, "capture": { "HB branded": 0.8, "HB low-cost": 0.35, "Lower-burden branded": 0.25 }, "price": { "HB branded": 110000, "HB low-cost": 65000, "Lower-burden branded": 90000 } },
+        "SEC Stress": { "active_eyes": 1150000, "incident_cases": 200000, "treat_init": 0.78, "eyes_per_patient": 1.15, "high_burden_share": 0.22, "incident_hb_share": 0.12, "branded_share": 0.65, "lower_burden_share": 0.015, "refractory_share": 0.22, "validated_hb_candidate_share": 0.7, "ixovec_durable_share": 0.35, "mortality_attrition": 0.025, "clinical_loss": 0.01, "competitive_loss": 0.015, "fellow_conversion": 0.1, "fellow_at_risk_share": 0.35, "ex_us_factor": 0.667, "ex_us_price_index": 0.55, "ex_us_delay_years": 1, "price_erosion": 0.02, "clinical": { "HB branded": 0.8, "HB low-cost": 0.3, "Lower-burden branded": 0.15 }, "access": { "HB branded": 0.9, "HB low-cost": 0.8, "Lower-burden branded": 0.4 }, "capture": { "HB branded": 0.75, "HB low-cost": 0.3, "Lower-burden branded": 0.2 }, "price": { "HB branded": 100000, "HB low-cost": 60000, "Lower-burden branded": 80000 } }
+      },
+      "rationale": "Ixo-vec is retained as the locked local baseline and represented here only for documentation and framework parity."
+    },
+    {
+      "id": "axpaxli",
+      "slug": "axpaxli",
+      "name": "AXPAXLI / OTX-TKI",
+      "shortName": "AXPAXLI",
+      "company": "Ocular Therapeutix",
+      "modality": "Axitinib intravitreal hydrogel insert",
+      "routeClass": "Office-based intravitreal repeatable durable TKI implant",
+      "modalityClass": "Intravitreal TKI implant",
+      "mechanicType": "repeat_course",
+      "launchYear": 2028,
+      "developmentStage": "Phase 3. SOL-1 positive; SOL-R readout expected in 2027.",
+      "evidenceMaturity": "High among non-Ixo programs",
+      "primaryColor": "#001840",
+      "palette": { "primary": "#021844", "secondary": "#34BEED", "tertiary": "#FF7A81", "wash": "#EEF7FB", "heatLow": "#EEF7FB", "heatHigh": "#021844" },
+      "source": { "label": "Ocular FDA-alignment release and AXPAXLI clinical-trials page", "url": "https://www.globenewswire.com/news-release/2026/06/17/3313442/0/en/ocular-therapeutix-investor-day-to-highlight-u-s-fda-alignment-on-axpaxli-nda-with-submission-planned-for-fourth-quarter-2026.html" },
+      "assumptionConfidence": "Medium-high",
+      "rationale": "The base case gives AXPAXLI the broadest non-gene durable TKI profile because SOL-1 was positive, Ocular reports FDA alignment for an NDA submission planned in the fourth quarter of 2026, administration is intravitreal, and SOL-R uses q24-week repeat dosing. Revenue is modeled per treated-eye-year, not as a one-time course.",
+      "mechanics": { "revenueUnit": "treated_eye_year", "retreatmentIntervalMonths": 6, "annualPersistence": 0.82, "annualDiscontinuation": 0.12, "switchBackShare": 0.55, "newCourseYearFraction": 0.5, "workflowFriction": 0.08 },
+      "assumptions": { "active_eyes": 1150000, "incident_cases": 200000, "treat_init": 0.78, "eyes_per_patient": 1.15, "high_burden_share": 0.2, "incident_hb_share": 0.1, "branded_share": 0.62, "lower_burden_share": 0.04, "refractory_share": 0.28, "validated_hb_candidate_share": 0.82, "drug_durable_share": 0.18, "mortality_attrition": 0.03, "clinical_loss": 0.015, "competitive_loss": 0.015, "fellow_conversion": 0.1, "fellow_at_risk_share": 0.35, "ex_us_factor": 0.72, "ex_us_price_index": 0.6, "ex_us_delay_years": 2, "price_erosion": 0.04, "clinical": { "HB branded": 0.9, "HB low-cost": 0.55, "Lower-burden branded": 0.38 }, "access": { "HB branded": 0.92, "HB low-cost": 0.82, "Lower-burden branded": 0.58 }, "capture": { "HB branded": 0.78, "HB low-cost": 0.48, "Lower-burden branded": 0.32 }, "price": { "HB branded": 20000, "HB low-cost": 13000, "Lower-burden branded": 18000 } }
+    },
+    {
+      "id": "duravyu",
+      "slug": "duravyu",
+      "name": "DURAVYU / EYP-1901",
+      "shortName": "DURAVYU",
+      "company": "EyePoint Pharmaceuticals",
+      "modality": "Vorolanib intravitreal bioerodible insert",
+      "routeClass": "Intravitreal sustained-release repeatable TKI insert",
+      "modalityClass": "Intravitreal TKI insert",
+      "mechanicType": "repeat_course",
+      "launchYear": 2028,
+      "developmentStage": "Phase 3. LUGANO and LUCIA fully enrolled with topline data expected beginning mid-2026.",
+      "evidenceMaturity": "Medium-high",
+      "primaryColor": "#6F1D91",
+      "palette": { "primary": "#4A1268", "secondary": "#8821BF", "tertiary": "#FC814A", "wash": "#F8F1FA", "heatLow": "#F8F1FA", "heatHigh": "#4A1268" },
+      "source": { "label": "EyePoint DURAVYU program and DSMC update", "url": "https://www.globenewswire.com/news-release/2026/05/14/3294726/0/en/eyepoint-announces-third-consecutive-positive-dsmc-recommendation-for-phase-3-wet-amd-trials-for-duravyu-building-confidence-ahead-of-mid-2026-topline-data.html" },
+      "assumptionConfidence": "Medium",
+      "rationale": "DURAVYU is modeled as a repeatable six-month intravitreal TKI product with broad office access but lower allocation than AXPAXLI until pivotal data are available. The 2028 launch assumption requires positive mid-2026 Phase 3 data and a timely 2027 filing path.",
+      "mechanics": { "revenueUnit": "treated_eye_year", "retreatmentIntervalMonths": 6, "annualPersistence": 0.78, "annualDiscontinuation": 0.14, "switchBackShare": 0.58, "newCourseYearFraction": 0.5, "workflowFriction": 0.1 },
+      "assumptions": { "active_eyes": 1150000, "incident_cases": 200000, "treat_init": 0.78, "eyes_per_patient": 1.15, "high_burden_share": 0.2, "incident_hb_share": 0.1, "branded_share": 0.62, "lower_burden_share": 0.03, "refractory_share": 0.24, "validated_hb_candidate_share": 0.72, "drug_durable_share": 0.34, "mortality_attrition": 0.03, "clinical_loss": 0.015, "competitive_loss": 0.015, "fellow_conversion": 0.1, "fellow_at_risk_share": 0.35, "ex_us_factor": 0.65, "ex_us_price_index": 0.6, "ex_us_delay_years": 2, "price_erosion": 0.04, "clinical": { "HB branded": 0.86, "HB low-cost": 0.5, "Lower-burden branded": 0.32 }, "access": { "HB branded": 0.86, "HB low-cost": 0.76, "Lower-burden branded": 0.52 }, "capture": { "HB branded": 0.68, "HB low-cost": 0.4, "Lower-burden branded": 0.26 }, "price": { "HB branded": 24000, "HB low-cost": 16000, "Lower-burden branded": 22000 } }
+    },
+    {
+      "id": "rgx_314",
+      "slug": "rgx_314",
+      "name": "RGX-314 / ABBV-RGX-314",
+      "shortName": "RGX-314",
+      "company": "REGENXBIO / AbbVie",
+      "modality": "AAV8 anti-VEGF Fab gene therapy",
+      "routeClass": "Subretinal pivotal program with suprachoroidal Phase 2 route evidence",
+      "modalityClass": "Gene therapy",
+      "mechanicType": "one_time",
+      "launchYear": 2029,
+      "developmentStage": "Pivotal subretinal trials enrolled; topline data expected in Q4 2026.",
+      "evidenceMaturity": "Medium-high",
+      "primaryColor": "#212F3D",
+      "palette": { "primary": "#212F3D", "secondary": "#55A3AB", "tertiary": "#7A8A99", "wash": "#F2F5F6", "heatLow": "#F2F5F6", "heatHigh": "#212F3D" },
+      "source": { "label": "REGENXBIO pivotal enrollment update and program page", "url": "https://ir.regenxbio.com/news-releases/news-release-details/regenxbio-announces-completion-enrollment-pivotal-trials" },
+      "assumptionConfidence": "Medium",
+      "rationale": "RGX-314 is modeled as a one-time gene therapy with high upfront revenue but narrower access than intravitreal TKI products because the pivotal route is subretinal, while suprachoroidal use remains less mature. AbbVie scale and pivotal enrollment support a meaningful allocation within durable-option use.",
+      "mechanics": { "revenueUnit": "treatment_course", "durabilitySuccess": 0.68, "durabilityFailureReturnRate": 0.45, "rescueAntiVegfShare": 0.3, "monitoringBurden": 0.22, "workflowFriction": 0.3 },
+      "assumptions": { "active_eyes": 1150000, "incident_cases": 200000, "treat_init": 0.78, "eyes_per_patient": 1.15, "high_burden_share": 0.2, "incident_hb_share": 0.1, "branded_share": 0.62, "lower_burden_share": 0.004, "refractory_share": 0.18, "validated_hb_candidate_share": 0.58, "drug_durable_share": 0.24, "mortality_attrition": 0.03, "clinical_loss": 0.015, "competitive_loss": 0.015, "fellow_conversion": 0.1, "fellow_at_risk_share": 0.35, "ex_us_factor": 0.78, "ex_us_price_index": 0.5, "ex_us_delay_years": 2, "price_erosion": 0.035, "clinical": { "HB branded": 0.74, "HB low-cost": 0.18, "Lower-burden branded": 0.07 }, "access": { "HB branded": 0.68, "HB low-cost": 0.52, "Lower-burden branded": 0.18 }, "capture": { "HB branded": 0.56, "HB low-cost": 0.18, "Lower-burden branded": 0.08 }, "price": { "HB branded": 95000, "HB low-cost": 55000, "Lower-burden branded": 75000 } }
+    },
+    {
+      "id": "four_d_150",
+      "slug": "four_d_150",
+      "name": "4D-150",
+      "shortName": "4D-150",
+      "company": "4D Molecular Therapeutics / 4DMT",
+      "modality": "Intravitreal R100 AAV dual anti-angiogenic gene therapy",
+      "routeClass": "Intravitreal one-time gene therapy with aflibercept and anti-VEGF-C payloads",
+      "modalityClass": "Gene therapy",
+      "mechanicType": "one_time",
+      "launchYear": 2029,
+      "developmentStage": "Phase 3. 4FRONT-1 and 4FRONT-2 enrollment complete; 52-week topline data expected in 2027.",
+      "evidenceMaturity": "Medium",
+      "primaryColor": "#06254A",
+      "palette": { "primary": "#06254A", "secondary": "#00B3CD", "tertiary": "#8FD4E2", "wash": "#EEF8FB", "heatLow": "#EEF8FB", "heatHigh": "#06254A" },
+      "source": { "label": "4DMT 4FRONT Phase 3 enrollment updates", "url": "https://www.stocktitan.net/news/FDMT/4dmt-completes-enrollment-for-4front-2-global-phase-3-clinical-trial-9hbsdoided79.html" },
+      "assumptionConfidence": "Medium",
+      "rationale": "4D-150 remains a gene-therapy model, not a generic non-Ixo product. Intravitreal delivery and dual anti-angiogenic payload support broader access than subretinal gene therapy, while AAV safety monitoring, payer friction, and a 2027 pivotal-readout path keep allocation below the most optimistic public benchmarks.",
+      "mechanics": { "revenueUnit": "treatment_course", "durabilitySuccess": 0.72, "durabilityFailureReturnRate": 0.4, "rescueAntiVegfShare": 0.28, "monitoringBurden": 0.2, "workflowFriction": 0.2 },
+      "assumptions": { "active_eyes": 1150000, "incident_cases": 200000, "treat_init": 0.78, "eyes_per_patient": 1.15, "high_burden_share": 0.2, "incident_hb_share": 0.1, "branded_share": 0.62, "lower_burden_share": 0.012, "refractory_share": 0.2, "validated_hb_candidate_share": 0.72, "drug_durable_share": 0.35, "mortality_attrition": 0.03, "clinical_loss": 0.015, "competitive_loss": 0.015, "fellow_conversion": 0.1, "fellow_at_risk_share": 0.35, "ex_us_factor": 0.7, "ex_us_price_index": 0.5, "ex_us_delay_years": 2, "price_erosion": 0.03, "clinical": { "HB branded": 0.82, "HB low-cost": 0.26, "Lower-burden branded": 0.12 }, "access": { "HB branded": 0.86, "HB low-cost": 0.68, "Lower-burden branded": 0.32 }, "capture": { "HB branded": 0.72, "HB low-cost": 0.26, "Lower-burden branded": 0.16 }, "price": { "HB branded": 95000, "HB low-cost": 55000, "Lower-burden branded": 80000 } }
+    },
+    {
+      "id": "cls_ax",
+      "slug": "cls_ax",
+      "name": "CLS-AX",
+      "shortName": "CLS-AX",
+      "company": "Clearside Biomedical",
+      "modality": "Suprachoroidal axitinib injectable suspension",
+      "routeClass": "Suprachoroidal repeatable TKI delivery via SCS Microinjector",
+      "modalityClass": "Suprachoroidal TKI",
+      "mechanicType": "repeat_course",
+      "launchYear": 2031,
+      "developmentStage": "Phase 3-ready after ODYSSEY Phase 2b, but active development continuity depends on post-Chapter 11 asset ownership and restart decisions.",
+      "evidenceMaturity": "Medium-low",
+      "primaryColor": "#B85F00",
+      "palette": { "primary": "#B85F00", "secondary": "#67AFDD", "tertiary": "#32373C", "wash": "#FFF4E6", "heatLow": "#FFF4E6", "heatHigh": "#B85F00" },
+      "source": { "label": "Clearside CLS-AX program page and ODYSSEY topline release", "url": "https://clearsidebio.com/pipeline/cls-ax/" },
+      "assumptionConfidence": "Medium-low",
+      "rationale": "CLS-AX is modeled as a conservative reactivation case for a repeatable suprachoroidal TKI with explicit workflow friction. The model gives credit for Phase 2b durability and repeat dosing, but uses later launch timing, lower allocation, limited ex-US contribution, and narrower lower-burden expansion because the route requires training and active Phase 3 continuity is not yet publicly established.",
+      "mechanics": { "revenueUnit": "treated_eye_year", "retreatmentIntervalMonths": 6, "annualPersistence": 0.68, "annualDiscontinuation": 0.18, "switchBackShare": 0.62, "newCourseYearFraction": 0.5, "workflowFriction": 0.24 },
+      "assumptions": { "active_eyes": 1150000, "incident_cases": 200000, "treat_init": 0.78, "eyes_per_patient": 1.15, "high_burden_share": 0.2, "incident_hb_share": 0.1, "branded_share": 0.62, "lower_burden_share": 0.012, "refractory_share": 0.2, "validated_hb_candidate_share": 0.5, "drug_durable_share": 0.16, "mortality_attrition": 0.03, "clinical_loss": 0.015, "competitive_loss": 0.015, "fellow_conversion": 0.1, "fellow_at_risk_share": 0.35, "ex_us_factor": 0.35, "ex_us_price_index": 0.6, "ex_us_delay_years": 4, "price_erosion": 0.04, "clinical": { "HB branded": 0.78, "HB low-cost": 0.42, "Lower-burden branded": 0.18 }, "access": { "HB branded": 0.7, "HB low-cost": 0.58, "Lower-burden branded": 0.32 }, "capture": { "HB branded": 0.52, "HB low-cost": 0.28, "Lower-burden branded": 0.16 }, "price": { "HB branded": 18000, "HB low-cost": 12000, "Lower-burden branded": 16000 } }
+    }
+  ],
+  "productEvidence": {
+    "axpaxli": {
+      "program": {
+        "title": "AXPAXLI program context",
+        "links": [
+          { "label": "Ocular first-quarter 2026 results exhibit", "url": "https://www.sec.gov/Archives/edgar/data/1393434/000110465926055241/tm2613442d1_ex99-1.htm" },
+          { "label": "Ocular AXPAXLI clinical-trials page", "url": "https://www.ocutx.com/pipeline/clinical-trials/" }
+        ],
+        "captures": [
+          { "src": "assets/evidence/pipeline-sources/axpaxli-program-context.png", "caption": "Source capture showing SOL-1 positive Phase 3 context, planned NDA path, SOL-R timing, and AXPAXLI durability evidence." }
+        ]
+      },
+      "benchmark": {
+        "title": "AXPAXLI public benchmark context",
+        "links": [
+          { "label": "Needham estimate quoted by Sahm/Benzinga", "url": "https://www.sahmcapital.com/news/content/ocular-therapeutix-axpaxli-advances-in-phase-3-for-wet-amd-analyst-forecasts-huge-upside-2025-03-11" },
+          { "label": "TD Cowen estimate quoted by Investing.com", "url": "https://www.investing.com/news/analyst-ratings/ocular-therapeutix-stock-price-target-raised-to-20-from-14-at-td-cowen-93CH-4320422" }
+        ],
+        "captures": [
+          { "src": "assets/evidence/axpaxli-needham.png", "caption": "Public article capture highlighting a roughly $1.5B peak-sales benchmark." },
+          { "src": "assets/evidence/axpaxli-td-cowen.png", "caption": "Saved-text evidence panel highlighting a wet AMD opportunity estimate." },
+          { "src": "assets/evidence/pipeline-sources/axpaxli-model-assumption-derivation.png", "caption": "Full model-input derivation panel showing the exact AXPAXLI base-case segment percentages, segment prices, mechanics, population inputs, ex-U.S. inputs, and ramp multipliers used in the calculation." }
+        ]
+      }
+    },
+    "duravyu": {
+      "program": {
+        "title": "DURAVYU program context",
+        "links": [
+          { "label": "EyePoint DURAVYU DSMC update", "url": "https://www.globenewswire.com/news-release/2026/05/14/3294726/0/en/eyepoint-announces-third-consecutive-positive-dsmc-recommendation-for-phase-3-wet-amd-trials-for-duravyu-building-confidence-ahead-of-mid-2026-topline-data.html" },
+          { "label": "EyePoint programs page", "url": "https://eyepoint.bio/our-programs/" }
+        ],
+        "captures": [
+          { "src": "assets/evidence/pipeline-sources/duravyu-program-context.png", "caption": "Source capture showing Phase 3 LUGANO and LUCIA status, DSMC context, and six-month redosing rationale." }
+        ]
+      },
+      "benchmark": {
+        "title": "DURAVYU public benchmark context",
+        "links": [
+          { "label": "Jefferies estimate quoted by Investing.com", "url": "https://www.investing.com/news/company-news/eyepoint-stock-gains-traction-with-new-amd-trials-jefferies-sees-65-upside-93CH-3682827" }
+        ],
+        "captures": [
+          { "src": "assets/evidence/duravyu-jefferies.png", "caption": "Saved-text evidence panel highlighting Jefferies' adjusted US plus EU peak-sales context." },
+          { "src": "assets/evidence/pipeline-sources/duravyu-model-assumption-derivation.png", "caption": "Full model-input derivation panel showing the exact DURAVYU base-case segment percentages, segment prices, mechanics, population inputs, ex-U.S. inputs, and ramp multipliers used in the calculation." }
+        ]
+      }
+    },
+    "rgx_314": {
+      "program": {
+        "title": "RGX-314 program context",
+        "links": [
+          { "label": "REGENXBIO pivotal enrollment update", "url": "https://ir.regenxbio.com/news-releases/news-release-details/regenxbio-announces-completion-enrollment-pivotal-trials" },
+          { "label": "REGENXBIO ABBV-RGX-314 program page", "url": "https://www.regenxbio.com/therapeutic-programs/rgx-314/" }
+        ],
+        "captures": [
+          { "src": "assets/evidence/pipeline-sources/rgx-314-program-context.png", "caption": "Source capture showing subretinal pivotal-trial enrollment, one-time therapy positioning, and route context." }
+        ]
+      },
+      "benchmark": {
+        "title": "RGX-314 public benchmark context",
+        "links": [
+          { "label": "REGENXBIO company release", "url": "https://regenxbio.gcs-web.com/news-releases/news-release-details/regenxbio-announces-lancet-publication-phase-iiia-study" },
+          { "label": "Motley Fool contributor model", "url": "https://www.fool.com/investing/2021/09/27/could-abbvies-new-collaboration-be-a-blockbuster/" }
+        ],
+        "captures": [
+          { "src": "assets/evidence/rgx-314-regenxbio.png", "caption": "Reader-rendered source capture highlighting multi-billion-dollar potential across wet AMD and diabetic retinopathy." },
+          { "src": "assets/evidence/rgx-314-motley-fool.png", "caption": "Public article capture showing an older multi-indication sales estimate." },
+          { "src": "assets/evidence/pipeline-sources/rgx_314-model-assumption-derivation.png", "caption": "Full model-input derivation panel showing the exact RGX-314 base-case segment percentages, segment prices, one-time mechanics, population inputs, ex-U.S. inputs, and ramp multipliers used in the calculation." }
+        ]
+      }
+    },
+    "four_d_150": {
+      "program": {
+        "title": "4D-150 program context",
+        "links": [
+          { "label": "4DMT 4FRONT-1 enrollment update", "url": "https://4dmt.gcs-web.com/news-releases/news-release-details/4dmt-completes-enrollment-4front-1-phase-3-clinical-trial-4d-150" },
+          { "label": "4DMT pipeline page", "url": "https://4dmoleculartherapeutics.com/pipeline/" }
+        ],
+        "captures": [
+          { "src": "assets/evidence/pipeline-sources/four-d-150-program-context.png", "caption": "Source capture showing 4FRONT Phase 3 status, intravitreal route, and multi-year gene-therapy rationale." }
+        ]
+      },
+      "benchmark": {
+        "title": "4D-150 public benchmark context",
+        "links": [
+          { "label": "BofA estimate quoted by TipRanks/The Fly", "url": "https://www.tipranks.com/news/the-fly/4d-molecular-price-target-raised-to-82-from-33-at-bofa" },
+          { "label": "Goldman Sachs estimate quoted by Investing.com", "url": "https://www.investing.com/news/stock-market-news/goldman-sachs-sets-81-target-on-4d-molecular-upgrades-to-buy-93CH-3295809" }
+        ],
+        "captures": [
+          { "src": "assets/evidence/four-d-150-bofa.png", "caption": "Public article capture highlighting a risk-adjusted peak-sales benchmark." },
+          { "src": "assets/evidence/four-d-150-goldman.png", "caption": "Saved-text evidence panel highlighting a public peak-sales estimate." },
+          { "src": "assets/evidence/pipeline-sources/four_d_150-model-assumption-derivation.png", "caption": "Full model-input derivation panel showing the exact 4D-150 base-case segment percentages, segment prices, one-time mechanics, population inputs, ex-U.S. inputs, and ramp multipliers used in the calculation." }
+        ]
+      }
+    },
+    "cls_ax": {
+      "program": {
+        "title": "CLS-AX program context",
+        "links": [
+          { "label": "Clearside CLS-AX program page", "url": "https://clearsidebio.com/pipeline/cls-ax/" },
+          { "label": "Clearside ODYSSEY topline release", "url": "https://ir.clearsidebio.com/news-releases/news-release-details/clearside-biomedical-announces-positive-topline-results-odyssey" }
+        ],
+        "captures": [
+          { "src": "assets/evidence/pipeline-sources/cls-ax-program-context.png", "caption": "Source capture showing Phase 3-ready positioning, suprachoroidal route, and ODYSSEY Phase 2b durability context." }
+        ]
+      },
+      "benchmark": {
+        "title": "CLS-AX public benchmark context",
+        "links": [
+          { "label": "GlobalData estimate quoted by Clinical Trials Arena", "url": "https://www.clinicaltrialsarena.com/news/clearsides-wet-amd-drug-device-combo-shines-in-phase-iib-study/" }
+        ],
+        "captures": [
+          { "src": "assets/evidence/cls-ax-globaldata.png", "caption": "Public article capture highlighting a GlobalData 2030 sales estimate if approved." },
+          { "src": "assets/evidence/pipeline-sources/cls_ax-model-assumption-derivation.png", "caption": "Full model-input derivation panel showing the exact CLS-AX base-case segment percentages, segment prices, repeat-course mechanics, population inputs, ex-U.S. inputs, and ramp multipliers used in the calculation." }
+        ]
+      }
+    }
+  },
+  "publicSalesEstimates": {
+    "axpaxli": [
+      { "label": "Needham", "value": 1500, "year": null, "type": "wet", "description": "Peak sales", "scope": "Wet AMD only", "caveat": "Peak year not disclosed; second-line wet AMD population context." },
+      { "label": "TD Cowen", "value": 1000, "year": null, "type": "wet", "description": "Peak sales", "scope": "Wet AMD only; separate NPDR estimate excluded", "caveat": "Peak year not disclosed; the separate NPDR opportunity is excluded from the wet AMD chart." }
+    ],
+    "duravyu": [
+      { "label": "Jefferies", "value": 1100, "year": null, "type": "adjusted", "description": "Peak adjusted sales", "scope": "Wet AMD only; U.S. plus EU", "caveat": "Probability-weighted estimate: $600M U.S. plus $500M EU at 65% probability of success; peak year not disclosed." }
+    ],
+    "rgx_314": [
+      { "label": "Motley Fool", "value": 2100, "year": 2030, "type": "multi", "description": "Annual sales by 2030", "scope": "Wet AMD plus diabetic retinopathy", "caveat": "Older contributor-derived estimate and not wet AMD-only." }
+    ],
+    "four_d_150": [
+      { "label": "BofA", "value": 2800, "year": null, "type": "adjusted", "description": "Risk-adjusted peak sales", "scope": "Wet AMD only", "caveat": "Risk-adjusted means discounted for development and approval risk; peak year not disclosed." },
+      { "label": "Goldman Sachs", "value": 2400, "year": null, "type": "wet", "description": "Peak sales", "scope": "Wet AMD only", "caveat": "Underlying analyst model is not public; peak year not disclosed." }
+    ],
+    "cls_ax": [
+      { "label": "GlobalData", "value": 204, "year": 2030, "type": "wet", "description": "Annual sales if approved", "scope": "Appears wet AMD only", "caveat": "If-approved estimate; underlying model is not public." }
+    ]
+  }
+}

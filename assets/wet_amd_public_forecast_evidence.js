@@ -1,143 +1,31 @@
-(function () {
-  const MODEL_PEAKS = [
-    { drug: "AXPAXLI", value: 932, year: 2033, scope: "Wet AMD model", type: "Model base case" },
-    { drug: "DURAVYU", value: 602, year: 2033, scope: "Wet AMD model", type: "Model base case" },
-    { drug: "RGX-314", value: 989, year: 2036, scope: "Wet AMD model", type: "Model base case" },
-    { drug: "4D-150", value: 2210, year: 2035, scope: "Wet AMD model", type: "Model base case" },
-    { drug: "CLS-AX", value: 155, year: 2038, scope: "Wet AMD model", type: "Model base case" }
-  ];
+(async function () {
+  "use strict";
 
-  const PUBLIC_ESTIMATES = [
-    {
-      drug: "AXPAXLI",
-      source: "Needham, quoted by Sahm/Benzinga",
-      date: "Mar. 11, 2025",
-      metric: "Peak sales",
-      value: 1500,
-      year: null,
-      scope: "Wet AMD only",
-      type: "Public wet AMD estimate",
-      note: "Second-line wet AMD patients treated with anti-VEGF who are dissatisfied with injection burden or not adequately controlled.",
-      url: "https://www.sahmcapital.com/news/content/ocular-therapeutix-axpaxli-advances-in-phase-3-for-wet-amd-analyst-forecasts-huge-upside-2025-03-11",
-      evidenceImage: "assets/evidence/axpaxli-needham.png",
-      captureNote: "Direct source capture with highlighted forecast text."
-    },
-    {
-      drug: "AXPAXLI",
-      source: "TD Cowen, quoted by Investing.com",
-      date: "Oct. 30, 2025",
-      metric: "Peak sales",
-      value: 1000,
-      year: null,
-      scope: "Wet AMD only; separate NPDR estimate excluded from the chart",
-      type: "Public wet AMD estimate",
-      note: "The article reports a $1.0B wAMD opportunity and a separate $800M NPDR opportunity. NPDR is non-proliferative diabetic retinopathy.",
-      url: "https://www.investing.com/news/analyst-ratings/ocular-therapeutix-stock-price-target-raised-to-20-from-14-at-td-cowen-93CH-4320422",
-      evidenceImage: "assets/evidence/axpaxli-td-cowen.png",
-      captureNote: "Saved-text evidence panel from source article text; used because clean live-page screenshots are not consistently available for this article."
-    },
-    {
-      drug: "DURAVYU",
-      source: "Jefferies, quoted by Investing.com",
-      date: "Oct. 25, 2024",
-      metric: "Peak adjusted sales",
-      value: 1100,
-      year: null,
-      scope: "Wet AMD only; U.S. plus EU",
-      type: "Public adjusted wet AMD estimate",
-      note: "Reported as $600M U.S. plus $500M EU peak adjusted sales, with 65% probability of success. Adjusted means probability-weighted rather than a full unadjusted commercial forecast.",
-      url: "https://www.investing.com/news/company-news/eyepoint-stock-gains-traction-with-new-amd-trials-jefferies-sees-65-upside-93CH-3682827",
-      evidenceImage: "assets/evidence/duravyu-jefferies.png",
-      captureNote: "Saved-text evidence panel from source article text; used because clean live-page screenshots are not consistently available for this article."
-    },
-    {
-      drug: "RGX-314",
-      source: "REGENXBIO company release",
-      date: "Mar. 28, 2024",
-      metric: "Commercial opportunity",
-      value: null,
-      year: null,
-      scope: "Wet AMD plus diabetic retinopathy",
-      type: "Qualitative multi-indication opportunity",
-      note: "Company language describes multi-billion-dollar potential across wet AMD and diabetic retinopathy, not a wet AMD-only forecast.",
-      url: "https://regenxbio.gcs-web.com/news-releases/news-release-details/regenxbio-announces-lancet-publication-phase-iiia-study",
-      evidenceImage: "assets/evidence/rgx-314-regenxbio.png",
-      captureNote: "Reader-rendered source capture with highlighted multi-indication language; used because the direct release blocked automated capture."
-    },
-    {
-      drug: "RGX-314",
-      source: "Motley Fool contributor model",
-      date: "Sep. 27, 2021",
-      metric: "Annual sales by 2030",
-      value: 2100,
-      year: 2030,
-      scope: "Wet AMD plus diabetic retinopathy",
-      type: "Public multi-indication estimate",
-      note: "Older contributor-derived model based on assumed share across wet AMD and diabetic retinopathy.",
-      url: "https://www.fool.com/investing/2021/09/27/could-abbvies-new-collaboration-be-a-blockbuster/",
-      evidenceImage: "assets/evidence/rgx-314-motley-fool.png",
-      captureNote: "Direct source capture with highlighted forecast text."
-    },
-    {
-      drug: "4D-150",
-      source: "BofA, quoted by TipRanks/The Fly",
-      date: "Feb. 8, 2024",
-      metric: "Risk-adjusted peak sales",
-      value: 2800,
-      year: null,
-      scope: "Wet AMD only",
-      type: "Public adjusted wet AMD estimate",
-      note: "Risk-adjusted forecast after positive Phase 2 PRISM data. Risk-adjusted means the analyst discounts sales for development and approval risk.",
-      url: "https://www.tipranks.com/news/the-fly/4d-molecular-price-target-raised-to-82-from-33-at-bofa",
-      evidenceImage: "assets/evidence/four-d-150-bofa.png",
-      captureNote: "Reader-rendered source capture with highlighted forecast text."
-    },
-    {
-      drug: "4D-150",
-      source: "Goldman Sachs, quoted by Investing.com",
-      date: "Jan. 2024",
-      metric: "Peak sales",
-      value: 2400,
-      year: null,
-      scope: "Wet AMD only",
-      type: "Public wet AMD estimate",
-      note: "The public article reports a $2.4B peak sales estimate, with the underlying analyst model not public.",
-      url: "https://www.investing.com/news/stock-market-news/goldman-sachs-sets-81-target-on-4d-molecular-upgrades-to-buy-93CH-3295809",
-      evidenceImage: "assets/evidence/four-d-150-goldman.png",
-      captureNote: "Saved-text evidence panel from source article text; used because clean live-page screenshots are not consistently available for this article."
-    },
-    {
-      drug: "CLS-AX",
-      source: "GlobalData, quoted by Clinical Trials Arena",
-      date: "Oct. 2024",
-      metric: "2030 annual sales if approved",
-      value: 204,
-      year: 2030,
-      scope: "Appears wet AMD only",
-      type: "Public wet AMD estimate",
-      note: "The article is framed around Clearside's wet AMD drug-device program; the underlying GlobalData model is not fully public.",
-      url: "https://www.clinicaltrialsarena.com/news/clearsides-wet-amd-drug-device-combo-shines-in-phase-iib-study/",
-      evidenceImage: "assets/evidence/cls-ax-globaldata.png",
-      captureNote: "Direct source capture with highlighted forecast text."
-    }
-  ];
+  const DATA_URL = "assets/data/wet_amd_forecast_programs.json?v=six-program-framework";
+  const engine = window.WetAmdForecastEngine;
+  let data;
 
-  const DRUG_ORDER = ["AXPAXLI", "DURAVYU", "RGX-314", "4D-150", "CLS-AX"];
+  try {
+    const response = await fetch(DATA_URL);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    data = await response.json();
+  } catch (error) {
+    document.body.innerHTML = `<main class="page"><section class="section"><h1>Evidence data failed to load.</h1><p class="deck">Serve this static site through a local server or GitHub Pages so the JSON data file can be fetched. Error: ${esc(error.message)}</p></section></main>`;
+    return;
+  }
+
+  const PROGRAMS = data.programs || [];
+  const DRUG_ORDER = PROGRAMS.map(program => program.shortName);
   const COLORS = {
     "Model base case": "#000000",
     "Public wet AMD estimate": "#2e72dc",
     "Public adjusted wet AMD estimate": "#159788",
     "Public multi-indication estimate": "#c2170a",
-    "Qualitative multi-indication opportunity": "#8d8f91"
+    "Public benchmark": "#6A737B"
   };
 
-  function money(value) {
-    if (value == null) return "Not quantified";
-    return value >= 1000 ? "$" + (value / 1000).toFixed(value % 1000 === 0 ? 0 : 1) + "B" : "$" + value + "M";
-  }
-
   function esc(value) {
-    return String(value || "").replace(/[&<>"']/g, char => ({
+    return String(value == null ? "" : value).replace(/[&<>"']/g, char => ({
       "&": "&amp;",
       "<": "&lt;",
       ">": "&gt;",
@@ -146,42 +34,118 @@
     }[char]));
   }
 
-  function cite(label, url) {
-    return `<a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+  function money(value) {
+    if (value == null) return "Not quantified";
+    return value >= 1000 ? "$" + (value / 1000).toFixed(value % 1000 === 0 ? 0 : 1) + "B" : "$" + Math.round(value) + "M";
   }
 
-  function chartSvg() {
-    const plotted = [
-      ...MODEL_PEAKS.map(d => ({ ...d, source: "This model", metric: "Base-case peak sales" })),
-      ...PUBLIC_ESTIMATES.filter(d => d.value != null)
-    ];
-    const width = 1040, height = 540, left = 78, right = 990, top = 42, bottom = 420;
-    const max = 3000;
+  function cite(label, url) {
+    return `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(label)}</a>`;
+  }
+
+  function modelPeaks() {
+    return PROGRAMS.map(program => {
+      if (program.lockedBaseline) {
+        return {
+          drug: program.shortName,
+          value: program.lockedOutputs.peakWorldwideSalesM,
+          year: program.lockedOutputs.peakYear,
+          scope: "Wet AMD model",
+          type: "Model base case",
+          source: "This model",
+          metric: "Base-case peak worldwide sales",
+          note: "Locked standalone Ixo-vec baseline."
+        };
+      }
+      const assumptions = engine.scenarioAssumptions(data, program, "Base");
+      const model = engine.compute(data, program, assumptions, "Base");
+      const summary = engine.summary(data, model, program);
+      return {
+        drug: program.shortName,
+        value: Math.round(summary.peak.world),
+        year: summary.peak.year,
+        scope: "Wet AMD model",
+        type: "Model base case",
+        source: "This model",
+        metric: "Base-case peak worldwide sales",
+        note: `${program.mechanicType === "repeat_course" ? "Repeat-course" : "One-time"} if-approved commercial forecast.`
+      };
+    });
+  }
+
+  function publicRows() {
+    const rows = [];
+    for (const program of PROGRAMS) {
+      if (program.lockedBaseline && program.schedule14d9Benchmark) {
+        rows.push({
+          drug: program.shortName,
+          source: "Adverum Schedule 14D-9",
+          date: "2025 transaction disclosure",
+          metric: "2036 worldwide net-sales projection",
+          value: program.lockedOutputs.schedule14d9SelectedYearM,
+          year: program.lockedOutputs.selectedYear,
+          scope: "Ixo-vec external benchmark",
+          type: "Public benchmark",
+          note: "External management projection shown for comparison only. It is not used to calculate the locked Ixo-vec model.",
+          url: "https://www.sec.gov/Archives/edgar/data/1501756/000119312525272604/d91171dsc14d9.htm",
+          evidenceImage: "",
+          captureNote: "Schedule 14D-9 benchmark is documented in the Ixo-vec standalone model and shared schema."
+        });
+      }
+      const estimates = ((data.publicSalesEstimates || {})[program.slug] || []);
+      for (const estimate of estimates) {
+        const productEvidence = (data.productEvidence || {})[program.slug] || {};
+        const benchmark = productEvidence.benchmark || {};
+        const firstLink = (benchmark.links || [])[0] || {};
+        const firstCapture = (benchmark.captures || [])[0] || {};
+        rows.push({
+          drug: program.shortName,
+          source: estimate.label,
+          date: "Public source",
+          metric: estimate.description || "Sales estimate",
+          value: estimate.value,
+          year: estimate.year,
+          scope: estimate.scope,
+          type: estimate.type === "adjusted" ? "Public adjusted wet AMD estimate" : estimate.type === "multi" ? "Public multi-indication estimate" : "Public wet AMD estimate",
+          note: estimate.caveat || "",
+          url: firstLink.url || (program.source && program.source.url) || "#",
+          evidenceImage: firstCapture.src || "",
+          captureNote: firstCapture.caption || "Source capture or derivation panel."
+        });
+      }
+    }
+    return rows;
+  }
+
+  function chartSvg(modelRows, externalRows) {
+    const plotted = [...modelRows, ...externalRows.filter(row => row.value != null)];
+    const width = 1120, height = 560, left = 82, right = 1068, top = 42, bottom = 430;
+    const max = Math.max(3500, ...plotted.map(row => row.value || 0)) * 1.05;
     const band = (right - left) / DRUG_ORDER.length;
-    const x = drug => left + (DRUG_ORDER.indexOf(drug) + .5) * band;
+    const x = drug => left + (DRUG_ORDER.indexOf(drug) + 0.5) * band;
     const y = value => bottom - (value / max) * (bottom - top);
-    const ticks = [0, 500, 1000, 1500, 2000, 2500, 3000];
-    const grid = ticks.map(t => `<line x1="${left}" y1="${y(t).toFixed(1)}" x2="${right}" y2="${y(t).toFixed(1)}" class="grid-line"/><text x="62" y="${(y(t) + 4).toFixed(1)}" text-anchor="end" class="axis-label">${t === 0 ? "$0" : money(t)}</text>`).join("");
-    const guides = DRUG_ORDER.map(drug => `<line x1="${x(drug).toFixed(1)}" y1="${top}" x2="${x(drug).toFixed(1)}" y2="${bottom}" stroke="#d9e1e7"/><text x="${x(drug).toFixed(1)}" y="464" text-anchor="middle" class="evidence-axis-title">${drug}</text>`).join("");
+    const ticks = [0, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000].filter(tick => tick <= max);
+    const grid = ticks.map(tick => `<line x1="${left}" y1="${y(tick).toFixed(1)}" x2="${right}" y2="${y(tick).toFixed(1)}" class="grid-line"/><text x="66" y="${(y(tick) + 4).toFixed(1)}" text-anchor="end" class="axis-label">${tick === 0 ? "$0" : money(tick)}</text>`).join("");
+    const guides = DRUG_ORDER.map(drug => `<line x1="${x(drug).toFixed(1)}" y1="${top}" x2="${x(drug).toFixed(1)}" y2="${bottom}" stroke="#d9e1e7"/><text x="${x(drug).toFixed(1)}" y="474" text-anchor="middle" class="evidence-axis-title">${esc(drug)}</text>`).join("");
     const ranked = {};
-    for (const drug of DRUG_ORDER) ranked[drug] = plotted.filter(d => d.drug === drug).sort((a, b) => a.value - b.value);
-    const points = plotted.map(d => {
-      const group = ranked[d.drug];
-      const rank = group.indexOf(d);
-      const cx = x(d.drug);
-      const cy = y(d.value);
-      const label = `${money(d.value)}${d.year ? " " + d.year : " peak"}`;
+    for (const drug of DRUG_ORDER) ranked[drug] = plotted.filter(row => row.drug === drug).sort((a, b) => (a.value || 0) - (b.value || 0));
+    const points = plotted.map(row => {
+      const group = ranked[row.drug] || [];
+      const rank = group.indexOf(row);
+      const cx = x(row.drug);
+      const cy = y(row.value);
+      const label = `${money(row.value)}${row.year ? " " + row.year : " peak"}`;
       const side = rank % 2 === 0 ? -1 : 1;
       const anchor = side < 0 ? "end" : "start";
       const dx = side < 0 ? -12 : 12;
-      const dy = (rank - (group.length - 1) / 2) * 7;
-      return `<g><circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${d.type === "Model base case" ? 7 : 6}" fill="${COLORS[d.type] || "#5b7282"}"/><text x="${(cx + dx).toFixed(1)}" y="${(cy + 4 + dy).toFixed(1)}" text-anchor="${anchor}" class="evidence-point-label">${label}</text></g>`;
+      const dy = (rank - (group.length - 1) / 2) * 8;
+      return `<g><circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${row.type === "Model base case" ? 7 : 6}" fill="${COLORS[row.type] || "#5b7282"}"/><text x="${(cx + dx).toFixed(1)}" y="${(cy + 4 + dy).toFixed(1)}" text-anchor="${anchor}" class="evidence-point-label">${esc(label)}</text></g>`;
     }).join("");
     return `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Comparison of internal model peaks and public sales estimates">${grid}<line x1="${left}" y1="${bottom}" x2="${right}" y2="${bottom}" class="axis"/><line x1="${left}" y1="${top}" x2="${left}" y2="${bottom}" class="axis"/>${guides}${points}</svg>`;
   }
 
   function legend() {
-    return Object.entries(COLORS).map(([label, color]) => `<span class="evidence-legend-item"><i style="background:${color}"></i>${label}</span>`).join("");
+    return Object.entries(COLORS).map(([label, color]) => `<span class="evidence-legend-item"><i style="background:${color}"></i>${esc(label)}</span>`).join("");
   }
 
   function estimateCard(row, index) {
@@ -189,32 +153,30 @@
     const detailTitle = `${row.drug}: ${row.metric}`;
     return `<article class="evidence-card">
       <div>
-        <div class="metric-label"><span class="input-code">${index + 1}</span>${row.drug}</div>
-        <h3>${money(row.value)} ${row.metric}</h3>
-        <p>${row.scope}. ${row.note} Source: ${cite(row.source, row.url)}.</p>
+        <div class="metric-label"><span class="input-code">${index + 1}</span>${esc(row.drug)}</div>
+        <h3>${money(row.value)} ${esc(row.metric)}</h3>
+        <p>${esc(row.scope)}. ${esc(row.note)} Source: ${cite(row.source, row.url)}.</p>
       </div>
       <button class="evidence-toggle" type="button" aria-haspopup="dialog" aria-controls="evidence-modal" data-evidence-title="${esc(detailTitle)}" data-evidence-note="${esc(row.captureNote)}" data-evidence-image="${esc(row.evidenceImage || "")}">${detailLabel}</button>
     </article>`;
   }
 
-  function tableRows() {
-    const rows = [
-      ...MODEL_PEAKS.map(row => ({ ...row, source: "This model", metric: "Base-case peak worldwide sales", note: "Wet AMD-only base case." })),
-      ...PUBLIC_ESTIMATES
-    ];
-    return rows.map(row => `<tr><td>${row.drug}</td><td>${row.source}</td><td>${row.metric}</td><td>${money(row.value)}</td><td>${row.year || "Not disclosed"}</td><td>${row.scope}</td><td>${row.note}</td></tr>`).join("");
+  function tableRows(modelRows, externalRows) {
+    return [...modelRows, ...externalRows].map(row => `<tr><td>${esc(row.drug)}</td><td>${esc(row.source)}</td><td>${esc(row.metric)}</td><td>${money(row.value)}</td><td>${row.year || "Not disclosed"}</td><td>${esc(row.scope)}</td><td>${esc(row.note)}</td></tr>`).join("");
   }
 
   function render() {
+    const modelRows = modelPeaks();
+    const externalRows = publicRows();
     document.title = "Wet AMD Public Sales Forecasts";
     document.body.innerHTML = `<main class="page">
       <header>
         <div>
           <h1 class="evidence-title">Public Sales Forecasts</h1>
-          <p class="deck">A view of publicly available wet AMD pipeline sales estimates, compared with the current base-case model peaks for the five non-ixo-vec programs.</p>
+          <p class="deck">A view of publicly available wet AMD pipeline sales estimates, compared with the current base-case model peaks for six pipeline programs.</p>
         </div>
         <aside class="meta">
-          <div><strong>Scope check</strong> Each estimate is labeled as wet AMD-only, probability-adjusted, or multi-indication.</div>
+          <div><strong>Scope check</strong> Each estimate is labeled as wet AMD-only, probability-adjusted, multi-indication, or a transaction benchmark.</div>
           <div><strong>Evidence</strong> Inline citations link to sources; screenshots are hidden behind buttons to keep the page readable.</div>
         </aside>
       </header>
@@ -225,20 +187,20 @@
           <p>Dots compare public numeric estimates with the current model peak for each drug. Public peak-year timing is shown when disclosed. A peak year of "not disclosed" means the public article gave a peak-sales figure without the year in the accessible text.</p>
         </div>
         <div class="chart-panel evidence-chart">
-          ${chartSvg()}
+          ${chartSvg(modelRows, externalRows)}
           <div class="evidence-legend">${legend()}</div>
         </div>
       </section>
       <section class="section">
         <div class="section-head">
           <h2>Interpretation</h2>
-          <p>Wet AMD-only estimates can be compared directly with the model's wet AMD sales. Multi-indication figures include additional diseases such as diabetic retinopathy, diabetic macular edema, or broader VEGF-driven retinopathy and should not be used to force the wet AMD model upward without adding those indications.</p>
+          <p>Wet AMD-only estimates can be compared directly with the model's wet AMD sales. Adjusted estimates are probability-weighted. Multi-indication figures include additional diseases and should not be used to force the wet AMD model upward without adding those indications.</p>
         </div>
         <div class="definitions">
           <div class="definition"><strong>Wet AMD only</strong><p>Forecast covers neovascular age-related macular degeneration, the indication modeled in these pages.</p></div>
           <div class="definition"><strong>Adjusted sales</strong><p>Sales discounted for probability of clinical and regulatory success. These values can be lower than unadjusted commercial sales.</p></div>
           <div class="definition"><strong>Multi-indication</strong><p>Forecast or opportunity includes additional retinal diseases, such as diabetic retinopathy or diabetic macular edema.</p></div>
-          <div class="definition"><strong>Peak year</strong><p>The year when a forecast reaches its maximum annual sales. Some public snippets disclose peak sales without giving the year.</p></div>
+          <div class="definition"><strong>Public benchmark</strong><p>A transaction or company projection shown for comparison. It is not used to calculate the current model curve.</p></div>
         </div>
       </section>
       <section class="section">
@@ -246,14 +208,14 @@
           <h2>Source evidence</h2>
           <p>Each item includes a citation and a popup screenshot or capture note. Reader-rendered captures are used only when the original page blocks automated screenshot capture but the source text remains publicly accessible.</p>
         </div>
-        <div class="evidence-grid">${PUBLIC_ESTIMATES.map(estimateCard).join("")}</div>
+        <div class="evidence-grid">${externalRows.map(estimateCard).join("")}</div>
       </section>
       <section class="section" id="evidence-table">
         <div class="section-head">
           <h2>Forecast table</h2>
           <p>The table combines the current model peak with public numeric and qualitative estimates so readers can separate model output from external benchmarks.</p>
         </div>
-        <div class="table-wrap"><table><thead><tr><th>Drug</th><th>Source</th><th>Metric</th><th>Value</th><th>Year</th><th>Scope</th><th>Context</th></tr></thead><tbody>${tableRows()}</tbody></table></div>
+        <div class="table-wrap"><table><thead><tr><th>Drug</th><th>Source</th><th>Metric</th><th>Value</th><th>Year</th><th>Scope</th><th>Context</th></tr></thead><tbody>${tableRows(modelRows, externalRows)}</tbody></table></div>
       </section>
     </main>
     <div class="evidence-modal" id="evidence-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="evidence-modal-title">
@@ -265,6 +227,7 @@
         <div class="evidence-modal-body" id="evidence-modal-body"></div>
       </div>
     </div>`;
+
     const modal = document.getElementById("evidence-modal");
     const modalTitle = document.getElementById("evidence-modal-title");
     const modalBody = document.getElementById("evidence-modal-body");
