@@ -1,10 +1,10 @@
 (function () {
   const MODEL_PEAKS = [
-    { drug: "AXPAXLI", value: 783, year: 2033, scope: "Wet AMD model", type: "Model base case" },
-    { drug: "DURAVYU", value: 452, year: 2034, scope: "Wet AMD model", type: "Model base case" },
+    { drug: "AXPAXLI", value: 932, year: 2033, scope: "Wet AMD model", type: "Model base case" },
+    { drug: "DURAVYU", value: 602, year: 2033, scope: "Wet AMD model", type: "Model base case" },
     { drug: "RGX-314", value: 989, year: 2036, scope: "Wet AMD model", type: "Model base case" },
-    { drug: "4D-150", value: 1620, year: 2036, scope: "Wet AMD model", type: "Model base case" },
-    { drug: "CLS-AX", value: 120, year: 2038, scope: "Wet AMD model", type: "Model base case" }
+    { drug: "4D-150", value: 2210, year: 2035, scope: "Wet AMD model", type: "Model base case" },
+    { drug: "CLS-AX", value: 155, year: 2038, scope: "Wet AMD model", type: "Model base case" }
   ];
 
   const PUBLIC_ESTIMATES = [

@@ -24,6 +24,7 @@
 - In public-facing forecast/model visuals, when a displayed calculation uses intermediate quantities, those intermediate values must have visible labels, letters, or explicit cross-references in the calculation text so the reader can trace each number without relying on prose alone.
 - Subagents must always be the same model and thinking level as the orchestrator agent.
 - For evidence screenshots, close cookie banners, consent dialogs, modals, popups, and newsletter or marketing overlays before capture. If the page content is dimmed or a dark overlay covers the viewport, the screenshot is invalid; close or remove the overlay and retake it.
+- Public-facing source-capture screenshots must visually show the specific source text/data that informs the adjacent model input; when no direct source exists, explicitly label the item as source context plus assumption/derivation.
 - When source text was accessible but the live page later blocks screenshot capture, create a clearly labeled saved-text evidence panel with highlighted relevant text rather than using a screenshot of the blocked/sign-in/security page.
 - In public-facing evidence pages, show bulky evidence screenshots in a popup/modal when inline screenshots would make the page harder to scan.
 - After updating evidence screenshots, spawn a fresh subagent to independently verify that the relevant text is highlighted and that no screenshot contains an obscuring popup, modal, consent banner, or dark overlay.

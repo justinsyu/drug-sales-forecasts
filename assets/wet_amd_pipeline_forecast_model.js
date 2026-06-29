@@ -14,7 +14,7 @@
       slug: "axpaxli",
       rationale: "Broadest modeled candidate pool among non-gene-therapy programs. The forecast uses lower net revenue per treated eye than gene therapy, but broader eligible/access assumptions and more lower-burden expansion because administration is intravitreal rather than surgical gene therapy.",
       source: { label: "Ocular AXPAXLI wet AMD clinical-trial page", url: "https://www.ocutx.com/pipeline/clinical-trials/" },
-      assumptions: { active_eyes:1150000, incident_cases:200000, treat_init:.78, eyes_per_patient:1.15, high_burden_share:.20, incident_hb_share:.10, branded_share:.62, lower_burden_share:.035, refractory_share:.25, validated_hb_candidate_share:.80, drug_durable_share:.40, mortality_attrition:.03, clinical_loss:.015, competitive_loss:.015, fellow_conversion:.10, fellow_at_risk_share:.35, ex_us_factor:.70, ex_us_price_index:.60, ex_us_delay_years:2, price_erosion:.040, clinical:{"HB branded":.90,"HB low-cost":.55,"Lower-burden branded":.35}, access:{"HB branded":.90,"HB low-cost":.80,"Lower-burden branded":.55}, capture:{"HB branded":.75,"HB low-cost":.45,"Lower-burden branded":.30}, price:{"HB branded":22000,"HB low-cost":15000,"Lower-burden branded":20000} }
+      assumptions: { active_eyes:1150000, incident_cases:200000, treat_init:.78, eyes_per_patient:1.15, high_burden_share:.20, incident_hb_share:.10, branded_share:.62, lower_burden_share:.035, refractory_share:.25, validated_hb_candidate_share:.80, drug_durable_share:.45, mortality_attrition:.03, clinical_loss:.015, competitive_loss:.015, fellow_conversion:.10, fellow_at_risk_share:.35, ex_us_factor:.70, ex_us_price_index:.60, ex_us_delay_years:2, price_erosion:.040, clinical:{"HB branded":.90,"HB low-cost":.55,"Lower-burden branded":.35}, access:{"HB branded":.90,"HB low-cost":.80,"Lower-burden branded":.55}, capture:{"HB branded":.75,"HB low-cost":.45,"Lower-burden branded":.30}, price:{"HB branded":24000,"HB low-cost":16000,"Lower-burden branded":22000} }
     },
     duravyu: {
       name: "DURAVYU / EYP-1901",
@@ -28,7 +28,7 @@
       slug: "duravyu",
       rationale: "Similar to AXPAXLI but slightly more conservative. The modeled product has broad intravitreal access and repeatable durable-treatment use, while candidate breadth, capture, and net revenue remain modestly below AXPAXLI.",
       source: { label: "EyePoint DURAVYU program page", url: "https://eyepoint.bio/our-programs/" },
-      assumptions: { active_eyes:1150000, incident_cases:200000, treat_init:.78, eyes_per_patient:1.15, high_burden_share:.20, incident_hb_share:.10, branded_share:.62, lower_burden_share:.025, refractory_share:.22, validated_hb_candidate_share:.75, drug_durable_share:.30, mortality_attrition:.03, clinical_loss:.015, competitive_loss:.015, fellow_conversion:.10, fellow_at_risk_share:.35, ex_us_factor:.65, ex_us_price_index:.60, ex_us_delay_years:2, price_erosion:.040, clinical:{"HB branded":.85,"HB low-cost":.50,"Lower-burden branded":.30}, access:{"HB branded":.85,"HB low-cost":.75,"Lower-burden branded":.50}, capture:{"HB branded":.70,"HB low-cost":.40,"Lower-burden branded":.25}, price:{"HB branded":20000,"HB low-cost":14000,"Lower-burden branded":18000} }
+      assumptions: { active_eyes:1150000, incident_cases:200000, treat_init:.78, eyes_per_patient:1.15, high_burden_share:.20, incident_hb_share:.10, branded_share:.62, lower_burden_share:.025, refractory_share:.22, validated_hb_candidate_share:.75, drug_durable_share:.38, mortality_attrition:.03, clinical_loss:.015, competitive_loss:.015, fellow_conversion:.10, fellow_at_risk_share:.35, ex_us_factor:.65, ex_us_price_index:.60, ex_us_delay_years:2, price_erosion:.040, clinical:{"HB branded":.85,"HB low-cost":.50,"Lower-burden branded":.30}, access:{"HB branded":.85,"HB low-cost":.75,"Lower-burden branded":.50}, capture:{"HB branded":.70,"HB low-cost":.40,"Lower-burden branded":.25}, price:{"HB branded":22000,"HB low-cost":15000,"Lower-burden branded":20000} }
     },
     rgx_314: {
       name: "RGX-314 / ABBV-RGX-314",
@@ -56,7 +56,7 @@
       slug: "four_d_150",
       rationale: "The model places 4D-150 between intravitreal implants and more complex gene-therapy routes. Intravitreal delivery improves eligible/access assumptions relative to subretinal gene therapy, while AAV monitoring and durable-class competition keep allocation below broad implant-style products.",
       source: { label: "4DMT pipeline page", url: "https://4dmoleculartherapeutics.com/pipeline/" },
-      assumptions: { active_eyes:1150000, incident_cases:200000, treat_init:.78, eyes_per_patient:1.15, high_burden_share:.20, incident_hb_share:.10, branded_share:.62, lower_burden_share:.010, refractory_share:.18, validated_hb_candidate_share:.70, drug_durable_share:.30, mortality_attrition:.03, clinical_loss:.015, competitive_loss:.015, fellow_conversion:.10, fellow_at_risk_share:.35, ex_us_factor:.667, ex_us_price_index:.50, ex_us_delay_years:2, price_erosion:.030, clinical:{"HB branded":.80,"HB low-cost":.25,"Lower-burden branded":.10}, access:{"HB branded":.85,"HB low-cost":.70,"Lower-burden branded":.30}, capture:{"HB branded":.70,"HB low-cost":.25,"Lower-burden branded":.15}, price:{"HB branded":85000,"HB low-cost":50000,"Lower-burden branded":70000} }
+      assumptions: { active_eyes:1150000, incident_cases:200000, treat_init:.78, eyes_per_patient:1.15, high_burden_share:.20, incident_hb_share:.10, branded_share:.62, lower_burden_share:.010, refractory_share:.18, validated_hb_candidate_share:.70, drug_durable_share:.37, mortality_attrition:.03, clinical_loss:.015, competitive_loss:.015, fellow_conversion:.10, fellow_at_risk_share:.35, ex_us_factor:.667, ex_us_price_index:.50, ex_us_delay_years:2, price_erosion:.030, clinical:{"HB branded":.80,"HB low-cost":.25,"Lower-burden branded":.10}, access:{"HB branded":.88,"HB low-cost":.70,"Lower-burden branded":.30}, capture:{"HB branded":.75,"HB low-cost":.25,"Lower-burden branded":.15}, price:{"HB branded":90000,"HB low-cost":52000,"Lower-burden branded":75000} }
     },
     cls_ax: {
       name: "CLS-AX",
@@ -70,7 +70,153 @@
       slug: "cls_ax",
       rationale: "Latest launch and narrowest product allocation in the base case. The approach is in-office but uses a specialized suprachoroidal workflow and has less mature pivotal evidence, so the forecast uses more constrained access and durable-class allocation than intravitreal TKI implants.",
       source: { label: "Clearside CLS-AX pipeline page", url: "https://www.clearsidebio.com/pipeline/cls-ax/" },
-      assumptions: { active_eyes:1150000, incident_cases:200000, treat_init:.78, eyes_per_patient:1.15, high_burden_share:.20, incident_hb_share:.10, branded_share:.62, lower_burden_share:.015, refractory_share:.20, validated_hb_candidate_share:.55, drug_durable_share:.15, mortality_attrition:.03, clinical_loss:.015, competitive_loss:.015, fellow_conversion:.10, fellow_at_risk_share:.35, ex_us_factor:.55, ex_us_price_index:.60, ex_us_delay_years:3, price_erosion:.040, clinical:{"HB branded":.80,"HB low-cost":.45,"Lower-burden branded":.20}, access:{"HB branded":.75,"HB low-cost":.65,"Lower-burden branded":.40}, capture:{"HB branded":.60,"HB low-cost":.35,"Lower-burden branded":.20}, price:{"HB branded":18000,"HB low-cost":12000,"Lower-burden branded":16000} }
+      assumptions: { active_eyes:1150000, incident_cases:200000, treat_init:.78, eyes_per_patient:1.15, high_burden_share:.20, incident_hb_share:.10, branded_share:.62, lower_burden_share:.015, refractory_share:.20, validated_hb_candidate_share:.55, drug_durable_share:.20, mortality_attrition:.03, clinical_loss:.015, competitive_loss:.015, fellow_conversion:.10, fellow_at_risk_share:.35, ex_us_factor:.55, ex_us_price_index:.60, ex_us_delay_years:3, price_erosion:.040, clinical:{"HB branded":.80,"HB low-cost":.45,"Lower-burden branded":.20}, access:{"HB branded":.75,"HB low-cost":.65,"Lower-burden branded":.40}, capture:{"HB branded":.60,"HB low-cost":.35,"Lower-burden branded":.20}, price:{"HB branded":18000,"HB low-cost":12000,"Lower-burden branded":16000} }
+    }
+  };
+  const COMMON_EVIDENCE = {
+    activeEyes: {
+      title: "Active treated nAMD eyes evidence",
+      links: [
+        { label: "Medicare FFS prevalence context", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12705084/" },
+        { label: "Medicare Advantage prevalence context", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11695844/" }
+      ],
+      captures: [
+        { src: "assets/evidence/ixo-vec-sources/active-treated-eyes-medicare-ffs.png", caption: "Medicare FFS prevalence source capture highlighting the 24,129,807 beneficiary denominator and 2.14% wet AMD prevalence used as denominator context." },
+        { src: "assets/evidence/ixo-vec-sources/active-treated-eyes-medicare-advantage.png", caption: "Medicare Advantage prevalence source capture highlighting the 1.2%-1.3% wet AMD prevalence range used as denominator context." },
+        { src: "assets/evidence/ixo-vec-sources/active-treated-eyes-derivation-note.png", caption: "Derivation note clarifying that the 1.15M active treated-eye estimate is triangulated, not directly quoted." }
+      ]
+    },
+    highBurden: {
+      title: "High-burden treated-eye share evidence",
+      links: [
+        { label: "IRIS Registry burden and switching study", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10767511/" },
+        { label: "USRetina switching evidence", url: "https://www.aaojournal.org/article/S0161-6420(20)30192-5/fulltext" }
+      ],
+      captures: [
+        { src: "assets/evidence/ixo-vec-sources/high-burden-iris-registry.png", caption: "IRIS Registry source capture highlighting injection frequency, discontinuation, and switching context that informs the high-burden treated-eye share." },
+        { src: "assets/evidence/ixo-vec-sources/mature-pool-usretina-switching.png", caption: "USRetina source capture highlighting 10,131 eyes (27.4%) switched during follow-up, used as pathway-fluidity context." },
+        { src: "assets/evidence/ixo-vec-sources/mature-pool-derivation-note.png", caption: "Derivation note clarifying that mature consideration shares are model assumptions, not observed switching rates." }
+      ]
+    },
+    launchPool: {
+      title: "Launch high-burden pool evidence",
+      links: [
+        { label: "Faricimab prior-agent proxy", url: "https://veranahealth.com/wp-content/uploads/2023/07/Verana_Health_ARVO_2023_FAR_Durga_Borkar_FINAL_042823.pdf" }
+      ],
+      captures: [
+        { src: "assets/evidence/ixo-vec-sources/initial-pool-faricimab-prior-agents.png", caption: "PDF poster crop highlighting prior anti-VEGF agent counts among faricimab initiators, used as a proxy for launch-stage treatment-experienced use." }
+      ]
+    },
+    adoptionAnalog: {
+      title: "Durable adoption analog evidence",
+      links: [
+        { label: "Roche Vabysmo sales context", url: "https://www.roche.com/media/releases/med-cor-2026-01-29" },
+        { label: "Regeneron EYLEA HD sales context", url: "https://www.sec.gov/Archives/edgar/data/872589/000087258926000004/exhibit991q42025.htm" }
+      ],
+      captures: [
+        { src: "assets/evidence/ixo-vec-sources/durable-adoption-roche-vabysmo.png", caption: "Roche source capture highlighting Vabysmo as part of a large branded growth-driver group, used as retina scale context rather than a direct share input." },
+        { src: "assets/evidence/ixo-vec-sources/durable-adoption-regeneron-eylea-hd.png", caption: "Regeneron source capture highlighting EYLEA HD full-year US net sales and growth, used as a durability-switch analog." }
+      ]
+    },
+    pricingContext: {
+      title: "Net revenue source-context evidence",
+      links: [
+        { label: "CMS ASP pricing source context", url: "https://www.cms.gov/medicare/payment/part-b-drugs/asp-pricing-files" }
+      ],
+      captures: [
+        { src: "assets/evidence/ixo-vec-sources/net-revenue-cms-asp.png", caption: "CMS ASP pricing page capture highlighting Medicare Part B ASP pricing-file context for physician-administered drugs." },
+        { src: "assets/evidence/ixo-vec-sources/net-revenue-assumption-note.png", caption: "Assumption note clarifying that modeled product net revenue is not directly sourced from CMS." }
+      ]
+    }
+  };
+  const PRODUCT_EVIDENCE = {
+    axpaxli: {
+      program: {
+        title: "AXPAXLI program context",
+        links: [{ label: "Ocular AXPAXLI clinical-trial page", url: "https://www.ocutx.com/pipeline/clinical-trials/" }],
+        captures: [
+          { src: "assets/evidence/pipeline-sources/axpaxli-program-context.png", caption: "Ocular clinical-trials page capture highlighting AXPAXLI, wet AMD, and SOL registrational trial context." },
+          { src: "assets/evidence/ixo-vec-sources/durable-allocation-axpaxli.png", caption: "AXPAXLI pipeline capture showing axitinib, Phase 3 wet AMD context, and reduced injection-frequency positioning." }
+        ]
+      },
+      benchmark: {
+        title: "AXPAXLI public benchmark context",
+        links: [{ label: "Needham estimate quoted by Sahm/Benzinga", url: "https://www.sahmcapital.com/news/content/ocular-therapeutix-axpaxli-advances-in-phase-3-for-wet-amd-analyst-forecasts-huge-upside-2025-03-11" }],
+        captures: [
+          { src: "assets/evidence/axpaxli-needham.png", caption: "Public article capture highlighting a roughly $1.5B peak-sales benchmark and second-line wet AMD source population context." },
+          { src: "assets/evidence/pipeline-sources/axpaxli-model-assumption-derivation.png", caption: "Derivation panel translating program and benchmark context into AXPAXLI-specific model assumptions." }
+        ]
+      }
+    },
+    duravyu: {
+      program: {
+        title: "DURAVYU program context",
+        links: [{ label: "EyePoint DURAVYU program page", url: "https://eyepoint.bio/our-programs/" }],
+        captures: [
+          { src: "assets/evidence/pipeline-sources/duravyu-program-context.png", caption: "EyePoint program-page capture highlighting DURAVYU, wet AMD, Phase 3, and vorolanib intravitreal insert context." }
+        ]
+      },
+      benchmark: {
+        title: "DURAVYU public benchmark context",
+        links: [{ label: "Jefferies estimate quoted by Investing.com", url: "https://www.investing.com/news/company-news/eyepoint-stock-gains-traction-with-new-amd-trials-jefferies-sees-65-upside-93CH-3682827" }],
+        captures: [
+          { src: "assets/evidence/duravyu-jefferies.png", caption: "Saved-text evidence panel highlighting Jefferies' $600M US plus $500M EU peak adjusted sales context." },
+          { src: "assets/evidence/pipeline-sources/duravyu-model-assumption-derivation.png", caption: "Derivation panel translating DURAVYU program and benchmark context into model assumptions." }
+        ]
+      }
+    },
+    rgx_314: {
+      program: {
+        title: "RGX-314 program context",
+        links: [{ label: "REGENXBIO ABBV-RGX-314 program page", url: "https://www.regenxbio.com/therapeutic-programs/rgx-314/" }],
+        captures: [
+          { src: "assets/evidence/pipeline-sources/rgx-314-program-context.png", caption: "REGENXBIO program-page capture highlighting ABBV-RGX-314, one-time wet AMD positioning, and subretinal/suprachoroidal routes." },
+          { src: "assets/evidence/ixo-vec-sources/durable-allocation-rgx314.png", caption: "RGX-314 / ABBV-RGX-314 capture showing one-time wet AMD treatment positioning." }
+        ]
+      },
+      benchmark: {
+        title: "RGX-314 public benchmark context",
+        links: [{ label: "REGENXBIO company release", url: "https://regenxbio.gcs-web.com/news-releases/news-release-details/regenxbio-announces-lancet-publication-phase-iiia-study" }],
+        captures: [
+          { src: "assets/evidence/rgx-314-regenxbio.png", caption: "Reader-rendered source capture highlighting multi-billion-dollar potential across wet AMD and diabetic retinopathy; this is not a wet AMD-only sales forecast." },
+          { src: "assets/evidence/pipeline-sources/rgx_314-model-assumption-derivation.png", caption: "Derivation panel explaining why the wet AMD model remains conservative versus multi-indication opportunity language." }
+        ]
+      }
+    },
+    four_d_150: {
+      program: {
+        title: "4D-150 program context",
+        links: [{ label: "4DMT pipeline page", url: "https://4dmoleculartherapeutics.com/pipeline/" }],
+        captures: [
+          { src: "assets/evidence/pipeline-sources/four-d-150-program-context.png", caption: "4DMT pipeline capture highlighting 4D-150, intravitreal delivery, wet AMD, Phase 3, and 4FRONT context." },
+          { src: "assets/evidence/ixo-vec-sources/durable-allocation-4d150-saved-text.png", caption: "Saved-text evidence panel for the 4D-150 Phase 3 wet AMD enrollment source." }
+        ]
+      },
+      benchmark: {
+        title: "4D-150 public benchmark context",
+        links: [{ label: "BofA estimate quoted by TipRanks/The Fly", url: "https://www.tipranks.com/news/the-fly/4d-molecular-price-target-raised-to-82-from-33-at-bofa" }],
+        captures: [
+          { src: "assets/evidence/four-d-150-bofa.png", caption: "Public article capture highlighting a $2.8B risk-adjusted peak-sales benchmark for 4D-150 in wet AMD." },
+          { src: "assets/evidence/pipeline-sources/four_d_150-model-assumption-derivation.png", caption: "Derivation panel translating 4D-150 program and benchmark context into model assumptions." }
+        ]
+      }
+    },
+    cls_ax: {
+      program: {
+        title: "CLS-AX program context",
+        links: [{ label: "Clearside CLS-AX pipeline page", url: "https://www.clearsidebio.com/pipeline/cls-ax/" }],
+        captures: [
+          { src: "assets/evidence/pipeline-sources/cls-ax-program-context.png", caption: "Clearside program-page capture highlighting CLS-AX, wet AMD, Phase 3-ready language, suprachoroidal delivery, and Phase 2b context." }
+        ]
+      },
+      benchmark: {
+        title: "CLS-AX public benchmark context",
+        links: [{ label: "GlobalData estimate quoted by Clinical Trials Arena", url: "https://www.clinicaltrialsarena.com/news/clearsides-wet-amd-drug-device-combo-shines-in-phase-iib-study/" }],
+        captures: [
+          { src: "assets/evidence/cls-ax-globaldata.png", caption: "Public article capture highlighting the GlobalData 2030 sales estimate if approved." },
+          { src: "assets/evidence/pipeline-sources/cls_ax-model-assumption-derivation.png", caption: "Derivation panel explaining the later-launch, lower-allocation CLS-AX model assumptions." }
+        ]
+      }
     }
   };
   const SCENARIO_FACTORS = {
@@ -101,6 +247,62 @@
   function fmtEyes(v) { return Math.abs(v) >= 1000 ? (v / 1000).toFixed(1) + "k" : Math.round(v).toLocaleString(); }
   function fmtPct(v) { return (v * 100).toFixed(v < .1 && v > 0 ? 1 : 0) + "%"; }
   function num(v) { return Number(v) || 0; }
+  function esc(value) {
+    return String(value || "").replace(/[&<>"']/g, char => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    }[char]));
+  }
+  function mergeEvidence(title, ...sets) {
+    const links = [];
+    const captures = [];
+    const seenLinks = new Set();
+    const seenCaptures = new Set();
+    for (const set of sets.filter(Boolean)) {
+      for (const link of set.links || []) {
+        const key = `${link.label}|${link.url}`;
+        if (!seenLinks.has(key)) {
+          links.push(link);
+          seenLinks.add(key);
+        }
+      }
+      for (const capture of set.captures || []) {
+        const key = capture.src;
+        if (!seenCaptures.has(key)) {
+          captures.push(capture);
+          seenCaptures.add(key);
+        }
+      }
+    }
+    return { title, links, captures };
+  }
+  function metricEvidence(drug, key) {
+    const product = PRODUCT_EVIDENCE[drug.slug] || {};
+    const assumption = product.benchmark;
+    const map = {
+      activeEyes: mergeEvidence("Active treated nAMD eyes evidence", COMMON_EVIDENCE.activeEyes),
+      candidate: mergeEvidence("High-burden pool and product-candidate evidence", COMMON_EVIDENCE.highBurden, COMMON_EVIDENCE.launchPool, product.program, assumption),
+      allocation: mergeEvidence(`${drug.shortName} durable-option allocation evidence`, product.program, assumption),
+      access: mergeEvidence(`${drug.shortName} access and route evidence`, product.program, assumption),
+      adoption: mergeEvidence(`${drug.shortName} durable-option adoption evidence`, COMMON_EVIDENCE.adoptionAnalog, product.program, assumption),
+      price: mergeEvidence(`${drug.shortName} net-revenue evidence and assumption`, COMMON_EVIDENCE.pricingContext, assumption),
+      exus: mergeEvidence(`${drug.shortName} ex-US assumption evidence`, assumption),
+      delay: mergeEvidence(`${drug.shortName} launch-timing evidence`, product.program, assumption)
+    };
+    return map[key] || null;
+  }
+  function sourceRow(drug, key) {
+    const set = metricEvidence(drug, key);
+    if (!set) return "";
+    const links = (set.links || []).map(link => `<a href="${esc(link.url)}" target="_blank" rel="noopener">${esc(link.label)}</a>`).join(", ") || "Explicit model assumption";
+    const button = (set.captures || []).length
+      ? `<div class="source-actions"><button type="button" class="source-evidence-button" data-source-key="${esc(key)}">View evidence and derivation</button></div>`
+      : "";
+    return `<dt>Sources</dt><dd>${links}${button}</dd>`;
+  }
   function applyPalette(drug) {
     const p = drug.palette || {};
     const root = document.documentElement;
@@ -305,20 +507,80 @@
       <section class="section"><div class="section-head"><h2>How the math works</h2><p>Each year repeats the same calculation logic, then rolls forward the remaining untreated source pools.</p></div><div class="formula">${formulaSteps(drug)}</div></section>
       <section class="section"><div class="section-head"><h2>Segment mix</h2><p>The base case separates high-burden branded anti-VEGF, high-burden low-cost anti-VEGF, and lower-burden branded anti-VEGF source pools. These labels describe source-of-business, not market share or price by disease severity.</p></div><div class="two-col"><div class="mix-card">${segmentMix(model, s.peak.year)}</div><div class="caveat-grid">${caveats(drug)}</div></div></section>
       <section class="section"><div class="section-head"><h2>Year-by-year bridge</h2><p>This table shows the annual outputs most useful for external review.</p></div><div class="table-wrap"><table>${annualTable(model)}</table></div><p class="source-note">Source context: <a href="${drug.source.url}" target="_blank" rel="noopener">${drug.source.label}</a>. Forecast values are model-ready assumptions from the wet AMD pipeline input file and are intended for sensitivity analysis.</p></section>
-    </main>`;
+    </main>
+    <div class="source-modal" id="source-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="source-modal-title">
+      <div class="source-modal-panel">
+        <div class="source-modal-head">
+          <div class="source-modal-title" id="source-modal-title">Highlighted source capture</div>
+          <button type="button" class="source-modal-close" id="source-modal-close">Close</button>
+        </div>
+        <div class="source-modal-body" id="source-modal-body"></div>
+      </div>
+    </div>`;
+    setupSourceModal(drug);
   }
   function metricCards(drug, a) {
     const cards = [
-      ["A", "Active treated nAMD eyes", fmtEyes(a.active_eyes), "Estimated US treated-eye denominator used before narrowing to source-of-business segments.", `1.15M active treated eyes x ${fmtPct(a.high_burden_share)} high-burden share = ${fmtEyes(a.active_eyes * a.high_burden_share)} high-burden eyes before source filters.`],
-      ["B", "Mature high-burden pool considered", fmtPct(a.validated_hb_candidate_share), "Mature share of high-burden source eyes considered clinically and commercially plausible for durable-option use.", `Launch starts at ${fmtPct(a.refractory_share)} refractory/high-burden consideration and ramps to ${fmtPct(a.validated_hb_candidate_share)}.`],
-      ["C", `${drug.shortName} allocation within durable options`, fmtPct(a.drug_durable_share), `Modeled portion of durable-option use assigned to ${drug.shortName} after allowing for other long-duration competitors.`, `This is not market share. It is product allocation within durable-treatment use after access and adoption are applied.`],
-      ["D", "HB branded eligible/access share", fmtPct(a.access["HB branded"]), "Peak share of high-burden branded-source eyes reachable after clinical suitability, payer access, site readiness, and logistics.", `${drug.routeClass} informs the access ceiling.`],
-      ["E", "HB branded durable-option adoption", fmtPct(a.capture["HB branded"]), "Mature durable-option adoption within eligible and accessible high-burden branded-source eyes before product allocation.", `Durable-option use is multiplied by ${fmtPct(a.drug_durable_share)} to estimate ${drug.shortName} treated eyes.`],
-      ["F", "US net revenue per HB branded eye", fmtMoney(a.price["HB branded"] / 1_000_000), "Scenario net revenue per treated eye or treatment course for high-burden branded-source eyes.", `The model uses $${a.price["HB branded"].toLocaleString()} per US treated eye before the annual price index.`],
-      ["G", "Ex-US sales factor vs US", a.ex_us_factor.toFixed(2) + "x", "Volume/access factor used to add ex-US revenue after launch delay and ex-US price haircut.", `Ex-US sales = US sales x ${a.ex_us_factor.toFixed(2)} volume/access factor x ${a.ex_us_price_index.toFixed(2)} price index x annual uptake.`],
-      ["H", "Ex-US delay", `${a.ex_us_delay_years} years`, "Delay between modeled US launch and ex-US contribution.", `Commercial launch is modeled from ${drug.launchYear}; ex-US contribution begins in ${drug.launchYear + a.ex_us_delay_years}.`]
+      { key:"activeEyes", letter:"A", label:"Active treated nAMD eyes", value:fmtEyes(a.active_eyes), text:"Estimated US treated-eye denominator used before narrowing to source-of-business segments.", basis:"Assumption informed by prevalence and treated-population context.", calculation:`1.15M active treated eyes x ${fmtPct(a.high_burden_share)} high-burden share = ${fmtEyes(a.active_eyes * a.high_burden_share)} high-burden eyes before source filters.`, rationale:"Held constant across the five pipeline programs so product differences come from route, access, adoption, allocation, pricing, and launch timing." },
+      { key:"candidate", letter:"B", label:"Mature high-burden pool considered", value:fmtPct(a.validated_hb_candidate_share), text:"Mature share of high-burden source eyes considered clinically and commercially plausible for durable-option use.", basis:"Assumption informed by anti-VEGF burden evidence, switching evidence, and product-specific route/stage context.", calculation:`Launch starts at ${fmtPct(a.refractory_share)} refractory/high-burden consideration and ramps to ${fmtPct(a.validated_hb_candidate_share)} mature consideration.`, rationale:`${drug.routeClass} supports this product-specific mature candidate-pool assumption.` },
+      { key:"allocation", letter:"C", label:`${drug.shortName} allocation within durable options`, value:fmtPct(a.drug_durable_share), text:`Modeled portion of durable-option use assigned to ${drug.shortName} after allowing for other long-duration competitors.`, basis:"Competitive allocation assumption informed by the product profile and public benchmark context.", calculation:`Durable-option use x ${fmtPct(a.drug_durable_share)} ${drug.shortName} allocation = treated eyes assigned to ${drug.shortName}.`, rationale:"This is not market share. It is product allocation within modeled durable-treatment use after access and adoption are applied." },
+      { key:"access", letter:"D", label:"HB branded eligible/access share", value:fmtPct(a.access["HB branded"]), text:"Peak share of high-burden branded-source eyes reachable after clinical suitability, payer access, site readiness, and logistics.", basis:"Route, administration workflow, and evidence maturity assumption.", calculation:`The high-burden branded source pool is multiplied by ${fmtPct(a.access["HB branded"])} peak eligible/access share and the annual access timing ramp.`, rationale:`${drug.routeClass} informs the access ceiling.` },
+      { key:"adoption", letter:"E", label:"HB branded durable-option adoption", value:fmtPct(a.capture["HB branded"]), text:"Mature durable-option adoption within eligible and accessible high-burden branded-source eyes before product allocation.", basis:"Analog-informed assumption based on branded retina uptake context plus product-specific durability and workflow.", calculation:`Eligible/access eyes x ${fmtPct(a.capture["HB branded"])} durable-option adoption x annual adoption ramp = durable-option use before ${drug.shortName} allocation.`, rationale:`Durable-option use is then multiplied by ${fmtPct(a.drug_durable_share)} to estimate ${drug.shortName} treated eyes.` },
+      { key:"price", letter:"F", label:"US net revenue per HB branded eye", value:"$" + a.price["HB branded"].toLocaleString(), text:"Scenario net revenue per treated eye or treatment course for high-burden branded-source eyes.", basis:"Modeled net-revenue assumption, not a published product price.", calculation:`US sales in each segment = treated eyes x $${a.price["HB branded"].toLocaleString()} HB branded net revenue x annual price index / 1,000,000.`, rationale:"The value reflects product class, expected treatment duration economics, payer controls, and public benchmark reasonableness rather than a directly sourced price." },
+      { key:"exus", letter:"G", label:"Ex-US sales factor vs US", value:a.ex_us_factor.toFixed(2) + "x", text:"Volume/access factor used to add ex-US revenue after launch delay and ex-US price haircut.", basis:"Explicit global gross-up assumption.", calculation:`Ex-US sales = US sales x ${a.ex_us_factor.toFixed(2)} volume/access factor x ${a.ex_us_price_index.toFixed(2)} price index x annual ex-US uptake.`, rationale:"Used as a simple global contribution factor while the model remains above country-level launch, price, and access detail." },
+      { key:"delay", letter:"H", label:"Ex-US delay", value:`${a.ex_us_delay_years} years`, text:"Delay between modeled US launch and ex-US contribution.", basis:"Explicit launch-sequencing assumption.", calculation:`Commercial launch is modeled from ${drug.launchYear}; ex-US contribution begins in ${drug.launchYear + a.ex_us_delay_years}.`, rationale:"The model treats ex-US launch as delayed and ramped rather than simultaneous with the US commercial year." }
     ];
-    return cards.map(c => `<article class="metric-card"><div class="metric-label"><span class="input-code">${c[0]}</span>${c[1]}</div><div class="metric-value">${c[2]}</div><p>${c[3]}</p><dl class="card-proof"><dt>Calculation</dt><dd>${c[4]}</dd><dt>Rationale</dt><dd>${drug.rationale}</dd></dl></article>`).join("");
+    return cards.map(c => `<article class="metric-card"><div class="metric-label"><span class="input-code">${c.letter}</span>${c.label}</div><div class="metric-value">${c.value}</div><p>${c.text}</p><dl class="card-proof"><dt>Basis</dt><dd>${c.basis}</dd><dt>Calculation</dt><dd><span class="calc-ref">${c.letter}</span> ${c.calculation}</dd><dt>Rationale</dt><dd>${c.rationale}</dd>${sourceRow(drug, c.key)}</dl></article>`).join("");
+  }
+  function setupSourceModal(drug) {
+    const modal = document.getElementById("source-modal");
+    const title = document.getElementById("source-modal-title");
+    const body = document.getElementById("source-modal-body");
+    const close = document.getElementById("source-modal-close");
+    let lastTrigger = null;
+    let lockedScrollY = 0;
+    function closeModal() {
+      modal.setAttribute("aria-hidden", "true");
+      body.innerHTML = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      document.documentElement.style.overflow = "";
+      window.scrollTo(0, lockedScrollY);
+      if (lastTrigger) lastTrigger.focus();
+    }
+    document.querySelectorAll(".source-evidence-button").forEach(button => {
+      button.addEventListener("click", () => {
+        lastTrigger = button;
+        const set = metricEvidence(drug, button.dataset.sourceKey);
+        const captures = (set && set.captures) || [];
+        title.textContent = (set && set.title) || "Highlighted source capture";
+        body.innerHTML = captures.length
+          ? captures.map(capture => {
+              const caption = capture.caption || title.textContent;
+              return `<figure class="source-capture"><figcaption>${esc(caption)}</figcaption><img src="${esc(capture.src)}" alt="${esc(caption)}"></figure>`;
+            }).join("")
+          : "<p>No source capture is available for this item.</p>";
+        lockedScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+        document.body.style.position = "fixed";
+        document.body.style.top = `-${lockedScrollY}px`;
+        document.body.style.left = "0";
+        document.body.style.right = "0";
+        document.body.style.width = "100%";
+        document.documentElement.style.overflow = "hidden";
+        modal.setAttribute("aria-hidden", "false");
+        close.focus();
+      });
+    });
+    close.addEventListener("click", closeModal);
+    modal.addEventListener("click", event => {
+      if (event.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && modal.getAttribute("aria-hidden") === "false") closeModal();
+    });
   }
   function calcKey(drug, hb, total, a, y) {
     const rows = [

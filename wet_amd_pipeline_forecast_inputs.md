@@ -66,31 +66,31 @@ These stay aligned to the ixo-vec base case so product differences do not get co
 
 | Program | Launch year | `lower_burden_share` | `refractory_share` | `validated_hb_candidate_share` | `drug_durable_share` | `ex_us_factor` | `ex_us_price_index` | `ex_us_delay_years` | `price_erosion` |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| AXPAXLI / OTX-TKI | 2028 | 0.035 | 0.25 | 0.80 | 0.40 | 0.70 | 0.60 | 2 | 0.040 |
-| DURAVYU / EYP-1901 | 2028 | 0.025 | 0.22 | 0.75 | 0.30 | 0.65 | 0.60 | 2 | 0.040 |
+| AXPAXLI / OTX-TKI | 2028 | 0.035 | 0.25 | 0.80 | 0.45 | 0.70 | 0.60 | 2 | 0.040 |
+| DURAVYU / EYP-1901 | 2028 | 0.025 | 0.22 | 0.75 | 0.38 | 0.65 | 0.60 | 2 | 0.040 |
 | RGX-314 / ABBV-RGX-314 | 2029 | 0.005 | 0.18 | 0.60 | 0.25 | 0.75 | 0.50 | 2 | 0.035 |
-| 4D-150 | 2030 | 0.010 | 0.18 | 0.70 | 0.30 | 0.667 | 0.50 | 2 | 0.030 |
-| CLS-AX | 2031 | 0.015 | 0.20 | 0.55 | 0.15 | 0.55 | 0.60 | 3 | 0.040 |
+| 4D-150 | 2030 | 0.010 | 0.18 | 0.70 | 0.37 | 0.667 | 0.50 | 2 | 0.030 |
+| CLS-AX | 2031 | 0.015 | 0.20 | 0.55 | 0.20 | 0.55 | 0.60 | 3 | 0.040 |
 
 ## Segment Inputs
 
 | Program | `clinical_hb_branded` | `clinical_hb_low_cost` | `clinical_lower_burden` | `access_hb_branded` | `access_hb_low_cost` | `access_lower_burden` | `capture_hb_branded` | `capture_hb_low_cost` | `capture_lower_burden` | `price_hb_branded` | `price_hb_low_cost` | `price_lower_burden` |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| AXPAXLI / OTX-TKI | 0.90 | 0.55 | 0.35 | 0.90 | 0.80 | 0.55 | 0.75 | 0.45 | 0.30 | 22000 | 15000 | 20000 |
-| DURAVYU / EYP-1901 | 0.85 | 0.50 | 0.30 | 0.85 | 0.75 | 0.50 | 0.70 | 0.40 | 0.25 | 20000 | 14000 | 18000 |
+| AXPAXLI / OTX-TKI | 0.90 | 0.55 | 0.35 | 0.90 | 0.80 | 0.55 | 0.75 | 0.45 | 0.30 | 24000 | 16000 | 22000 |
+| DURAVYU / EYP-1901 | 0.85 | 0.50 | 0.30 | 0.85 | 0.75 | 0.50 | 0.70 | 0.40 | 0.25 | 22000 | 15000 | 20000 |
 | RGX-314 / ABBV-RGX-314 | 0.75 | 0.20 | 0.08 | 0.70 | 0.55 | 0.20 | 0.60 | 0.20 | 0.10 | 95000 | 55000 | 75000 |
-| 4D-150 | 0.80 | 0.25 | 0.10 | 0.85 | 0.70 | 0.30 | 0.70 | 0.25 | 0.15 | 85000 | 50000 | 70000 |
+| 4D-150 | 0.80 | 0.25 | 0.10 | 0.88 | 0.70 | 0.30 | 0.75 | 0.25 | 0.15 | 90000 | 52000 | 75000 |
 | CLS-AX | 0.80 | 0.45 | 0.20 | 0.75 | 0.65 | 0.40 | 0.60 | 0.35 | 0.20 | 18000 | 12000 | 16000 |
 
 ## Rationale By Program
 
 ### AXPAXLI / OTX-TKI
 
-Use the broadest candidate pool and highest durable-class share among the non-gene-therapy programs. The local topic page describes a sustained-release intravitreal hydrogel implant administered by 25G needle, with 8-9 month bioresorption, 89% anti-VEGF burden reduction at Week 52, and Phase 3 development under SOL-1 and SOL-R. Because this is an intravitreal implant rather than gene therapy, use lower net revenue per treated eye than ixo-vec but broader lower-burden expansion and stronger low-cost-source access.
+Use the broadest candidate pool and highest durable-class share among the non-gene-therapy programs. The local topic page describes a sustained-release intravitreal hydrogel implant administered by 25G needle, with 8-9 month bioresorption, 89% anti-VEGF burden reduction at Week 52, and Phase 3 development under SOL-1 and SOL-R. Because this is an intravitreal implant rather than gene therapy, use lower net revenue per treated eye than ixo-vec but broader lower-burden expansion and stronger low-cost-source access. The updated base case lifts AXPAXLI allocation and net revenue modestly to remain directionally consistent with public wet AMD opportunity estimates while staying below the highest external benchmark.
 
 ### DURAVYU / EYP-1901
 
-Use a similar but slightly more conservative profile than AXPAXLI. DURAVYU has active Phase 3 LUGANO/LUCIA wet AMD programs and Phase 2 data, but the local evidence package supports a durable insert thesis rather than clear superiority. Use broad access and moderate-high durable-class adoption, with annual/course net price below gene therapy and close to other durable TKI approaches.
+Use a similar but slightly more conservative profile than AXPAXLI. DURAVYU has active Phase 3 LUGANO/LUCIA wet AMD programs and Phase 2 data, but the local evidence package supports a durable insert thesis rather than clear superiority. Use broad access and moderate-high durable-class adoption, with annual/course net price below gene therapy and close to other durable TKI approaches. The updated base case raises allocation and HB branded net revenue versus the earlier conservative input set but still discounts the public adjusted US/EU sales benchmark for execution risk and competition.
 
 ### RGX-314 / ABBV-RGX-314
 
@@ -98,11 +98,11 @@ Use high gene-therapy pricing but lower access and candidate breadth than intrav
 
 ### 4D-150
 
-Use a gene-therapy price and access profile between ixo-vec and RGX-314. The local archive presents 4D-150 as an intravitreal R100 AAV program with aflibercept expression plus VEGF-C RNAi, and Phase 3 nAMD trials are present in the local CT.gov data. Intravitreal delivery supports better access than subretinal gene therapy, but AAV/steroid monitoring and durable-class competition keep product share below the current ixo-vec base case.
+Use a gene-therapy price and access profile between ixo-vec and RGX-314. The local archive presents 4D-150 as an intravitreal R100 AAV program with aflibercept expression plus VEGF-C RNAi, and Phase 3 nAMD trials are present in the local CT.gov data. Intravitreal delivery supports better access than subretinal gene therapy, but AAV/steroid monitoring and durable-class competition keep product share below the current ixo-vec base case. The updated base case raises allocation, HB branded access, adoption, and net revenue to better reflect the strong public wet AMD benchmarks while preserving a discount for AAV risk.
 
 ### CLS-AX
 
-Use the narrowest durable-class share and later launch. The local evidence map shows Phase 2 ODYSSEY completion and Phase 3 design, with suprachoroidal 1 mg dosing at 12-24 week intervals. It is an in-office approach, but requires a specialized suprachoroidal delivery workflow and currently has less late-stage evidence than AXPAXLI, DURAVYU, RGX-314, or 4D-150. Price should be below gene therapy and slightly below the more advanced intravitreal TKI implants.
+Use the narrowest durable-class share and later launch. The local evidence map shows Phase 2 ODYSSEY completion and Phase 3 design, with suprachoroidal 1 mg dosing at 12-24 week intervals. It is an in-office approach, but requires a specialized suprachoroidal delivery workflow and currently has less late-stage evidence than AXPAXLI, DURAVYU, RGX-314, or 4D-150. Price should be below gene therapy and slightly below the more advanced intravitreal TKI implants. The updated base case raises product allocation from the earlier floor assumption, but keeps a 2031 launch and conservative peak because the public 2030 GlobalData benchmark is explicitly conditional on approval.
 
 ## Sensitivity Guidance
 
@@ -115,4 +115,3 @@ The first sensitivity run should not change market-wide denominators. Instead va
 | `access_*` | Reduce for subretinal surgery, steroid monitoring, site training, or payer step edits. | Increase for routine intravitreal administration and strong payer economics. |
 | `price_*` | Reduce for repeat TKI implants or biosimilar-like payer pressure. | Increase for one-time gene therapy with strong anti-VEGF offset economics. |
 | `lower_burden_share` | Set near zero if use is limited to refractory or persistent active disease. | Increase if the product can replace branded anti-VEGF in stable patients. |
-
