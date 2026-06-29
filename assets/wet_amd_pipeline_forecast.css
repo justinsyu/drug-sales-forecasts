@@ -124,7 +124,7 @@ svg { width: 100%; height: auto; display: block; }
 .button-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
 .button-row button { min-height: 38px; border: 1px solid var(--black); background: var(--white); padding: 8px 12px; cursor: pointer; }
 .button-row button.primary { background: var(--black); color: var(--white); }
-.trace-grid, .definitions, .metric-grid, .term-grid, .caveat-grid { display: grid; gap: 1px; background: var(--black); border: 1px solid var(--black); }
+.trace-grid, .definitions, .term-grid, .caveat-grid { display: grid; gap: 1px; background: var(--black); border: 1px solid var(--black); }
 .trace-grid { margin-top: 18px; grid-template-columns: repeat(3, 1fr); }
 .trace, .definition, .metric-card, .term, .caveat { background: var(--white); }
 .trace { padding: 14px 15px; min-height: 138px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-content: start; }
@@ -135,8 +135,8 @@ svg { width: 100%; height: auto; display: block; }
 .trace p, .definition p, .term p, .caveat p { color: #374151; font-size: 12.5px; line-height: 1.35; }
 .definitions { grid-template-columns: repeat(4, 1fr); margin-top: 22px; }
 .definition { padding: 14px 15px; min-height: 128px; }
-.metric-grid { grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--black); }
-.metric-card { min-height: 288px; padding: 17px 18px; }
+.metric-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; border-top: 1px solid var(--black); padding-top: 16px; }
+.metric-card { min-height: 288px; padding: 17px 18px; border: 1px solid var(--rule); border-top: 1px solid var(--black); }
 .metric-label { display: flex; align-items: center; gap: 7px; font-size: 13px; line-height: 1.2; color: var(--muted); min-height: 32px; }
 .input-code { width: 21px; height: 21px; margin-right: 0; }
 .metric-value { font-family: "GS Serif", Georgia, serif; font-size: 35px; line-height: 1; margin: 10px 0; }

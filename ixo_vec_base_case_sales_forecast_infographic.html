@@ -101,15 +101,17 @@
     .nav-tools a {
       min-height: 40px;
       border: 1px solid var(--black);
-      background: var(--black);
-      color: var(--white);
-      padding: 10px 13px;
+      background: var(--white);
+      color: var(--black);
+      padding: 9px 13px;
       text-decoration: none;
       font-size: 14px;
       line-height: 1;
       display: inline-flex;
       align-items: center;
+      justify-content: center;
     }
+    .nav-tools a:first-child { background: var(--black); color: var(--white); }
     .kpi-strip {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -747,6 +749,7 @@
       .meta { border-left: 0; border-top: 1px solid var(--black); padding: 18px 0 0; }
     }
     @media (max-width: 540px) {
+      .nav-tools a { width: 100%; text-align: center; }
       .kpi-strip, .metric-grid, .formula, .calc-key-grid { grid-template-columns: 1fr; }
       .metric-card { border-right: 0; }
       .mix-row { grid-template-columns: 44px 1fr; }
@@ -770,6 +773,7 @@
 
     <nav class="nav-tools" aria-label="Related model tools">
       <a href="ixo_vec_interactive_model_calculator.html">Open interactive model calculator</a>
+      <a href="index.html">Forecast index</a>
     </nav>
 
     <section class="kpi-strip" aria-label="Base case summary metrics">
