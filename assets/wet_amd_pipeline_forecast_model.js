@@ -219,6 +219,25 @@
       }
     }
   };
+  const PUBLIC_SALES_ESTIMATES = {
+    axpaxli: [
+      { label: "Needham", value: 1500, year: null, type: "wet", description: "Peak sales", scope: "Wet AMD only", caveat: "Peak year not disclosed; wet AMD-only second-line anti-VEGF burden population." },
+      { label: "TD Cowen", value: 1000, year: null, type: "wet", description: "Peak sales", scope: "Wet AMD only; separate NPDR estimate excluded from the chart", caveat: "Peak year not disclosed; the separate $800M NPDR opportunity is excluded from this wet AMD chart." }
+    ],
+    duravyu: [
+      { label: "Jefferies", value: 1100, year: null, type: "adjusted", description: "Peak adjusted sales", scope: "Wet AMD only; U.S. plus EU", caveat: "Probability-weighted estimate: $600M U.S. plus $500M EU at 65% probability of success; peak year not disclosed." }
+    ],
+    rgx_314: [
+      { label: "Motley Fool", value: 2100, year: 2030, type: "multi", description: "Annual sales by 2030", scope: "Wet AMD plus diabetic retinopathy", caveat: "Older contributor-derived estimate and not wet AMD-only; includes diabetic retinopathy." }
+    ],
+    four_d_150: [
+      { label: "BofA", value: 2800, year: null, type: "adjusted", description: "Risk-adjusted peak sales", scope: "Wet AMD only", caveat: "Risk-adjusted means discounted for development and approval risk; peak year not disclosed." },
+      { label: "Goldman Sachs", value: 2400, year: null, type: "wet", description: "Peak sales", scope: "Wet AMD only", caveat: "Underlying analyst model is not public; peak year not disclosed." }
+    ],
+    cls_ax: [
+      { label: "GlobalData", value: 204, year: 2030, type: "wet", description: "Annual sales if approved", scope: "Appears wet AMD only", caveat: "If-approved estimate; article is wet AMD-framed, but the underlying GlobalData model is not fully public." }
+    ]
+  };
   const SCENARIO_FACTORS = {
     Bear: { market:.90, candidate:-.15, share:-.10, access:-.10, capture:-.10, price:.85, exus:.80, erosion:.02 },
     Base: { market:1, candidate:0, share:0, access:0, capture:0, price:1, exus:1, erosion:0 },
@@ -255,6 +274,69 @@
       '"': "&quot;",
       "'": "&#39;"
     }[char]));
+  }
+  function publicEstimatesForDrug(drug) {
+    return (PUBLIC_SALES_ESTIMATES[drug.slug] || []).filter(estimate => estimate.value != null);
+  }
+  function publicEstimateClass(estimate) {
+    return estimate.type === "adjusted" ? "estimate-adjusted" : estimate.type === "multi" ? "estimate-multi" : "estimate-wet";
+  }
+  function publicEstimateLegend(drug) {
+    const labels = {
+      wet: "Public wet AMD estimate",
+      adjusted: "Public adjusted estimate",
+      multi: "Public multi-indication estimate"
+    };
+    const seen = new Set();
+    return publicEstimatesForDrug(drug).map(estimate => {
+      if (seen.has(estimate.type)) return "";
+      seen.add(estimate.type);
+      return `<span class="${publicEstimateClass(estimate)}">${labels[estimate.type]}</span>`;
+    }).join("");
+  }
+  function publicEstimateNote(drug, peakYear) {
+    const estimates = publicEstimatesForDrug(drug);
+    if (!estimates.length) return "";
+    const items = estimates.map(estimate => {
+      const timing = estimate.year ? `in ${estimate.year}` : `peak estimate, plotted at the model peak year ${peakYear} because the public peak year was not disclosed`;
+      return `${estimate.label} ${fmtMoney(estimate.value)} ${timing}`;
+    }).join("; ");
+    const sourceCaveats = estimates.map(estimate => estimate.caveat).filter(Boolean).join(" ");
+    const hasAdjusted = estimates.some(estimate => estimate.type === "adjusted");
+    const hasMulti = estimates.some(estimate => estimate.type === "multi");
+    const caveats = [
+      "External estimate markers are not used to calculate the model curve.",
+      sourceCaveats,
+      hasAdjusted ? "Adjusted estimates are probability-weighted." : "",
+      hasMulti ? "Multi-indication estimates include diseases beyond wet AMD." : ""
+    ].filter(Boolean).join(" ");
+    return `<p class="chart-note"><strong>External estimate markers:</strong> ${esc(items)}. ${esc(caveats)}</p>`;
+  }
+  function publicEstimateMarkers(drug, peakYear, x, yy, left, right, top, bottom) {
+    const estimates = publicEstimatesForDrug(drug);
+    if (!estimates.length) return "";
+    const counts = {};
+    for (const estimate of estimates) {
+      const plotYear = estimate.year || peakYear;
+      counts[plotYear] = (counts[plotYear] || 0) + 1;
+    }
+    const positions = {};
+    return estimates.map(estimate => {
+      const plotYear = estimate.year || peakYear;
+      if (plotYear < YEARS[0] || plotYear > YEARS[YEARS.length - 1]) return "";
+      positions[plotYear] = positions[plotYear] || 0;
+      const index = positions[plotYear]++;
+      const groupSize = counts[plotYear] || 1;
+      const cx = x(plotYear);
+      const cy = yy(estimate.value);
+      const anchor = plotYear >= 2041 ? `text-anchor="end"` : "";
+      const dx = plotYear >= 2041 ? -10 : 10;
+      const labelY = clamp(cy - 20 - index * 18, top + 12, bottom - 8);
+      const klass = publicEstimateClass(estimate);
+      const timing = estimate.year ? estimate.year : "peak";
+      const label = `${estimate.label} ${fmtMoney(estimate.value)} ${timing}`;
+      return `<line x1="${left}" y1="${cy.toFixed(1)}" x2="${right}" y2="${cy.toFixed(1)}" class="estimate-guide ${klass}"/><path d="M ${cx.toFixed(1)} ${(cy-6).toFixed(1)} L ${(cx+6).toFixed(1)} ${cy.toFixed(1)} L ${cx.toFixed(1)} ${(cy+6).toFixed(1)} L ${(cx-6).toFixed(1)} ${cy.toFixed(1)} Z" class="estimate-dot ${klass}"/><text x="${(cx+dx).toFixed(1)}" y="${labelY.toFixed(1)}" ${anchor} class="estimate-label">${esc(label)}</text>`;
+    }).join("");
   }
   function mergeEvidence(title, ...sets) {
     const links = [];
@@ -458,9 +540,10 @@
     const selectedYear = Math.min(2045, drug.launchYear + 7);
     return { peak, firstB, selectedYear, selected: model.sales[selectedYear] };
   }
-  function chartSvg(model, markYears) {
+  function chartSvg(model, markYears, drug, s) {
     const left = 58, right = 922, top = 42, bottom = 360;
-    const values = YEARS.flatMap(y => [model.sales[y].world, model.sales[y].us, model.sales[y].exus]);
+    const estimates = publicEstimatesForDrug(drug);
+    const values = YEARS.flatMap(y => [model.sales[y].world, model.sales[y].us, model.sales[y].exus]).concat(estimates.map(estimate => estimate.value));
     const max = Math.max(...values, 1000) * 1.16;
     const x = y => left + (YEARS.indexOf(y) / (YEARS.length - 1)) * (right - left);
     const yy = v => bottom - (v / max) * (bottom - top);
@@ -474,7 +557,8 @@
       const dx = y >= 2043 ? -8 : 8;
       return `<circle cx="${x(y).toFixed(1)}" cy="${yy(row.exus).toFixed(1)}" r="4.5" class="exus-dot"/><circle cx="${x(y).toFixed(1)}" cy="${yy(row.us).toFixed(1)}" r="4.5" class="us-dot"/><circle cx="${x(y).toFixed(1)}" cy="${yy(row.world).toFixed(1)}" r="4.5" class="world-dot"/><text x="${(x(y)+dx).toFixed(1)}" y="${(yy(row.world)-9).toFixed(1)}" ${labelAnchor} class="series-label">${y}: ${fmtMoney(row.world)}</text>`;
     }).join("");
-    return `<svg viewBox="0 0 980 420" role="img" aria-label="Base case sales forecast chart">${grid}<line x1="${left}" y1="${bottom}" x2="${right}" y2="${bottom}" class="axis"/><polyline points="${path(y => model.sales[y].exus)}" class="line exus-line"/><polyline points="${path(y => model.sales[y].us)}" class="line us-line"/><polyline points="${path(y => model.sales[y].world)}" class="line world-line"/>${labels}${YEARS.filter(y => [2025,2028,2030,2033,2036,2039,2042,2045].includes(y)).map(y => `<text x="${x(y).toFixed(1)}" y="395" text-anchor="middle" class="axis-label">${y}</text>`).join("")}</svg>`;
+    const estimatesSvg = publicEstimateMarkers(drug, s.peak.year, x, yy, left, right, top, bottom);
+    return `<svg viewBox="0 0 980 420" role="img" aria-label="Base case sales forecast chart with public external estimate markers">${grid}<line x1="${left}" y1="${bottom}" x2="${right}" y2="${bottom}" class="axis"/><polyline points="${path(y => model.sales[y].exus)}" class="line exus-line"/><polyline points="${path(y => model.sales[y].us)}" class="line us-line"/><polyline points="${path(y => model.sales[y].world)}" class="line world-line"/>${estimatesSvg}${labels}${YEARS.filter(y => [2025,2028,2030,2033,2036,2039,2042,2045].includes(y)).map(y => `<text x="${x(y).toFixed(1)}" y="395" text-anchor="middle" class="axis-label">${y}</text>`).join("")}</svg>`;
   }
   function heatColor(v, palette) {
     const t = clamp(v, 0, 1);
@@ -500,7 +584,7 @@
       <header><div><h1>${drug.shortName} Base Case Sales Forecast</h1><p class="deck">A model view of how patient opportunity, annual adoption ramps, durable-treatment competition, pricing, and ex-US launch timing convert into a year-by-year worldwide sales forecast.</p></div><aside class="meta"><div><strong>Base case</strong> Most realistic estimate using available public data plus stated assumptions.</div><div><strong>Model period</strong> 2025-2045, with commercial launch modeled from ${drug.launchYear}.</div><div><strong>Program</strong> ${drug.company}; ${drug.modality}.</div></aside></header>
       <nav class="nav-tools" aria-label="Related model tools"><a href="${drug.slug}_interactive_model_calculator.html">Open interactive model calculator</a><a href="index.html">Forecast index</a></nav>
       <section class="kpi-strip" aria-label="Base case summary metrics"><div class="kpi"><div class="label">Peak worldwide sales</div><div class="value">${fmtMoney(s.peak.world)}</div><p>${s.peak.year}</p></div><div class="kpi"><div class="label">Base-case forecast for ${s.selectedYear}</div><div class="value">${fmtMoney(s.selected.world)}</div><p>Worldwide sales in launch year ${s.selectedYear - drug.launchYear + 1}.</p></div><div class="kpi"><div class="label">First year above $1B</div><div class="value">${s.firstB ? s.firstB.year : "Not reached"}</div><p>Worldwide sales threshold in the base case.</p></div><div class="kpi"><div class="label">Peak US treated eyes</div><div class="value">${fmtEyes(s.peak.treated)}</div><p>US treated eyes across source-of-business segments.</p></div></section>
-      <section class="section"><div class="section-head"><h2>Sales curve</h2><p>The forecast is shifted to the estimated ${drug.launchYear} commercial launch and uses product-specific assumptions for eligible/access, durable-option allocation, pricing, ex-US timing, and erosion. Source-of-business segments are patient pools by current treatment source, not market share or disease-burden pricing tiers.</p></div><div class="chart-panel"><div class="legend"><span>Worldwide sales</span><span class="us">US sales</span><span class="exus">Ex-US sales</span></div>${chartSvg(model, markYears)}</div></section>
+      <section class="section"><div class="section-head"><h2>Sales curve</h2><p>The forecast is shifted to the estimated ${drug.launchYear} commercial launch and uses product-specific assumptions for eligible/access, durable-option allocation, pricing, ex-US timing, and erosion. Source-of-business segments are patient pools by current treatment source, not market share or disease-burden pricing tiers.</p></div><div class="chart-panel"><div class="legend"><span>Worldwide sales</span><span class="us">US sales</span><span class="exus">Ex-US sales</span>${publicEstimateLegend(drug)}</div>${chartSvg(model, markYears, drug, s)}${publicEstimateNote(drug, s.peak.year)}</div></section>
       <section class="section"><div class="section-head"><h2>Core inputs</h2><p>These base-case assumptions shape the annual calculation. Market-wide denominators are held constant across pipeline programs so differences come from product characteristics and launch timing.</p></div><div class="metric-grid">${metricCards(drug, assumptions)}</div><div class="calc-key"><h3>Calculation variable key</h3><div class="calc-key-grid">${calcKey(drug, hb, total, assumptions, s.selectedYear)}</div></div></section>
       <section class="section"><div class="section-head"><h2>${s.selectedYear} patient funnel</h2><p>This worked example shows how the high-burden branded anti-VEGF source pool narrows to ${drug.shortName} treated eyes. Eligible/access means eyes that remain reachable after clinical suitability, payer/site access, and that year's access timing are applied.</p></div>${funnel(hb, drug)}</section>
       <section class="section"><div class="section-head"><h2>What changes each year</h2><p>The annual sales curve is mainly driven by five moving variables: high-burden pool considered, access ramp, adoption ramp, price index, and ex-US uptake.</p></div><div class="driver-board"><div class="year-head"><div></div><div class="heat-grid">${YEARS.slice(4).map(y => `<span>${y}</span>`).join("")}</div></div>${heatRows(drug, assumptions)}</div></section>
@@ -632,7 +716,7 @@
     let assumptions = scenarioAssumptions(drug, activeScenario);
     let model = compute(drug, assumptions, activeScenario);
     document.title = `${drug.shortName} Interactive Model Calculator`;
-    document.body.innerHTML = `<main class="page"><header><div><h1>${drug.shortName} Interactive Model Calculator</h1><p class="deck">A browser-side version of the forecast logic. Change assumptions, choose any model year, and inspect how source pools, eligible/access, durable-option use, ${drug.shortName} treated eyes, and sales are calculated.</p></div><aside class="meta"><div><strong>Model period</strong> 2025-2045, with commercial launch modeled from ${drug.launchYear}.</div><div><strong>Traceability</strong> The table exposes each annual calculation step.</div></aside></header><nav class="toolbar" aria-label="Model pages"><a href="${drug.slug}_base_case_sales_forecast_infographic.html">Open infographic</a><a href="index.html">Forecast index</a><button type="button" class="active" data-jump="#calculator">Calculator</button><button type="button" data-jump="#matrix">Calculation table</button><button type="button" data-jump="#definitions">Definitions</button></nav><section class="kpi-strip" aria-label="Interactive scenario summary"><div class="kpi"><div class="label">Selected year worldwide sales</div><div class="value" id="kpi-world"></div><p id="kpi-world-note"></p></div><div class="kpi"><div class="label">Peak worldwide sales</div><div class="value" id="kpi-peak"></div><p id="kpi-peak-note"></p></div><div class="kpi"><div class="label">${drug.shortName} treated eyes</div><div class="value" id="kpi-eyes"></div><p>US treated eyes across modeled source-of-business segments.</p></div><div class="kpi"><div class="label">Scenario</div><div class="value" id="kpi-scenario"></div><p>Current editable assumption set.</p></div></section><section class="section" id="calculator"><div class="section-head"><h2>Inputs and results</h2><p>These controls adjust the selected scenario directly in the browser. Product allocation within durable options is not market share; it is the share of durable-option use assigned to ${drug.shortName} after access and adoption gates.</p></div><div class="app-grid"><div class="panel"><div class="control-grid">${controls()}</div><div class="button-row"><button type="button" class="primary" id="applyInputs">Apply changes</button><button type="button" id="resetScenario">Reset scenario</button></div></div><div><div class="chart-panel"><div class="chart-head"><h3>Annual model output</h3><p>Worldwide, US, and ex-US sales, $M</p></div><svg id="salesChart" viewBox="0 0 760 390" role="img" aria-label="Annual sales forecast chart"></svg><div class="legend"><span>Worldwide sales</span><span class="us">US sales</span><span class="exus">Ex-US sales</span></div></div><div class="trace-grid" id="formulaTrace" aria-label="Selected year formula trace"></div></div></div></section><section class="section" id="matrix"><div class="section-head"><h2>Calculation table</h2><p>The table shows the annual calculation path for the selected scenario.</p></div><div class="table-tools"><label for="tableView" class="label" style="margin:0;">Table view</label><select id="tableView"><option value="summary">Total forecast rows</option><option value="hb">High-burden branded source rows</option><option value="allSegments">All source segment rows</option></select></div><div class="table-wrap"><table id="calcTable"></table></div></section><section class="section" id="definitions"><div class="section-head"><h2>Model definitions</h2><p>These labels separate model mechanics from market share, disease burden, and pricing categories.</p></div><div class="definitions"><div class="definition"><strong>Source eyes</strong><p>Eyes grouped by current treatment source before durable-option consideration, access, adoption, and competition.</p></div><div class="definition"><strong>Eligible/access</strong><p>Considered eyes that remain reachable after clinical suitability, payer/site access, and that year's access timing are applied.</p></div><div class="definition"><strong>Durable option</strong><p>A longer-duration wet AMD treatment choice, including gene therapies, long-interval biologics, higher-dose anti-VEGF, and sustained-delivery approaches.</p></div><div class="definition"><strong>${drug.shortName} treated eyes</strong><p>Modeled treatment courses assigned to ${drug.shortName} after durable-option use and competitor allocation. This is not market share.</p></div></div></section></main>`;
+    document.body.innerHTML = `<main class="page"><header><div><h1>${drug.shortName} Interactive Model Calculator</h1><p class="deck">A browser-side version of the forecast logic. Change assumptions, choose any model year, and inspect how source pools, eligible/access, durable-option use, ${drug.shortName} treated eyes, and sales are calculated.</p></div><aside class="meta"><div><strong>Model period</strong> 2025-2045, with commercial launch modeled from ${drug.launchYear}.</div><div><strong>Traceability</strong> The table exposes each annual calculation step.</div></aside></header><nav class="toolbar" aria-label="Model pages"><a href="${drug.slug}_base_case_sales_forecast_infographic.html">Open infographic</a><a href="index.html">Forecast index</a><button type="button" class="active" data-jump="#calculator">Calculator</button><button type="button" data-jump="#matrix">Calculation table</button><button type="button" data-jump="#definitions">Definitions</button></nav><section class="kpi-strip" aria-label="Interactive scenario summary"><div class="kpi"><div class="label">Selected year worldwide sales</div><div class="value" id="kpi-world"></div><p id="kpi-world-note"></p></div><div class="kpi"><div class="label">Peak worldwide sales</div><div class="value" id="kpi-peak"></div><p id="kpi-peak-note"></p></div><div class="kpi"><div class="label">${drug.shortName} treated eyes</div><div class="value" id="kpi-eyes"></div><p>US treated eyes across modeled source-of-business segments.</p></div><div class="kpi"><div class="label">Scenario</div><div class="value" id="kpi-scenario"></div><p>Current editable assumption set.</p></div></section><section class="section" id="calculator"><div class="section-head"><h2>Inputs and results</h2><p>These controls adjust the selected scenario directly in the browser. Product allocation within durable options is not market share; it is the share of durable-option use assigned to ${drug.shortName} after access and adoption gates.</p></div><div class="app-grid"><div class="panel"><div class="control-grid">${controls()}</div><div class="button-row"><button type="button" class="primary" id="applyInputs">Apply changes</button><button type="button" id="resetScenario">Reset scenario</button></div></div><div><div class="chart-panel"><div class="chart-head"><h3>Annual model output</h3><p>Worldwide, US, ex-US, and public external estimates, $M</p></div><svg id="salesChart" viewBox="0 0 760 390" role="img" aria-label="Annual sales forecast chart with public external estimate markers"></svg><div class="legend"><span>Worldwide sales</span><span class="us">US sales</span><span class="exus">Ex-US sales</span>${publicEstimateLegend(drug)}</div><div id="calculator-estimate-note"></div></div><div class="trace-grid" id="formulaTrace" aria-label="Selected year formula trace"></div></div></div></section><section class="section" id="matrix"><div class="section-head"><h2>Calculation table</h2><p>The table shows the annual calculation path for the selected scenario.</p></div><div class="table-tools"><label for="tableView" class="label" style="margin:0;">Table view</label><select id="tableView"><option value="summary">Total forecast rows</option><option value="hb">High-burden branded source rows</option><option value="allSegments">All source segment rows</option></select></div><div class="table-wrap"><table id="calcTable"></table></div></section><section class="section" id="definitions"><div class="section-head"><h2>Model definitions</h2><p>These labels separate model mechanics from market share, disease burden, and pricing categories.</p></div><div class="definitions"><div class="definition"><strong>Source eyes</strong><p>Eyes grouped by current treatment source before durable-option consideration, access, adoption, and competition.</p></div><div class="definition"><strong>Eligible/access</strong><p>Considered eyes that remain reachable after clinical suitability, payer/site access, and that year's access timing are applied.</p></div><div class="definition"><strong>Durable option</strong><p>A longer-duration wet AMD treatment choice, including gene therapies, long-interval biologics, higher-dose anti-VEGF, and sustained-delivery approaches.</p></div><div class="definition"><strong>${drug.shortName} treated eyes</strong><p>Modeled treatment courses assigned to ${drug.shortName} after durable-option use and competitor allocation. This is not market share.</p></div></div></section></main>`;
     function controls() {
       return `<div class="control"><label for="scenario">Scenario</label><select id="scenario"></select><small>Loads the starting assumption set.</small></div><div class="control"><label for="selectedYear">Selected year</label><select id="selectedYear"></select><small>Updates KPI and formula trace.</small></div><div class="control"><label for="activeEyes">US actively treated nAMD eyes</label><input id="activeEyes" type="number" step="10000"><small>Starting treated-eye denominator.</small></div><div class="control"><label for="incidentCases">Incident wet AMD cases per year</label><input id="incidentCases" type="number" step="5000"><small>Annual incident patient input.</small></div><div class="control"><label for="candidateShare">Mature high-burden pool considered</label><input id="candidateShare" type="number" step="0.01" min="0" max="1"><small>Post-validation source pool considered for durable-option use.</small></div><div class="control"><label for="productShare">${drug.shortName} allocation within durable options</label><input id="productShare" type="number" step="0.01" min="0" max="1"><small>Share of durable-option use assigned to ${drug.shortName}.</small></div><div class="control"><label for="hbAccess">HB branded eligible/access share</label><input id="hbAccess" type="number" step="0.01" min="0" max="1"><small>Clinical eligibility and access ceiling for the largest source pool.</small></div><div class="control"><label for="hbCapture">HB branded durable-option adoption</label><input id="hbCapture" type="number" step="0.01" min="0" max="1"><small>Mature durable-option use before product allocation.</small></div><div class="control"><label for="hbPrice">HB branded US net revenue per treated eye</label><input id="hbPrice" type="number" step="1000"><small>Scenario assumption, not a sourced product price.</small></div><div class="control"><label for="exUsFactor">Ex-US volume/access factor vs US</label><input id="exUsFactor" type="number" step="0.01" min="0"><small>Explicit non-US sales factor before price and uptake.</small></div><div class="control"><label for="exUsPrice">Ex-US price index vs US</label><input id="exUsPrice" type="number" step="0.01" min="0"><small>Modeled ex-US net revenue as a ratio to US net revenue.</small></div><div class="control"><label for="priceErosion">Annual price erosion after launch year 8</label><input id="priceErosion" type="number" step="0.005" min="0" max="1"><small>Post-peak annual net-price decline.</small></div>`;
     }
@@ -664,7 +748,9 @@
     function drawChart() {
       const svg = document.getElementById("salesChart");
       const left=58, right=724, top=34, bottom=322;
-      const values = YEARS.flatMap(y => [model.sales[y].world, model.sales[y].us, model.sales[y].exus]);
+      const s = summary(model, drug);
+      const estimates = publicEstimatesForDrug(drug);
+      const values = YEARS.flatMap(y => [model.sales[y].world, model.sales[y].us, model.sales[y].exus]).concat(estimates.map(estimate => estimate.value));
       const max = Math.max(...values, 1000) * 1.12;
       const x = y => left + (YEARS.indexOf(y)/(YEARS.length-1))*(right-left);
       const yy = v => bottom - (v/max)*(bottom-top);
@@ -672,7 +758,8 @@
       const ticks = [0,500,1000,2000,3000,4000,6000].filter(v => v <= max);
       const grid = ticks.map(t => `<line x1="${left}" y1="${yy(t).toFixed(1)}" x2="${right}" y2="${yy(t).toFixed(1)}" class="grid-line"/><text x="46" y="${(yy(t)+4).toFixed(1)}" text-anchor="end" class="axis-label">${t===0?"$0":"$"+(t/1000).toFixed(t >= 1000 ? 0 : 1)+"B"}</text>`).join("");
       const marks = [...new Set([drug.launchYear, drug.launchYear + 3, selectedYearValue, 2045].filter(y => y >= 2025 && y <= 2045))];
-      svg.innerHTML = `${grid}<line x1="${left}" y1="${bottom}" x2="${right}" y2="${bottom}" class="axis"/><line x1="${left}" y1="${top}" x2="${left}" y2="${bottom}" class="axis"/><polyline points="${path(y=>model.sales[y].exus)}" class="line exus-line"/><polyline points="${path(y=>model.sales[y].us)}" class="line us-line"/><polyline points="${path(y=>model.sales[y].world)}" class="line world-line"/>${marks.map(y=>`<circle cx="${x(y).toFixed(1)}" cy="${yy(model.sales[y].world).toFixed(1)}" r="4.5" class="world-dot"/><text x="${(x(y)+8).toFixed(1)}" y="${(yy(model.sales[y].world)-8).toFixed(1)}" class="axis-label">${y}: ${fmtMoney(model.sales[y].world)}</text>`).join("")}<circle cx="${x(selectedYearValue).toFixed(1)}" cy="${yy(model.sales[selectedYearValue].world).toFixed(1)}" r="7" class="world-dot"/>${YEARS.filter(y=>[2025,2028,2030,2033,2036,2039,2042,2045].includes(y)).map(y=>`<text x="${x(y).toFixed(1)}" y="354" text-anchor="middle" class="axis-label">${y}</text>`).join("")}`;
+      svg.innerHTML = `${grid}<line x1="${left}" y1="${bottom}" x2="${right}" y2="${bottom}" class="axis"/><line x1="${left}" y1="${top}" x2="${left}" y2="${bottom}" class="axis"/><polyline points="${path(y=>model.sales[y].exus)}" class="line exus-line"/><polyline points="${path(y=>model.sales[y].us)}" class="line us-line"/><polyline points="${path(y=>model.sales[y].world)}" class="line world-line"/>${publicEstimateMarkers(drug, s.peak.year, x, yy, left, right, top, bottom)}${marks.map(y=>`<circle cx="${x(y).toFixed(1)}" cy="${yy(model.sales[y].world).toFixed(1)}" r="4.5" class="world-dot"/><text x="${(x(y)+8).toFixed(1)}" y="${(yy(model.sales[y].world)-8).toFixed(1)}" class="axis-label">${y}: ${fmtMoney(model.sales[y].world)}</text>`).join("")}<circle cx="${x(selectedYearValue).toFixed(1)}" cy="${yy(model.sales[selectedYearValue].world).toFixed(1)}" r="7" class="world-dot"/>${YEARS.filter(y=>[2025,2028,2030,2033,2036,2039,2042,2045].includes(y)).map(y=>`<text x="${x(y).toFixed(1)}" y="354" text-anchor="middle" class="axis-label">${y}</text>`).join("")}`;
+      document.getElementById("calculator-estimate-note").innerHTML = publicEstimateNote(drug, s.peak.year);
     }
     function renderKpis() {
       const row = model.sales[selectedYearValue];
